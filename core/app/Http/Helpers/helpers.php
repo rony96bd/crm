@@ -566,7 +566,6 @@ function paginateLinks($data, $design = 'admin.partials.paginate'){
     return $data->appends(request()->all())->links($design);
 }
 
-
 function menuActive($routeName, $type = null)
 {
     if ($type == 3) {
@@ -624,6 +623,12 @@ function imagePath()
     $data['profile'] = [
         'admin'=> [
             'path'=>'assets/admin/images/profile',
+            'size'=>'400x400'
+        ]
+    ];
+    $data['profile'] = [
+        'agent'=> [
+            'path'=>'assets/agent/images/profile',
             'size'=>'400x400'
         ]
     ];

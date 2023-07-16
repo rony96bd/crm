@@ -52,6 +52,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'agent' => [
+            'driver' => 'session',
+            'provider' => 'agents',
+        ],
+
         'donor' => [
             'driver' => 'session',
             'provider' => 'donors',
@@ -84,6 +89,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'agents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Agent::class,
         ],
 
         'donors' => [
@@ -122,6 +132,11 @@ return [
         'admins' => [
             'provider' => 'admins',
             'table' => 'admin_password_resets',
+            'expire' => 60,
+        ],
+        'agents' => [
+            'provider' => 'agents',
+            'table' => 'agent_password_resets',
             'expire' => 60,
         ],
         'donors' => [
