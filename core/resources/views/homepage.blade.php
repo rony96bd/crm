@@ -18,6 +18,7 @@
     <a href="{{ route('agent.login') }}" class="btn btn-primary">Agent Login</a>
     <a href="{{ route('donor.login') }}" class="btn btn-primary">Student Login</a><br><br>
     <a href="{{ route('apply.donor') }}" class="btn btn-primary">Apply as Student</a>
+    <a href="{{ route('apply.agent') }}" class="btn btn-primary">Apply as Agent</a>
     </div>
 
     <!-- Optional JavaScript -->
