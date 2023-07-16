@@ -11,10 +11,11 @@
         @endforeach
     </div>
 
-    <section class="pt-100 pb-100 position-relative z-index section--bg">
+    <section class="pb-100 position-relative z-index section--bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                   <div class="text-center"><img src="https://crm.appliuk.com/assets/images/logobanner.jpg" alt="Girl in a jacket" width="300"></div>
                     <form method="POST" action="{{ route('apply.donor.store') }}"
                         class="contact-form bg-white p-sm-5 p-3 rounded-3 position-relative" enctype="multipart/form-data">
                         @csrf
@@ -83,8 +84,8 @@
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label for="city">@lang('City') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="city" id="city" value="{{ old('city') }}"
+                                <label for="city2">@lang('City') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="city2" id="city2" value="{{ old('city2') }}"
                                     placeholder="@lang('City')" class="form--control" maxlength="40" required="">
                             </div>
 
