@@ -14,10 +14,13 @@ class ManageDonorController extends Controller
 
     public function index()
     {
+        $username = auth()->guard('agent')->user()->username;
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::latest()->with('blood', 'location')->paginate(getPaginate());
+        $donors = Donor::latest()
+                ->where('agent', $username)
+                ->paginate(getPaginate());
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 

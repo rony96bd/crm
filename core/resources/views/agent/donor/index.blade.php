@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('agent.layouts.app')
 @section('panel')
     <div class="row">
         <div class="col-lg-12">
@@ -70,7 +70,7 @@
                                         <a href="javascript:void(0)" class="icon-btn btn--success ml-1 approved" data-toggle="tooltip" data-original-title="@lang('Approve')" data-id="{{$donor->id}}"><i class="las la-check"></i></a>
                                         <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$donor->id}}"><i class="las la-times"></i></a>
                                     @endif
-                                    <a href="{{route('admin.donor.edit', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
+                                    <a href="{{route('agent.donor.edit', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
                                 </td>
                             </tr>
                             @empty
@@ -101,7 +101,7 @@
                 </button>
             </div>
 
-            <form action="{{route('admin.donor.approved.status')}}" method="POST">
+            <form action="{{route('agent.donor.approved.status')}}" method="POST">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="id">
@@ -128,7 +128,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('admin.donor.banned.status') }}" method="POST">
+            <form action="{{ route('agent.donor.banned.status') }}" method="POST">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="id">
@@ -155,7 +155,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
             </div>
-            <form action="{{ route('admin.donor.featured.include') }}" method="POST">
+            <form action="{{ route('agent.donor.featured.include') }}" method="POST">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="id">
@@ -181,7 +181,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
             </div>
-            <form action="{{ route('admin.donor.featured.remove') }}" method="POST">
+            <form action="{{ route('agent.donor.featured.remove') }}" method="POST">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="id">
@@ -201,9 +201,9 @@
 
 
 @push('breadcrumb-plugins')
-    <a href="{{route('admin.donor.create')}}" class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0" ><i class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
+    <a href="{{route('agent.donor.create')}}" class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0" ><i class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
 
-     {{-- <form action="{{route('admin.donor.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
+     {{-- <form action="{{route('agent.donor.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
         <div class="input-group has_append">
             <input type="text" name="search" class="form-control" placeholder="@lang('Student Name.....')" value="{{ $search ?? '' }}">
             <div class="input-group-append">
@@ -212,7 +212,7 @@
         </div>
     </form> --}}
 
-    {{-- <form action="{{route('admin.donor.blood.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
+    {{-- <form action="{{route('agent.donor.blood.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
         <div class="input-group has_append">
             <select class="form-control" name="blood_id">
                 <option>----@lang('Select Blood')----</option>

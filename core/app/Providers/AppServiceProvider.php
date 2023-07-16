@@ -38,8 +38,15 @@ class AppServiceProvider extends ServiceProvider
         $viewShare['language'] = Language::all();
         $viewShare['pages'] = Page::where('tempname',$activeTemplate)->where('slug','!=','home')->get();
         view()->share($viewShare);
-        
+
         view()->composer('admin.partials.sidenav', function ($view) {
+            $view->with([
+                'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
+                'pending_donor_count' => Donor::where('status', 0)->count(),
+            ]);
+        });
+
+        view()->composer('agent.partials.sidenav', function ($view) {
             $view->with([
                 'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
                 'pending_donor_count' => Donor::where('status', 0)->count(),
@@ -57,6 +64,6 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
         Paginator::useBootstrap();
-        
+
     }
 }
