@@ -14,6 +14,7 @@
     <div class="m-5">
     <h1>Wellcome to appliuk CRM</h1>
 
+    <a href="{{ route('admin.login') }}" class="btn btn-primary">Admin Login</a>
     <a href="{{ route('agent.login') }}" class="btn btn-primary">Agent Login</a>
     <a href="{{ route('donor.login') }}" class="btn btn-primary">Student Login</a><br><br>
     <a href="{{ route('apply.donor') }}" class="btn btn-primary">Apply as Student</a>
