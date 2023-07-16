@@ -21,15 +21,17 @@
                         <h5 class="mb-3">@lang('Personal Information')</h5>
                         <div class="row mb-4">
                             <div class="form-group col-lg-6">
-                                <label for="firstname">@lang('First Name (as appears in passport)') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
-                                    placeholder="@lang('First name')" class="form--control" maxlength="80" required="">
+                                <label for="name">@lang('Full Name') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                                    placeholder="@lang('Full Name')" class="form--control" maxlength="80" required="">
                             </div>
+
                             <div class="form-group col-lg-6">
-                                <label for="lastname">@lang('Surname (as appears in passport)') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
-                                    placeholder="@lang('Surname')" class="form--control" maxlength="80" required="">
+                                <label for="designation">@lang('Designation') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="designation" id="designation" value="{{ old('designation') }}"
+                                    placeholder="@lang('Designation')" class="form--control" maxlength="40" required="">
                             </div>
+
                             <div class="form-group col-lg-6">
                                 <label for="username">@lang('Username') <sup class="text--danger">*</sup></label>
                                 <input type="text" name="username" id="username" value="{{ old('username') }}"
@@ -61,45 +63,13 @@
                                 <span id="errorMsg" style="display:none; color: red;">Please Enter Valid Phone
                                     Number</span>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="whatsapp">@lang('WhatsApp Number') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="whatsapp" id="whatsapp" value="{{ old('whatsapp') }}"
-                                    placeholder="@lang('Enter WhatsApp Number')" class="form--control" maxlength="40"
-                                    required="">
-                                <span id="errorMsg" style="display:none; color: red;">Please Enter Valid Phone
-                                    Number</span>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="eng-test">@lang('English Test taken') <sup class="text--danger">*</sup></label><br />
-                                <input class="form-check-input" type="checkbox" name="ielts" value="IELTS"
-                                    name="ielts" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">IELTS</label><br />
-                                <input class="form-check-input" type="checkbox" name="pte" value="PTE"
-                                    name="pte" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">PTE</label><br />
-                                <input class="form-check-input" type="checkbox" name="duolingo" value="Duolingo"
-                                    name="duolingo" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Duolingo</label><br />
-                                <input class="form-check-input" type="checkbox" name="oeitc" value="OEITC"
-                                    name="oeitc" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">OEITC</label><br />
-                                <input class="form-check-input" type="checkbox" name="none" value="None of the Above"
-                                    name="none" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">None of the Above</label>
-                            </div>
 
                             <div class="form-group col-lg-6">
-                                <label for="score_overall">@lang('Score Overall') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="score_overall" id="score_overall"
-                                    value="{{ old('score_overall') }}" placeholder="@lang('Score Overall')"
-                                    class="form--control" maxlength="255" required="">
+                                <label for="company">@lang('Company Name') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="company" id="company" value="{{ old('company') }}"
+                                    placeholder="@lang('Company Name')" class="form--control" maxlength="40" required="">
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="low_score">@lang('Low Score') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="low_score" id="low_score" value="{{ old('low_score') }}"
-                                    placeholder="@lang('Low Score')" class="form--control" maxlength="255"
-                                    required="">
-                            </div>
+
                             <div class="form-group col-lg-6">
                                 <label for="country">@lang('Country') <sup class="text--danger">*</sup></label>
                                 <select name="country" id="country" class="select" required="">
@@ -113,23 +83,15 @@
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label for="qualification">@lang('Highest Qualification') <sup class="text--danger">*</sup></label>
-                                <select name="qualification" id="qualification" class="select" required="">
-                                    <option value="" selected="" disabled="">@lang('Select One')</option>
-                                    <option value="10th Grade/SSC/Secondary/O Level/GCSE">@lang('10th Grade/SSC/Secondary/O Level/GCSE')</option>
-                                    <option value="12th Grade/HSC/Senior Secondary/A Level">@lang('12th Grade/HSC/Senior Secondary/A Level')</option>
-                                    <option value="Bachelors Degree">@lang('Bachelors Degree')</option>
-                                    <option value="Masters Degree">@lang('Masters Degree')</option>
-                                    <option value="Other">@lang('Other')</option>
-
-                                </select>
+                                <label for="city">@lang('City') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="city" id="city" value="{{ old('city') }}"
+                                    placeholder="@lang('City')" class="form--control" maxlength="40" required="">
                             </div>
 
-                            <div class="form-group col-lg-12">
-                                <label for="course">@lang('What Course would you like to apply for?') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="course" id="course" value="{{ old('course') }}"
-                                    placeholder="@lang('Write Course Name')" class="form--control" maxlength="255"
-                                    required="">
+                            <div class="form-group col-lg-6">
+                                <label for="website">@lang('Website') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="website" id="website" value="{{ old('website') }}"
+                                    placeholder="@lang('Website')" class="form--control" maxlength="40" required="">
                             </div>
 
                             <div class="form-group col-lg-6">

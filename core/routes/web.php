@@ -281,6 +281,8 @@ Route::get('/', 'HomeController@index')->name('home');  //Using to set Homepage 
 // Route::get('/', 'SiteController@index')->name('home');  //Using to set Homepage Default.
 Route::get('/apply/donor', 'SiteController@applyDonor')->name('apply.donor');
 Route::post('/apply/donor/store', 'SiteController@applyDonorstore')->name('apply.donor.store');
+Route::get('/apply/agent', 'SiteController@applyAgent')->name('apply.donor');
+Route::post('/apply/agent/store', 'SiteController@applyAgentstore')->name('apply.donor.store');
 Route::get('/menu/{slug}/{id}', 'SiteController@footerMenu')->name('footer.menu');
 Route::get('/add/{id}', 'SiteController@adclicked')->name('add.clicked');
 Route::post('/subscribe', 'SiteController@subscribe')->name('subscribe');
