@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Donor Login</title>
+    <title>Student Login</title>
     <style>
         .wrapper {
 	margin-top: 80px;
@@ -65,7 +65,7 @@
 <body>
     <div class="wrapper">
         <form class="form-signin">
-            <h2 class="form-signin-heading">Donor Login</h2>
+            <h2 class="form-signin-heading">Student Login</h2>
             <input type="text" class="form-control" name="username" placeholder="Email Address" required=""
                 autofocus="" /><br/>
             <input type="password" class="form-control" name="password" placeholder="Password" required="" />

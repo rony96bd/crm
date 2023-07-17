@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     public function showLoginForm(): View
     {
-        $pageTitle = "Donor Login";
+        $pageTitle = "Student Login";
         return view('student.auth.login', compact('pageTitle'));
     }
 
