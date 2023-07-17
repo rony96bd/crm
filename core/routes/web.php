@@ -19,7 +19,7 @@ Route::prefix('ticket')->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
 
-Route::namespace('Donor')->prefix('donor')->name('donor.')->group(function () {
+Route::namespace('Donor')->prefix('student')->name('student.')->group(function () {
     Route::namespace('Auth')->group(function () {
         Route::get('/', 'LoginController@showLoginForm')->name('login');
         Route::post('/', 'LoginController@login')->name('login');

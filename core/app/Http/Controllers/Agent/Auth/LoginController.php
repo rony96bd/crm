@@ -106,7 +106,7 @@ class LoginController extends Controller
     {
         $this->guard('agent')->logout();
         $request->session()->invalidate();
-        return $this->loggedOut($request) ?: redirect('/agent');
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     public function resetPassword()

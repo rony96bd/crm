@@ -31,7 +31,7 @@ class DonorController extends Controller
         $don['banned'] = Donor::where('status', 0)->count();
         $donors = Donor::orderBy('id', 'DESC')->with('blood', 'location')->limit(8)->get();
         $donor = Auth::guard('donor')->user();
-        return view('donor.dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors', 'donor'));
+        return view('student.dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors', 'donor'));
     }
 
     public function profile()
@@ -40,7 +40,7 @@ class DonorController extends Controller
         $donor = Auth::guard('donor')->user();
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('donor.profile', compact('pageTitle', 'donor', 'cities', 'bloods'));
+        return view('student.profile', compact('pageTitle', 'donor', 'cities', 'bloods'));
     }
 
     public function profileUpdate(Request $request)
@@ -102,7 +102,7 @@ class DonorController extends Controller
         $user->details = $request->details;
         $user->save();
         $notify[] = ['success', 'Your profile has been updated.'];
-        return redirect()->route('donor.profile')->withNotify($notify);
+        return redirect()->route('student.profile')->withNotify($notify);
     }
 
 
@@ -110,7 +110,7 @@ class DonorController extends Controller
     {
         $pageTitle = 'Password Setting';
         $donor = Auth::guard('donor')->user();
-        return view('donor.password', compact('pageTitle', 'donor'));
+        return view('student.password', compact('pageTitle', 'donor'));
     }
 
     public function passwordUpdate(Request $request)
@@ -128,7 +128,7 @@ class DonorController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         $notify[] = ['success', 'Password changed successfully.'];
-        return redirect()->route('donor.password')->withNotify($notify);
+        return redirect()->route('student.password')->withNotify($notify);
     }
 
     public function requestReport()
@@ -140,10 +140,10 @@ class DonorController extends Controller
         $url = "https://license.viserlab.com/issue/get?" . http_build_query($arr);
         $response = json_decode(curlContent($url));
         if ($response->status == 'error') {
-            return redirect()->route('donor.dashboard')->withErrors($response->message);
+            return redirect()->route('student.dashboard')->withErrors($response->message);
         }
         $reports = $response->message[0];
-        return view('donor.reports', compact('reports', 'pageTitle'));
+        return view('student.reports', compact('reports', 'pageTitle'));
     }
 
     public function reportSubmit(Request $request)
@@ -174,6 +174,6 @@ class DonorController extends Controller
         $currentPHP = phpversion();
         $timeZone = config('app.timezone');
         $pageTitle = 'System Information';
-        return view('donor.info', compact('pageTitle', 'currentPHP', 'laravelVersion', 'serverDetails', 'timeZone'));
+        return view('student.info', compact('pageTitle', 'currentPHP', 'laravelVersion', 'serverDetails', 'timeZone'));
     }
 }

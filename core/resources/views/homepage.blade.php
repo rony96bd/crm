@@ -1,30 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" href="https://appliuk.com/wp-content/uploads/2023/03/fevicon-150x150.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+	<title>AppliUK</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="assets/images/logoIcon/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="frontend/css/util.css">
+	<link rel="stylesheet" type="text/css" href="frontend/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
 
-    <title>CRM</title>
-  </head>
-  <body>
-    <div class="m-5">
-    <h1>Wellcome to appliuk CRM</h1>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="assets/images/logoIcon/logo.png" alt="IMG">
+				</div>
 
-    <a href="{{ route('admin.login') }}" class="btn btn-primary">Admin Login</a>
-    <a href="{{ route('agent.login') }}" class="btn btn-primary">Agent Login</a>
-    <a href="{{ route('donor.login') }}" class="btn btn-primary">Student Login</a><br><br>
-    <a href="{{ route('apply.donor') }}" class="btn btn-primary">Apply as Student</a>
-    <a href="{{ route('apply.agent') }}" class="btn btn-primary">Apply as Agent</a>
-    </div>
+				<div class="login100-form validate-form">
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+					<div class="container-login100-form-btn">
+						<button onclick="window.location.href='{{ route('agent.login') }}';" class="login100-form-btn">
+							Agent Login
+						</button>
+					</div>
+                    <div class="container-login100-form-btn">
+                        <button onclick="window.location.href='{{ route('student.login') }}';" class="login100-form-btn">
+							Student Login
+						</button>
+					</div>
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{{ route('apply.donor') }}">
+							Student Registration
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a><hr>
+                        <a class="txt2" href="{{ route('apply.agent') }}">
+							Agent Registration
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!--===============================================================================================-->
+	<script src="frontend/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="frontend/vendor/bootstrap/js/popper.js"></script>
+	<script src="frontend/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="frontend/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="frontend/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
 </html>

@@ -16,7 +16,7 @@ class RedirectIfDonor
     public function handle($request, Closure $next, $guard = 'donor')
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('donor.dashboard');
+            return redirect()->route('student.dashboard');
         }
         return $next($request);
     }

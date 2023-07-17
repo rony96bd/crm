@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public $redirectTo = 'donor/dashboard';
+    public $redirectTo = 'student/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function showLoginForm(): View
     {
         $pageTitle = "Donor Login";
-        return view('donor.auth.login', compact('pageTitle'));
+        return view('student.auth.login', compact('pageTitle'));
     }
 
     /**
@@ -107,17 +107,17 @@ class LoginController extends Controller
     {
         $this->guard('donor')->logout();
         $request->session()->invalidate();
-        return $this->loggedOut($request) ?: redirect('/donor');
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     public function resetPassword()
     {
         $pageTitle = 'Account Recovery';
-        return view('donor.reset', compact('pageTitle'));
+        return view('student.reset', compact('pageTitle'));
     }
 
-    protected function credentials(Request $request)
-    {
-        return array_merge($request->only($this->username(), 'password'), ['is_verified' => 1]);
-    }
+    // protected function credentials(Request $request)
+    // {
+    //     return array_merge($request->only($this->username(), 'password'), ['is_verified' => 1]);
+    // }
 }

@@ -9,26 +9,26 @@
                 <div class="card-body p-0">
                     <div class="d-flex p-3 bg--primary align-items-center">
                         <div class="avatar avatar--lg">
-                            <img src="{{ getImage(imagePath()['profile']['admin']['path'].'/'. $admin->image,imagePath()['profile']['admin']['size'])}}" alt="@lang('Image')">
+                            <img src="{{ getImage('assets/admin/images/profile/'. auth()->guard('admin')->user()->image) }}" alt="@lang('Image')">
                         </div>
                         <div class="pl-3">
-                            <h4 class="text--white">{{__($admin->name)}}</h4>
+                            <h4 class="text--white">{{__($user->name)}}</h4>
                         </div>
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Name')
-                            <span class="font-weight-bold">{{__($admin->name)}}</span>
+                            <span class="font-weight-bold">{{__($user->name)}}</span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Username')
-                            <span  class="font-weight-bold">{{__($admin->username)}}</span>
+                            <span  class="font-weight-bold">{{__($user->username)}}</span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Email')
-                            <span  class="font-weight-bold">{{$admin->email}}</span>
+                            <span  class="font-weight-bold">{{$user->email}}</span>
                         </li>
 
                     </ul>
@@ -54,7 +54,7 @@
                                     <div class="image-upload">
                                         <div class="thumb">
                                             <div class="avatar-preview">
-                                                <div class="profilePicPreview" style="background-image: url({{ getImage(imagePath()['profile']['admin']['path'].'/'.auth()->guard('admin')->user()->image,imagePath()['profile']['admin']['size']) }})">
+                                                <div class="profilePicPreview" style="background-image: url({{ getImage('assets/admin/images/profile/'. auth()->guard('admin')->user()->image) }})">
                                                     <button type="button" class="remove-image"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
