@@ -34,7 +34,8 @@
 
                 <div class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Wellcome to AppliUK
+                        Wellcome to
+                        <span style="color: #2e76bb">appli</span><span style="background-image: linear-gradient(#2baae1, #2d78bd); color: white;">UK</span>
                     </span>
                     <div class="container-login100-form-btn">
                         <button onclick="window.location.href='{{ route('agent.login') }}';" class="login100-form-btn">
