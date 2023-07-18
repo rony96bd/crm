@@ -13,21 +13,9 @@
         <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
                 <li class="sidebar-menu-item {{menuActive('student.dashboard')}}">
-                    <a href="https://nearblood.com/" class="nav-link ">
-                        <i class="menu-icon las la-home"></i>
-                        <span class="menu-title">@lang('Back to Home')</span>
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{menuActive('student.dashboard')}}">
                     <a href="{{route('student.dashboard')}}" class="nav-link ">
                         <i class="menu-icon la la-dashboard"></i>
                         <span class="menu-title">@lang('Dashboard')</span>
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{menuActive('student.dashboard')}}">
-                    <a href="https://nearblood.com/donor-list" class="nav-link ">
-                        <i class="menu-icon las la-user"></i>
-                        <span class="menu-title">@lang('All Donors')</span>
                     </a>
                 </li>
             </ul>
