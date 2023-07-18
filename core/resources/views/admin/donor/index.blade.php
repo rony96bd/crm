@@ -31,7 +31,7 @@
                                     <span>{{__($donor->whatsapp)}}</span>
                                 </td>
                                 <td data-label="@lang('English Test')">
-                                    <span>{{__($donor->ielts)}} <br> {{__($donor->pte)}} <br> {{__($donor->duolingo)}} <br> {{__($donor->oeitc)}} <br> {{__($donor->none)}}</span>
+                                    <span>{{__($donor->ielts)}}, {{__($donor->pte)}}, {{__($donor->duolingo)}}, {{__($donor->oeitc)}}, {{__($donor->none)}}</span>
                                 </td>
                                 <td data-label="@lang('Score Overall - Low Score')">
                                     <span>{{__($donor->score_overall)}}</span><br>
@@ -71,6 +71,7 @@
                                         <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$donor->id}}"><i class="las la-times"></i></a>
                                     @endif
                                     <a href="{{route('admin.donor.edit', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
+                                    <a href="{{route('admin.donor.view', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-eye"></i></a>
                                 </td>
                             </tr>
                             @empty

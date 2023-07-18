@@ -200,6 +200,16 @@ class ManageDonorController extends Controller
         return view('admin.donor.edit', compact('pageTitle', 'cities', 'bloods', 'donor'));
     }
 
+    public function view($id)
+    {
+        $pageTitle = "Students View";
+        $donor = Donor::findOrFail($id);
+        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
+        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
+        return view('admin.donor.view', compact('pageTitle', 'cities', 'bloods', 'donor'));
+    }
+
+
     public function update(Request $request, $id)
     {
         $request->validate([
