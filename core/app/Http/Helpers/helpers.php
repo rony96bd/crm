@@ -15,7 +15,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 
-function sidebarVariation(){
+function sidebarVariation()
+{
 
     /// for sidebar
     $variation['sidebar'] = 'bg_img';
@@ -30,7 +31,6 @@ function sidebarVariation(){
     $variation['opacity'] = 'overlay--opacity-8'; // 1-10
 
     return $variation;
-
 }
 
 function systemDetails()
@@ -116,7 +116,8 @@ function uploadImage($file, $location, $size = null, $old = null, $thumb = null)
     return $filename;
 }
 
-function uploadFile($file, $location, $size = null, $old = null){
+function uploadFile($file, $location, $size = null, $old = null)
+{
     $path = makeDirectory($location);
     if (!$path) throw new Exception('File could not been created.');
 
@@ -125,7 +126,7 @@ function uploadFile($file, $location, $size = null, $old = null){
     }
 
     $filename = uniqid() . time() . '.' . $file->getClientOriginalExtension();
-    $file->move($location,$filename);
+    $file->move($location, $filename);
     return $filename;
 }
 
@@ -182,7 +183,7 @@ function loadTawkto()
 
 function loadFbComment()
 {
-    $comment = Extension::where('act', 'fb-comment')->where('status',1)->first();
+    $comment = Extension::where('act', 'fb-comment')->where('status', 1)->first();
     return  $comment ? $comment->generateScript() : '';
 }
 
@@ -274,10 +275,10 @@ function getIpInfo()
     $ip = $_SERVER["REMOTE_ADDR"];
 
     //Deep detect ip
-    if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)){
+    if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     }
-    if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)){
+    if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
     }
 
@@ -306,7 +307,8 @@ function getIpInfo()
 }
 
 //moveable
-function osBrowser(){
+function osBrowser()
+{
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
     $osPlatform = "Unknown OS Platform";
     $osArray = array(
@@ -407,14 +409,14 @@ function getPageSections($arr = false)
 }
 
 
-function getImage($image,$size = null)
+function getImage($image, $size = null)
 {
     $clean = '';
     if (file_exists($image) && is_file($image)) {
         return asset($image) . $clean;
     }
     if ($size) {
-        return route('placeholder.image',$size);
+        return route('placeholder.image', $size);
     }
     return asset('assets/images/default.png');
 }
@@ -440,7 +442,7 @@ function sendSms($user, $type, $shortCodes = [])
         }
         $message = shortCodeReplacer("{{message}}", $template, $general->sms_api);
         $message = shortCodeReplacer("{{name}}", $user->username, $message);
-        $sendSms->$gateway($user->mobile,$general->sitename,$message,$general->sms_config);
+        $sendSms->$gateway($user->mobile, $general->sitename, $message, $general->sms_config);
     }
 }
 
@@ -463,17 +465,17 @@ function sendEmail($user, $type = null, $shortCodes = [])
     }
     $config = $general->mail_config;
     if ($config->name == 'php') {
-        sendPhpMail($user->email, $user->username,$emailTemplate->subj, $message, $general);
+        sendPhpMail($user->email, $user->username, $emailTemplate->subj, $message, $general);
     } else if ($config->name == 'smtp') {
-        sendSmtpMail($config, $user->email, $user->username, $emailTemplate->subj, $message,$general);
+        sendSmtpMail($config, $user->email, $user->username, $emailTemplate->subj, $message, $general);
     } else if ($config->name == 'sendgrid') {
-        sendSendGridMail($config, $user->email, $user->username, $emailTemplate->subj, $message,$general);
+        sendSendGridMail($config, $user->email, $user->username, $emailTemplate->subj, $message, $general);
     } else if ($config->name == 'mailjet') {
-        sendMailjetMail($config, $user->email, $user->username, $emailTemplate->subj, $message,$general);
+        sendMailjetMail($config, $user->email, $user->username, $emailTemplate->subj, $message, $general);
     }
 }
 
-function sendPhpMail($receiver_email, $receiver_name, $subject, $message,$general)
+function sendPhpMail($receiver_email, $receiver_name, $subject, $message, $general)
 {
     $headers = "From: $general->sitename <$general->email_from> \r\n";
     $headers .= "Reply-To: $general->sitename <$general->email_from> \r\n";
@@ -482,7 +484,7 @@ function sendPhpMail($receiver_email, $receiver_name, $subject, $message,$genera
     @mail($receiver_email, $subject, $message, $headers);
 }
 
-function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $message,$general)
+function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $message, $general)
 {
     $mail = new PHPMailer(true);
 
@@ -495,7 +497,7 @@ function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $messa
         $mail->Password   = $config->password;
         if ($config->enc == 'ssl') {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        }else{
+        } else {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         }
         $mail->Port       = $config->port;
@@ -515,7 +517,7 @@ function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $messa
 }
 
 
-function sendSendGridMail($config, $receiver_email, $receiver_name, $subject, $message,$general)
+function sendSendGridMail($config, $receiver_email, $receiver_name, $subject, $message, $general)
 {
     $sendgridMail = new \SendGrid\Mail\Mail();
     $sendgridMail->setFrom($general->email_from, $general->sitename);
@@ -531,7 +533,7 @@ function sendSendGridMail($config, $receiver_email, $receiver_name, $subject, $m
 }
 
 
-function sendMailjetMail($config, $receiver_email, $receiver_name, $subject, $message,$general)
+function sendMailjetMail($config, $receiver_email, $receiver_name, $subject, $message, $general)
 {
     $mj = new \Mailjet\Client($config->public_key, $config->secret_key, true, ['version' => 'v3.1']);
     $body = [
@@ -562,7 +564,8 @@ function getPaginate($paginate = 20)
     return $paginate;
 }
 
-function paginateLinks($data, $design = 'admin.partials.paginate'){
+function paginateLinks($data, $design = 'admin.partials.paginate')
+{
     return $data->appends(request()->all())->links($design);
 }
 
@@ -621,15 +624,15 @@ function imagePath()
         'size' => '600x315'
     ];
     $data['profile'] = [
-        'admin'=> [
-            'path'=>'assets/admin/images/profile',
-            'size'=>'400x400'
+        'admin' => [
+            'path' => 'assets/admin/images/profile',
+            'size' => '400x400'
         ]
     ];
     $data['profile'] = [
-        'agent'=> [
-            'path'=>'assets/agent/images/profile',
-            'size'=>'400x400'
+        'agent' => [
+            'path' => 'assets/agent/images/profile',
+            'size' => '400x400'
         ]
     ];
     return $data;
@@ -643,46 +646,46 @@ function diffForHumans($date)
     $now = Carbon::now();
     $diff = strtotime($now) - strtotime($date);
     $time = $diff;
-    $result = $time.' second';
-    if($time > 1) $result .= 's';
+    $result = $time . ' second';
+    if ($time > 1) $result .= 's';
     $type = ' ago';
-    if($diff < 0) {
+    if ($diff < 0) {
         $type = ' from now';
     }
     $diff = abs($diff);
-    if($diff > 60){
+    if ($diff > 60) {
         //mnt
         // return $diff / 86400 * 365;
         $time   = floor($diff / 60);
-        $result = $time.' minutes';
-        if($time > 1) $result .= 's';
+        $result = $time . ' minutes';
+        if ($time > 1) $result .= 's';
     }
-    if($diff > 3600){
+    if ($diff > 3600) {
         $time = floor($diff / 3600);
-        $result = $time.' hour';
-        if($time > 1) $result .= 's';
+        $result = $time . ' hour';
+        if ($time > 1) $result .= 's';
     }
-    if($diff > 86400){
+    if ($diff > 86400) {
         $time = floor($diff / 86400);
-        $result = $time.' day';
-        if($time > 1) $result .= 's';
+        $result = $time . ' day';
+        if ($time > 1) $result .= 's';
     }
-    if($diff > 604800){
+    if ($diff > 604800) {
         $time = floor($diff / 604800);
-        $result = $time.' week';
-        if($time > 1) $result .= 's';
+        $result = $time . ' week';
+        if ($time > 1) $result .= 's';
     }
-    if($diff > 30 * 86400){
+    if ($diff > 30 * 86400) {
         $time = floor($diff / (30 * 86400));
-        $result = $time.' month';
-        if($time > 1) $result .= 's';
+        $result = $time . ' month';
+        if ($time > 1) $result .= 's';
     }
-    if($diff > 365 * 86400){
+    if ($diff > 365 * 86400) {
         $time = floor($diff / 365 * 86400);
-        $result = $time.' year';
-        if($time > 1) $result .= 's';
+        $result = $time . ' year';
+        if ($time > 1) $result .= 's';
     }
-    return $result. $type;
+    return $result . $type;
 }
 
 function showDateTime($date, $format = 'Y-m-d h:i A')
@@ -711,32 +714,32 @@ function sendGeneralEmail($email, $subject, $message, $receiver_name = '')
     } else if ($config->name == 'smtp') {
         sendSmtpMail($config, $email, $receiver_name, $subject, $message, $general);
     } else if ($config->name == 'sendgrid') {
-        sendSendGridMail($config, $email, $receiver_name,$subject, $message,$general);
+        sendSendGridMail($config, $email, $receiver_name, $subject, $message, $general);
     } else if ($config->name == 'mailjet') {
-        sendMailjetMail($config, $email, $receiver_name,$subject, $message, $general);
+        sendMailjetMail($config, $email, $receiver_name, $subject, $message, $general);
     }
 }
 
-function getContent($data_keys, $singleQuery = false, $limit = null,$orderById = false)
+function getContent($data_keys, $singleQuery = false, $limit = null, $orderById = false)
 {
     if ($singleQuery) {
-        $content = Frontend::where('data_keys', $data_keys)->orderBy('id','desc')->first();
+        $content = Frontend::where('data_keys', $data_keys)->orderBy('id', 'desc')->first();
     } else {
         $article = Frontend::query();
         $article->when($limit != null, function ($q) use ($limit) {
             return $q->limit($limit);
         });
-        if($orderById){
+        if ($orderById) {
             $content = $article->where('data_keys', $data_keys)->orderBy('id')->get();
-        }else{
-            $content = $article->where('data_keys', $data_keys)->orderBy('id','desc')->get();
+        } else {
+            $content = $article->where('data_keys', $data_keys)->orderBy('id', 'desc')->get();
         }
     }
     return $content;
 }
 
 
-function verifyG2fa($user,$code,$secret = null)
+function verifyG2fa($user, $code, $secret = null)
 {
     $ga = new GoogleAuthenticator();
     if (!$secret) {
@@ -754,35 +757,37 @@ function verifyG2fa($user,$code,$secret = null)
 }
 
 
-function urlPath($routeName,$routeParam=null){
-    if($routeParam == null){
+function urlPath($routeName, $routeParam = null)
+{
+    if ($routeParam == null) {
         $url = route($routeName);
     } else {
-        $url = route($routeName,$routeParam);
+        $url = route($routeName, $routeParam);
     }
     $basePath = route('home');
-    $path = str_replace($basePath,'',$url);
+    $path = str_replace($basePath, '', $url);
     return $path;
 }
 
 
 function impressionCount($id)
 {
-    $item = Advertisement::where('id',$id)->first();
-    $item->impression +=1;
+    $item = Advertisement::where('id', $id)->first();
+    $item->impression += 1;
     $item->save();
 }
 
-function advertisements($size) {
-    $ad = Advertisement::where('status',1)->where('size', $size)->inRandomOrder()->first();
+function advertisements($size)
+{
+    $ad = Advertisement::where('status', 1)->where('size', $size)->inRandomOrder()->first();
     if ($ad) {
         if ($ad->type == 1) {
             impressionCount($ad->id);
-            return  '<a  target="_blank" href="'.route('add.clicked',encrypt($ad->id)).'" class="d-block bonus"><img src="'.getImage('assets/images/advertisement/'.$ad->image).'" alt="image"></a>';
+            return  '<a  target="_blank" href="' . route('add.clicked', encrypt($ad->id)) . '" class="d-block bonus"><img src="' . getImage('assets/images/advertisement/' . $ad->image) . '" alt="image"></a>';
         }
-        if($ad->type == 2) {
+        if ($ad->type == 2) {
             impressionCount($ad->id);
-            return "<div class='dynamicScript' data-id=".encrypt($ad->id).">".$ad->script."</div>";
+            return "<div class='dynamicScript' data-id=" . encrypt($ad->id) . ">" . $ad->script . "</div>";
         }
     } else {
         return '';

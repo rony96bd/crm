@@ -9,7 +9,7 @@
                             <img src="{{ getImage('assets/images/donor/' . $donor->image ?? '', imagePath()['donor']['size']) }}"
                                 alt="@lang('Image')" class="rounded-circle img-fluid" style="width: 120px;">
                             <h5 class="my-3">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
-                            <p class="text-muted mb-4">@lang('Location') : , </p>
+                            <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }} </p>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary"
                                     onclick="window.location.href = '{{ route('student.profile') }}';">Edit your
@@ -130,6 +130,26 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ __($donor->course) }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0 font-weight-bold">Submitted Documents</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"><span style="color:red;">Passport:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">CV:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file2) }}">{{ __($donor->file2) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">English Test Report:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file3) }}">{{ __($donor->file3) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">10th Certificate:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file4) }}">{{ __($donor->file4) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">12th Certificate:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file5) }}">{{ __($donor->file5) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Degree Certificate:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file6) }}">{{ __($donor->file6) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Masters Certificate:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file7) }}">{{ __($donor->file7) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">10th Transcript:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file8) }}">{{ __($donor->file8) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">12th Transcript:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file9) }}">{{ __($donor->file9) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Degree Transcript:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file10) }}">{{ __($donor->file10) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Masters Transcript:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file11) }}">{{ __($donor->file11) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Evidence of work:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file12) }}">{{ __($donor->file12) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Other Documents:</span> <a target="_blank" href="/crm/assets/files/student/{{ __($donor->file13) }}">{{ __($donor->file13) }}</a></p>
                                 </div>
                             </div>
                         </div>

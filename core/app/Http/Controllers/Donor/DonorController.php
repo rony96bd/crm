@@ -46,24 +46,23 @@ class DonorController extends Controller
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'phone' => 'required',
-            'blood' => 'required|exists:bloods,id',
-            'city' => 'required|exists:cities,id',
-            'location' => 'required|exists:locations,id',
-            'gender' => 'required|in:1,2',
-            // 'facebook' => 'required',
-            // 'twitter' => 'required',
-            // 'linkedinIn' => 'required',
-            // 'instagram' => 'required',
-            'profession' => 'required|max:80',
-            'religion' => 'required|max:40',
-            'address' => 'required|max:255',
-            // 'donate' => 'required|integer',
-            'birth_date' => 'required|date',
-            // 'last_donate' => 'required|date',
-            'details' => 'required',
-            'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])]
+            'firstname' => 'required|max:80',
+            'lastname' => 'required|max:80',
+            'whatsapp' => 'required|max:40',
+            'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
+            'file' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file2' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file3' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file4' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file5' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file6' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file7' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file8' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file9' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file10' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file11' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file12' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file13' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
         ]);
         $user = Auth::guard('donor')->user();
 
@@ -80,26 +79,125 @@ class DonorController extends Controller
             }
         }
 
-        $user->name = $request->name;
+        if ($request->hasFile('file')) {
+            $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
+            $request->file->move('assets/files/student', $fileName);
+        } else {
+            $fileName = null;
+        }
+
+        if ($request->hasFile('file2')) {
+            $fileName2 = $user->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
+            $request->file2->move('assets/files/student', $fileName2);
+        } else {
+            $fileName2 = null;
+        }
+
+        if ($request->hasFile('file3')) {
+            $fileName3 = $user->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
+            $request->file3->move('assets/files/student', $fileName3);
+        } else {
+            $fileName3 = null;
+        }
+
+        if ($request->hasFile('file4')) {
+            $fileName4 = $user->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
+            $request->file4->move('assets/files/student', $fileName4);
+        } else {
+            $fileName4 = null;
+        }
+
+        if ($request->hasFile('file5')) {
+            $fileName5 = $user->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
+            $request->file5->move('assets/files/student', $fileName5);
+        } else {
+            $fileName5 = null;
+        }
+
+        if ($request->hasFile('file6')) {
+            $fileName6 = $user->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
+            $request->file6->move('assets/files/student', $fileName6);
+        } else {
+            $fileName6 = null;
+        }
+
+        if ($request->hasFile('file7')) {
+            $fileName7 = $user->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
+            $request->file7->move('assets/files/student', $fileName7);
+        } else {
+            $fileName7 = null;
+        }
+
+        if ($request->hasFile('file8')) {
+            $fileName8 = $user->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
+            $request->file8->move('assets/files/student', $fileName8);
+        } else {
+            $fileName8 = null;
+        }
+
+        if ($request->hasFile('file9')) {
+            $fileName9 = $user->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
+            $request->file9->move('assets/files/student', $fileName9);
+        } else {
+            $fileName9 = null;
+        }
+
+        if ($request->hasFile('file10')) {
+            $fileName10 = $user->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
+            $request->file10->move('assets/files/student', $fileName10);
+        } else {
+            $fileName10 = null;
+        }
+
+        if ($request->hasFile('file11')) {
+            $fileName11 = $user->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
+            $request->file11->move('assets/files/student', $fileName11);
+        } else {
+            $fileName11 = null;
+        }
+
+        if ($request->hasFile('file12')) {
+            $fileName12 = $user->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
+            $request->file12->move('assets/files/student', $fileName12);
+        } else {
+            $fileName12 = null;
+        }
+
+        if ($request->hasFile('file13')) {
+            $fileName13 = $user->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
+            $request->file13->move('assets/files/student', $fileName13);
+        } else {
+            $fileName13 = null;
+        }
+
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
         $user->phone = $request->phone;
-        $user->blood_id = $request->blood;
-        $user->city_id = $request->city;
-        $user->location_id = $request->location;
-        $user->gender = $request->gender;
-        $socialMedia = [
-            'facebook' => $request->facebook,
-            'twitter' => $request->twitter,
-            'linkedinIn' => $request->linkedinIn,
-            'instagram' => $request->instagram
-        ];
-        $user->socialMedia = $socialMedia;
-        $user->profession = $request->profession;
-        $user->religion = $request->religion;
-        $user->address = $request->address;
-        $user->total_donate = $request->donate;
-        $user->birth_date =  $request->birth_date;
-        $user->last_donate = $request->last_donate;
-        $user->details = $request->details;
+        $user->whatsapp = $request->whatsapp;
+        $user->pte = $request->ielts;
+        $user->pte = $request->pte;
+        $user->pte = $request->duolingo;
+        $user->pte = $request->oeitc;
+        $user->pte = $request->none;
+        $user->score_overall = $request->score_overall;
+        $user->low_score = $request->low_score;
+        $user->country = $request->country;
+        $user->qualification = $request->qualification;
+        $user->course = $request->course;
+        $user->file = $fileName;
+        $user->file2 = $fileName2;
+        $user->file3 = $fileName3;
+        $user->file4 = $fileName4;
+        $user->file5 = $fileName5;
+        $user->file6 = $fileName6;
+        $user->file7 = $fileName7;
+        $user->file8 = $fileName8;
+        $user->file9 = $fileName9;
+        $user->file10 = $fileName10;
+        $user->file11 = $fileName11;
+        $user->file12 = $fileName12;
+        $user->file13 = $fileName13;
+
         $user->save();
         $notify[] = ['success', 'Your profile has been updated.'];
         return redirect()->route('student.profile')->withNotify($notify);
