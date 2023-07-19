@@ -50,20 +50,22 @@ class DonorController extends Controller
             'lastname' => 'required|max:80',
             'whatsapp' => 'required|max:40',
             'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
-            'file' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file2' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file3' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file4' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file5' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file6' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file7' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file8' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file9' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file10' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file11' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file12' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
-            'file13' => ['nullable', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file2' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file3' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file4' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file5' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file6' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file7' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file8' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file9' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file10' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file11' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file12' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file13' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
         ]);
+
+        dd();
         $user = Auth::guard('donor')->user();
 
         if ($request->hasFile('image')) {
