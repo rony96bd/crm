@@ -83,6 +83,7 @@ class DonorController extends Controller
         if ($request->hasFile('file')) {
             $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
             $request->file->move('assets/files/student', $fileName);
+            unlink(imagePath()['file']['path'] . $user->file);
         } else {
             $fileName = $user->file;
         }
@@ -91,84 +92,84 @@ class DonorController extends Controller
             $fileName2 = $user->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
             $request->file2->move('assets/files/student', $fileName2);
         } else {
-            $fileName = $user->file2;
+            $fileName2 = $user->file2;
         }
 
         if ($request->hasFile('file3')) {
             $fileName3 = $user->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
             $request->file3->move('assets/files/student', $fileName3);
         } else {
-            $fileName = $user->file3;
+            $fileName3 = $user->file3;
         }
 
         if ($request->hasFile('file4')) {
             $fileName4 = $user->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
             $request->file4->move('assets/files/student', $fileName4);
         } else {
-            $fileName = $user->file4;
+            $fileName4 = $user->file4;
         }
 
         if ($request->hasFile('file5')) {
             $fileName5 = $user->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
             $request->file5->move('assets/files/student', $fileName5);
         } else {
-            $fileName = $user->file5;
+            $fileName5 = $user->file5;
         }
 
         if ($request->hasFile('file6')) {
             $fileName6 = $user->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
             $request->file6->move('assets/files/student', $fileName6);
         } else {
-            $fileName = $user->file6;
+            $fileName6 = $user->file6;
         }
 
         if ($request->hasFile('file7')) {
             $fileName7 = $user->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
             $request->file7->move('assets/files/student', $fileName7);
         } else {
-            $fileName = $user->file7;
+            $fileName7 = $user->file7;
         }
 
         if ($request->hasFile('file8')) {
             $fileName8 = $user->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
             $request->file8->move('assets/files/student', $fileName8);
         } else {
-            $fileName = $user->file8;
+            $fileName8 = $user->file8;
         }
 
         if ($request->hasFile('file9')) {
             $fileName9 = $user->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
             $request->file9->move('assets/files/student', $fileName9);
         } else {
-            $fileName = $user->file9;
+            $fileName9 = $user->file9;
         }
 
         if ($request->hasFile('file10')) {
             $fileName10 = $user->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
             $request->file10->move('assets/files/student', $fileName10);
         } else {
-            $fileName = $user->file10;
+            $fileName10 = $user->file10;
         }
 
         if ($request->hasFile('file11')) {
             $fileName11 = $user->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
             $request->file11->move('assets/files/student', $fileName11);
         } else {
-            $fileName = $user->file11;
+            $fileName11 = $user->file11;
         }
 
         if ($request->hasFile('file12')) {
             $fileName12 = $user->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
             $request->file12->move('assets/files/student', $fileName12);
         } else {
-            $fileName = $user->file12;
+            $fileName12 = $user->file12;
         }
 
         if ($request->hasFile('file13')) {
             $fileName13 = $user->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
             $request->file13->move('assets/files/student', $fileName13);
         } else {
-            $fileName = $user->file13;
+            $fileName13 = $user->file13;
         }
 
         $user->firstname = $request->firstname;
@@ -227,41 +228,41 @@ class DonorController extends Controller
         return redirect()->route('student.password')->withNotify($notify);
     }
 
-    public function requestReport()
-    {
-        $pageTitle = 'Your Listed Report & Request';
-        $arr['app_name'] = systemDetails()['name'];
-        $arr['app_url'] = env('APP_URL');
-        $arr['purchase_code'] = env('PURCHASE_CODE');
-        $url = "https://license.viserlab.com/issue/get?" . http_build_query($arr);
-        $response = json_decode(curlContent($url));
-        if ($response->status == 'error') {
-            return redirect()->route('student.dashboard')->withErrors($response->message);
-        }
-        $reports = $response->message[0];
-        return view('student.reports', compact('reports', 'pageTitle'));
-    }
+    // public function requestReport()
+    // {
+    //     $pageTitle = 'Your Listed Report & Request';
+    //     $arr['app_name'] = systemDetails()['name'];
+    //     $arr['app_url'] = env('APP_URL');
+    //     $arr['purchase_code'] = env('PURCHASE_CODE');
+    //     $url = "https://license.viserlab.com/issue/get?" . http_build_query($arr);
+    //     $response = json_decode(curlContent($url));
+    //     if ($response->status == 'error') {
+    //         return redirect()->route('student.dashboard')->withErrors($response->message);
+    //     }
+    //     $reports = $response->message[0];
+    //     return view('student.reports', compact('reports', 'pageTitle'));
+    // }
 
-    public function reportSubmit(Request $request)
-    {
-        $request->validate([
-            'type' => 'required|in:bug,feature',
-            'message' => 'required',
-        ]);
-        $url = 'https://license.viserlab.com/issue/add';
+    // public function reportSubmit(Request $request)
+    // {
+    //     $request->validate([
+    //         'type' => 'required|in:bug,feature',
+    //         'message' => 'required',
+    //     ]);
+    //     $url = 'https://license.viserlab.com/issue/add';
 
-        $arr['app_name'] = systemDetails()['name'];
-        $arr['app_url'] = env('APP_URL');
-        $arr['purchase_code'] = env('PURCHASE_CODE');
-        $arr['req_type'] = $request->type;
-        $arr['message'] = $request->message;
-        $response = json_decode(curlPostContent($url, $arr));
-        if ($response->status == 'error') {
-            return back()->withErrors($response->message);
-        }
-        $notify[] = ['success', $response->message];
-        return back()->withNotify($notify);
-    }
+    //     $arr['app_name'] = systemDetails()['name'];
+    //     $arr['app_url'] = env('APP_URL');
+    //     $arr['purchase_code'] = env('PURCHASE_CODE');
+    //     $arr['req_type'] = $request->type;
+    //     $arr['message'] = $request->message;
+    //     $response = json_decode(curlPostContent($url, $arr));
+    //     if ($response->status == 'error') {
+    //         return back()->withErrors($response->message);
+    //     }
+    //     $notify[] = ['success', $response->message];
+    //     return back()->withNotify($notify);
+    // }
 
     public function systemInfo()
     {

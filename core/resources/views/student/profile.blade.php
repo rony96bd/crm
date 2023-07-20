@@ -297,11 +297,6 @@
                                         <button type="submit"
                                             class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
                                     </div>
-
-                                    <div class="form-group">
-                                        <button type="submit"
-                                            class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
-                                    </div>
                                 </div>
                     </form>
                 </div>

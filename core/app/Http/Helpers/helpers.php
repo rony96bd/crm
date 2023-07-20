@@ -595,6 +595,11 @@ function imagePath()
     $data['advertisement'] = [
         'path' => 'assets/images/advertisement',
     ];
+
+    $data['file'] = [
+        'path' => 'assets/files/student/',
+    ];
+
     $data['donor'] = [
         'path' => 'assets/images/donor',
         'size' => '400x400'
