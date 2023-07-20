@@ -140,7 +140,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Passport
+                                                Passport: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file" name="file"
@@ -152,7 +152,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                CV
+                                                CV: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file2) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file2" name="file2"
@@ -164,7 +164,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                English Test Report:
+                                                English Test Report: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file3) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file3" name="file3"
@@ -176,7 +176,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                10th Certificate:
+                                                10th Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file4) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file4" name="file4"
@@ -188,7 +188,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                12th Certificate:
+                                                12th Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file5) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file5" name="file5"
@@ -200,7 +200,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Degree Certificate:
+                                                Degree Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file6) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file6" name="file6"
@@ -212,7 +212,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Masters Certificate:
+                                                Masters Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file7) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file7" name="file7"
@@ -224,7 +224,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                10th Transcript:
+                                                10th Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file8) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file8" name="file8"
@@ -236,7 +236,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                12th Transcript:
+                                                12th Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file9) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file9" name="file9"
@@ -248,7 +248,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Degree Transcript:
+                                                Degree Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file10) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file10" name="file10"
@@ -260,7 +260,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Masters Transcript:
+                                                Masters Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file11) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file11" name="file11"
@@ -272,7 +272,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Evidence of work:
+                                                Evidence of work: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file12) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file12" name="file12"
@@ -284,7 +284,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Other Documents:
+                                                Other Documents: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file13) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file13" name="file13"
@@ -293,6 +293,11 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <div class="form-group">
+                                        <button type="submit"
+                                            class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
+                                    </div>
+
                                     <div class="form-group">
                                         <button type="submit"
                                             class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
