@@ -42,7 +42,7 @@
                             <img src="{{ getImage('assets/images/donor/' . $donor->image ?? '', imagePath()['donor']['size']) }}"
                                 alt="@lang('Image')" class="rounded-circle img-fluid" style="width: 120px;">
                             <h5 class="my-3">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
-                            <p class="text-muted mb-4">@lang('Location') : , </p>
+                            <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary"
                                     onclick="window.location.href = '{{ route('student.profile') }}';">Edit your
