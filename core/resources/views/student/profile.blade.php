@@ -63,29 +63,28 @@
                                         value="{{ auth()->guard('donor')->user()->whatsapp }}">
                                 </div>
 
+                                @php
+                                    $engtests = json_decode($donor->engtest);
+                                @endphp
+
                                 <div class="form-group ">
                                     <label class="form-control-label font-weight-bold">@lang('English Test taken')<sup
                                             class="text--danger">*</sup></label>
-                                    {{ __($donor->ielts) }},
-                                    {{ __($donor->pte) }},
-                                    {{ __($donor->duolingo) }},
-                                    {{ __($donor->oeitc) }},
-                                    {{ __($donor->none) }}<br />
                                     <div style="margin-left: 20px">
-                                        <input class="form-check-input" type="checkbox" name="ielts" value="IELTS"
-                                            name="ielts" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" name="engtest[]" value="IELTS"
+                                            id="flexCheckDefault" {{ in_array('IELTS', $engtests)? 'checked':'' }}>
                                         <label class="form-check-label" for="flexCheckDefault">IELTS</label><br />
-                                        <input class="form-check-input" type="checkbox" name="pte" value="PTE"
-                                            name="pte" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" name="engtest[]" value="PTE"
+                                            id="flexCheckDefault" {{ in_array('PTE', $engtests)? 'checked':'' }}>
                                         <label class="form-check-label" for="flexCheckDefault">PTE</label><br />
-                                        <input class="form-check-input" type="checkbox" name="duolingo" value="Duolingo"
-                                            name="duolingo" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" name="engtest[]" value="Duolingo"
+                                            id="flexCheckDefault" {{ in_array('Duolingo', $engtests)? 'checked':'' }}>
                                         <label class="form-check-label" for="flexCheckDefault">Duolingo</label><br />
-                                        <input class="form-check-input" type="checkbox" name="oeitc" value="OEITC"
-                                            name="oeitc" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" name="engtest[]" value="OEITC"
+                                            id="flexCheckDefault" {{ in_array('OEITC', $engtests)? 'checked':'' }}>
                                         <label class="form-check-label" for="flexCheckDefault">OEITC</label><br />
-                                        <input class="form-check-input" type="checkbox" name="none"
-                                            value="None of the Above" name="none" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" name="engtest[]"
+                                            value="None of the Above" id="flexCheckDefault" {{ in_array('None of the Above', $engtests)? 'checked':'' }}>
                                         <label class="form-check-label" for="flexCheckDefault">None of the Above</label>
                                     </div>
                                 </div>

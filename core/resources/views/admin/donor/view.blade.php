@@ -79,11 +79,13 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">
-                                        {{ __($donor->ielts) }}
-                                        {{ __($donor->pte) }}
-                                        {{ __($donor->duolingo) }}
-                                        {{ __($donor->oeitc) }}
-                                        {{ __($donor->none) }}
+                                        @php
+                                        $engtests = json_decode($donor->engtest)
+                                        @endphp
+
+                                        @foreach ($engtests as $engtest)
+                                            {{$engtest}},
+                                        @endforeach
                                     </p>
                                 </div>
                             </div>

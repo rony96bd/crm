@@ -65,7 +65,6 @@ class DonorController extends Controller
             'file13' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
         ]);
 
-        dd();
         $user = Auth::guard('donor')->user();
 
         if ($request->hasFile('image')) {
@@ -176,11 +175,7 @@ class DonorController extends Controller
         $user->lastname = $request->lastname;
         $user->phone = $request->phone;
         $user->whatsapp = $request->whatsapp;
-        $user->pte = $request->ielts;
-        $user->pte = $request->pte;
-        $user->pte = $request->duolingo;
-        $user->pte = $request->oeitc;
-        $user->pte = $request->none;
+        $user->engtest = json_encode($request->engtest);
         $user->score_overall = $request->score_overall;
         $user->low_score = $request->low_score;
         $user->country = $request->country;
