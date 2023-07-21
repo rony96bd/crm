@@ -21,6 +21,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
+use App\Models\Agent;
 use Illuminate\Support\Facades\Response;
 
 
@@ -343,46 +344,46 @@ class SiteController extends Controller
         $request->validate([
             'firstname' => 'required|max:80',
             'lastname' => 'required|max:80',
-            'username' => 'required|alpha_dash|unique:donors,username',
-            'email' => 'required|email|max:60|unique:donors,email',
+            'username' => 'required|alpha_dash|unique:agents,username',
+            'email' => 'required|email|max:60|unique:agents,email',
             'password' => 'required|confirmed|min:6',
-            'phone' => 'required|max:40|unique:donors,phone',
+            'phone' => 'required|max:40|unique:agents,phone',
             'whatsapp' => 'required|max:40',
-            // 'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
+            'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
-        $donor = new Donor();
-        $donor->firstname = $request->firstname;
-        $donor->lastname = $request->lastname;
-        $donor->username = $request->username;
-        $donor->email = $request->email;
-        $donor->password = Hash::make($request->password);
-        $donor->phone = $request->phone;
-        $donor->whatsapp = $request->whatsapp;
-        $donor->ielts = $request->ielts;
-        $donor->pte = $request->pte;
-        $donor->duolingo = $request->duolingo;
-        $donor->oeitc = $request->oeitc;
-        $donor->none = $request->none;
-        $donor->score_overall = $request->score_overall;
-        $donor->low_score = $request->low_score;
-        $donor->country = $request->country;
-        $donor->qualification = $request->qualification;
-        $donor->course = $request->course;
-        $donor->status = '0';
-        $donor->engtest = '["None of the Above"]';
+        $agent = new Agent();
+        $agent->firstname = $request->firstname;
+        $agent->lastname = $request->lastname;
+        $agent->username = $request->username;
+        $agent->email = $request->email;
+        $agent->password = Hash::make($request->password);
+        $agent->phone = $request->phone;
+        $agent->whatsapp = $request->whatsapp;
+        $agent->ielts = $request->ielts;
+        $agent->pte = $request->pte;
+        $agent->duolingo = $request->duolingo;
+        $agent->oeitc = $request->oeitc;
+        $agent->none = $request->none;
+        $agent->score_overall = $request->score_overall;
+        $agent->low_score = $request->low_score;
+        $agent->country = $request->country;
+        $agent->qualification = $request->qualification;
+        $agent->course = $request->course;
+        $agent->status = '0';
+        $agent->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
-        // $path = imagePath()['donor']['path'];
-        // $size = imagePath()['donor']['size'];
-        // if ($request->hasFile('image')) {
-        //     try {
-        //         $filename = uploadImage($request->image, $path, $size);
-        //     } catch (\Exception $exp) {
-        //         $notify[] = ['error', 'Image could not be uploaded.'];
-        //         return back()->withNotify($notify);
-        //     }
-        //     $donor->image = $filename;
-        // }
-        $donor->save();
+        $path = imagePath()['donor']['path'];
+        $size = imagePath()['donor']['size'];
+        if ($request->hasFile('image')) {
+            try {
+                $filename = uploadImage($request->image, $path, $size);
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Image could not be uploaded.'];
+                return back()->withNotify($notify);
+            }
+            $agent->image = $filename;
+        }
+        $agent->save();
 
         // if($donor != null){
         //     MailController::sendSignupEmail($donor->name, $donor->email, $donor->verification_code);
@@ -390,7 +391,7 @@ class SiteController extends Controller
         // }
         // return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
 
-        $notify[] = ['success', 'Your Requested Submitted'];
+        $notify[] = ['success', 'Registration Success'];
         return back()->withNotify($notify);
     }
 
