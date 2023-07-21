@@ -282,7 +282,6 @@ class SiteController extends Controller
         $request->validate([
             'firstname' => 'required|max:80',
             'lastname' => 'required|max:80',
-            'username' => 'required|alpha_dash|unique:donors,username',
             'email' => 'required|email|max:60|unique:donors,email',
             'password' => 'required|confirmed|min:6',
             'phone' => 'required|max:40|unique:donors,phone',
