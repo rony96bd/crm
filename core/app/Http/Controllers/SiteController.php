@@ -357,8 +357,8 @@ class SiteController extends Controller
         $agent->designation = $request->designation;
         $agent->company = $request->company;
         $agent->country = $request->country;
-        $agent->city = $request->city;
-        $agent->course = $request->course;
+        $agent->city = $request->city2;
+        $agent->website = $request->website;
         $agent->status = '0';
         $agent->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
