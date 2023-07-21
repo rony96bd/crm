@@ -314,7 +314,7 @@ class SiteController extends Controller
 
         if ($donor != null) {
             MailController::sendSignupEmail($donor->firstname, $donor->email);
-            return redirect()->back()->with(session()->flash('alert-success', 'Your Application is Submitted and Send Verification Link to your Email. Pls click email link to active your account.'));
+            return redirect()->back()->with(session()->flash('alert-success', 'Registration Success'));
         }
         return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
 
@@ -364,11 +364,11 @@ class SiteController extends Controller
         }
         $agent->save();
 
-        // if($donor != null){
-        //     MailController::sendSignupEmail($donor->name, $donor->email, $donor->verification_code);
-        //     return redirect()->back()->with(session()->flash('alert-success', 'Your Application is Submitted and Send Verification Link to your Email. Pls click email link to active your account.'));
-        // }
-        // return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
+        if ($agent != null) {
+            MailController::sendSignupEmail($agent->name, $agent->email);
+            return redirect()->back()->with(session()->flash('alert-success', 'Registration Success'));
+        }
+        return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
 
         $notify[] = ['success', 'Registration Success'];
         return back()->withNotify($notify);
