@@ -8,7 +8,7 @@ Your Registration is Complete.
 Please Click the link below to next process.
 <br/>
 <br/>
-<a href="https://crm.appliuk.com/student/profile"><button style="color: white; background-color: #4CAF50; border-radius: 5px; vertical-align: middle; border: none; height: 30px; width: 104px; font-weight: bold; cursor: pointer;" type="button">Apply Now</button></a>
+<a href="https://crm.appliuk.com/"><button style="color: white; background-color: #4CAF50; border-radius: 5px; vertical-align: middle; border: none; height: 30px; width: 104px; font-weight: bold; cursor: pointer;" type="button">Login</button></a>
 <br/>
 <br/>
 Thanks
