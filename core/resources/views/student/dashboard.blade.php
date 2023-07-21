@@ -63,8 +63,8 @@
                                         <span class="badge badge--success font-weight-bold">@lang('Your Profile is Actived')</span>
                                     @elseif($donor->status == 2)
                                         <span class="badge badge--danger font-weight-bold">@lang('Your Profile is Banned')</span>
-                                    @else
-                                        <span class="badge badge--primary font-weight-bold">@lang('Your Profile is Pending for Admin Approval.')</span>
+                                    @elseif ($donor->status == 4)
+                                        <span class="badge badge--danger font-weight-bold">@lang('Need to Apply')</span>
                                     @endif
                                 </div>
                             </div>
