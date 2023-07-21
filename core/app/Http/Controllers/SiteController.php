@@ -341,39 +341,29 @@ class SiteController extends Controller
 
     public function applyAgentstore(Request $request)
     {
-        $request->validate([
-            'firstname' => 'required|max:80',
-            'lastname' => 'required|max:80',
+        $request->validate(['name' => 'required|max:80',
             'username' => 'required|alpha_dash|unique:agents,username',
             'email' => 'required|email|max:60|unique:agents,email',
             'password' => 'required|confirmed|min:6',
             'phone' => 'required|max:40|unique:agents,phone',
-            'whatsapp' => 'required|max:40',
             'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
         $agent = new Agent();
-        $agent->firstname = $request->firstname;
-        $agent->lastname = $request->lastname;
+        $agent->name = $request->name;
         $agent->username = $request->username;
         $agent->email = $request->email;
         $agent->password = Hash::make($request->password);
         $agent->phone = $request->phone;
-        $agent->whatsapp = $request->whatsapp;
-        $agent->ielts = $request->ielts;
-        $agent->pte = $request->pte;
-        $agent->duolingo = $request->duolingo;
-        $agent->oeitc = $request->oeitc;
-        $agent->none = $request->none;
-        $agent->score_overall = $request->score_overall;
-        $agent->low_score = $request->low_score;
+        $agent->designation = $request->designation;
+        $agent->company = $request->company;
         $agent->country = $request->country;
-        $agent->qualification = $request->qualification;
+        $agent->city = $request->city;
         $agent->course = $request->course;
         $agent->status = '0';
         $agent->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
-        $path = imagePath()['donor']['path'];
-        $size = imagePath()['donor']['size'];
+        $path = imagePath()['agent']['path'];
+        $size = imagePath()['agent']['size'];
         if ($request->hasFile('image')) {
             try {
                 $filename = uploadImage($request->image, $path, $size);

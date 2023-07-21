@@ -28,12 +28,6 @@
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label for="designation">@lang('Designation') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="designation" id="designation" value="{{ old('designation') }}"
-                                    placeholder="@lang('Designation')" class="form--control" maxlength="40" required="">
-                            </div>
-
-                            <div class="form-group col-lg-6">
                                 <label for="username">@lang('Username') <sup class="text--danger">*</sup></label>
                                 <input type="text" name="username" id="username" value="{{ old('username') }}"
                                     placeholder="@lang('User name')" class="form--control" maxlength="40" required="">
@@ -63,6 +57,12 @@
                                     placeholder="@lang('Enter Phone Number')" class="form--control" maxlength="40" required="">
                                 <span id="errorMsg" style="display:none; color: red;">Please Enter Valid Phone
                                     Number</span>
+                            </div>
+
+                            <div class="form-group col-lg-6">
+                                <label for="designation">@lang('Designation') <sup class="text--danger">*</sup></label>
+                                <input type="text" name="designation" id="designation" value="{{ old('designation') }}"
+                                    placeholder="@lang('Designation')" class="form--control" maxlength="40" required="">
                             </div>
 
                             <div class="form-group col-lg-6">

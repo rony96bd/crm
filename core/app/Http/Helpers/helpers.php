@@ -604,6 +604,12 @@ function imagePath()
         'path' => 'assets/images/donor',
         'size' => '400x400'
     ];
+
+    $data['agent'] = [
+        'path' => 'assets/images/agent',
+        'size' => '400x400'
+    ];
+
     $data['image'] = [
         'default' => 'assets/images/default.png',
     ];
