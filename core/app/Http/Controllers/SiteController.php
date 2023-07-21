@@ -369,6 +369,7 @@ class SiteController extends Controller
         $donor->qualification = $request->qualification;
         $donor->course = $request->course;
         $donor->status = '0';
+        $donor->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
         // $path = imagePath()['donor']['path'];
         // $size = imagePath()['donor']['size'];

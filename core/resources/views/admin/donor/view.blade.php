@@ -80,12 +80,15 @@
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">
                                         @php
-                                        $engtests = json_decode($donor->engtest)
-                                        @endphp
+                                            $engtestview = '';
+                                            $engtests = json_decode($donor->engtest);
 
-                                        @foreach ($engtests as $engtest)
-                                            {{$engtest}},
-                                        @endforeach
+                                            foreach ($engtests as $engtest) {
+                                                $engtestview .= $engtest. ', ';
+                                            }
+                                            $engtestview = rtrim($engtestview,', '); 
+                                            echo $engtestview;                                   
+                                        @endphp
                                     </p>
                                 </div>
                             </div>
