@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public static function sendSignupEmail($firstname, $email, $verification_code)
+    public static function sendSignupEmail($firstname, $email)
     {
         $data = [
-            'name' => $firstname,
+            'firstname' => $firstname,
             // 'verification_code' => $verification_code
         ];
         Mail::to($email)->send(new SignupEmail($data));

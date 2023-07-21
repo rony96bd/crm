@@ -313,7 +313,7 @@ class SiteController extends Controller
         $donor->save();
 
         if ($donor != null) {
-            MailController::sendSignupEmail($donor->firstname, $donor->lastname, $donor->email);
+            MailController::sendSignupEmail($donor->firstname, $donor->email);
             return redirect()->back()->with(session()->flash('alert-success', 'Your Application is Submitted and Send Verification Link to your Email. Pls click email link to active your account.'));
         }
         return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
