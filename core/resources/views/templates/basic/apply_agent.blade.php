@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-12">
                    <div class="text-center"><img src="https://crm.appliuk.com/assets/images/logobanner.jpg" alt="Girl in a jacket" width="300"></div>
-                    <form method="POST" action="{{ route('apply.donor.store') }}"
+                    <form method="POST" action="{{ route('apply.agent.store') }}"
                         class="contact-form bg-white p-sm-5 p-3 rounded-3 position-relative" enctype="multipart/form-data">
                         @csrf
                         <h5 class="mb-3">@lang('Personal Information')</h5>
