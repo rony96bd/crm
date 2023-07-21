@@ -298,6 +298,7 @@ class SiteController extends Controller
         $donor->phone = $request->phone;
         $donor->whatsapp = $request->whatsapp;
         $donor->status = '4';
+        $donor->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
         $path = imagePath()['donor']['path'];
         $size = imagePath()['donor']['size'];
