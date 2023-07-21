@@ -26,9 +26,9 @@
                                     placeholder="@lang('First name')" class="form--control" maxlength="80" required="">
                             </div>
                             <div class="form-group col-lg-6">
-                                <label for="lastname">@lang('Surname (as appears in passport)') <sup class="text--danger">*</sup></label>
+                                <label for="lastname">@lang('Last Name (as appears in passport)') <sup class="text--danger">*</sup></label>
                                 <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
-                                    placeholder="@lang('Surname')" class="form--control" maxlength="80" required="">
+                                    placeholder="@lang('Last Name')" class="form--control" maxlength="80" required="">
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="username">@lang('Username') <sup class="text--danger">*</sup></label>
@@ -69,7 +69,7 @@
                                 <span id="errorMsg" style="display:none; color: red;">Please Enter Valid Phone
                                     Number</span>
                             </div>
-                            <div class="form-group col-lg-12">
+                            {{-- <div class="form-group col-lg-12">
                                 <label for="eng-test">@lang('English Test taken') <sup class="text--danger">*</sup></label><br />
                                 <input class="form-check-input" type="checkbox" name="ielts" value="IELTS"
                                     name="ielts" id="flexCheckDefault">
@@ -130,15 +130,15 @@
                                 <input type="text" name="course" id="course" value="{{ old('course') }}"
                                     placeholder="@lang('Write Course Name')" class="form--control" maxlength="255"
                                     required="">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col-lg-6">
                                 <label for="file">@lang('Profile Photo') <sup class="text--danger">*</sup></label>
                                 <input type="file" id="file" name="image" class="form--control custom-file-upload" required="">
                             </div>
-
-                            <div class="col-lg-12">
-                                <button type="submit" class="btn btn--base w-100">@lang('Apply Now')</button>
+                            <hr>
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" class="btn btn--base w-50">@lang('Sign Up')</button>
                             </div>
                         </div>
                     </form>
