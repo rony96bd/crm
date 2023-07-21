@@ -44,8 +44,12 @@
                             <h5 class="my-3">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
                             <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }}</p>
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-primary"
-                                    onclick="window.location.href = '{{ route('student.profile') }}';">Apply Now</button>
+                                @if ($donor->status == 4)
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ route('student.profile') }}';">Apply Now</button>
+                                @elseif($donor->status == 3)
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ route('student.profile') }}';">Correction Application</button>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -59,11 +63,15 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @if ($donor->status == 1)
-                                        <span class="badge badge--success font-weight-bold">@lang('Your Profile is Actived')</span>
+                                        <span class="badge badge--success font-weight-bold">@lang('Your Application is Granted')</span>
                                     @elseif($donor->status == 2)
                                         <span class="badge badge--danger font-weight-bold">@lang('Your Profile is Banned')</span>
-                                    @elseif ($donor->status == 4)
+                                        @elseif($donor->status == 3)
+                                        <span class="badge badge--danger font-weight-bold">@lang('Need Correction')</span>
+                                        @elseif ($donor->status == 4)
                                         <span class="badge badge--danger font-weight-bold">@lang('Need to Apply')</span>
+                                        @elseif ($donor->status == 0)
+                                        <span class="badge badge--primary font-weight-bold">@lang('Your Application is pending for Approvel')</span>
                                     @endif
                                 </div>
                             </div>

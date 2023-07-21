@@ -5,6 +5,7 @@ use App\Models\Frontend;
 use App\Models\GeneralSetting;
 use App\Models\Language;
 use App\Models\Donor;
+use App\Models\Agent;
 use App\Models\Page;
 use App\Models\SupportTicket;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
                 'pending_donor_count' => Donor::where('status', 0)->count(),
+                'pending_agent_count' => Agent::where('status', 0)->count(),
             ]);
         });
 
@@ -50,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
                 'pending_donor_count' => Donor::where('status', 0)->count(),
+
             ]);
         });
 

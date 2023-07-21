@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blood;
 use App\Models\City;
-use App\Models\Donor;
+use App\Models\Agent;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 
-class ManageDonorController extends Controller
+class ManageAgentController extends Controller
 {
 
     public function index()
@@ -17,8 +17,8 @@ class ManageDonorController extends Controller
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agents = Agent::latest()->with('blood', 'location')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'bloods'));
     }
 
     public function pending()
@@ -26,8 +26,8 @@ class ManageDonorController extends Controller
         $pageTitle = "Pending Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 0)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agents = Agent::where('status', 0)->latest()->with('blood', 'location')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'bloods'));
     }
 
     public function approved()
@@ -35,8 +35,8 @@ class ManageDonorController extends Controller
         $pageTitle = "Approved Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agents = Agent::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'bloods'));
     }
 
     public function banned()
@@ -44,8 +44,8 @@ class ManageDonorController extends Controller
         $pageTitle = "Banned Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agents = Agent::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'bloods'));
     }
 
     public function create()
@@ -53,10 +53,10 @@ class ManageDonorController extends Controller
         $pageTitle = "Student Create";
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('admin.donor.create', compact('pageTitle', 'cities', 'bloods'));
+        return view('admin.agent.create', compact('pageTitle', 'cities', 'bloods'));
     }
 
-    public function donorBloodSearch(Request $request)
+    public function agentBloodSearch(Request $request)
     {
         $request->validate([
             'blood_id' => 'required|exists:bloods,id'
@@ -66,8 +66,8 @@ class ManageDonorController extends Controller
         $pageTitle = $blood->name . " Blood Group Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('blood_id', $request->blood_id)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods', 'bloodId'));
+        $agents = Agent::where('blood_id', $request->blood_id)->latest()->with('blood', 'location')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'bloods', 'bloodId'));
     }
 
     public function search(Request $request)
@@ -75,30 +75,30 @@ class ManageDonorController extends Controller
         $pageTitle = "Students Search";
         $emptyMessage = "No data found";
         $search = $request->search;
-        $donors = Donor::where('firstname', 'like', "%$search%")->latest()->with('firstname', 'lastname')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'search'));
+        $agents = Agent::where('firstname', 'like', "%$search%")->latest()->with('firstname', 'lastname')->paginate(getPaginate());
+        return view('admin.agent.index', compact('pageTitle', 'emptyMessage', 'agents', 'search'));
     }
 
     public function approvedStatus(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:donors,id'
+            'id' => 'required|exists:agents,id'
         ]);
-        $donor = Donor::findOrFail($request->id);
-        $donor->status = 1;
-        $donor->save();
-        $notify[] = ['success', 'Students has been approved'];
+        $agent = Agent::findOrFail($request->id);
+        $agent->status = 1;
+        $agent->save();
+        $notify[] = ['success', 'Agent has been approved'];
         return back()->withNotify($notify);
     }
 
     public function bannedStatus(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:donors,id'
+            'id' => 'required|exists:agents,id'
         ]);
-        $donor = Donor::findOrFail($request->id);
-        $donor->status = 2;
-        $donor->save();
+        $agent = Agent::findOrFail($request->id);
+        $agent->status = 2;
+        $agent->save();
         $notify[] = ['success', 'Students has been canceled'];
         return back()->withNotify($notify);
     }
@@ -107,11 +107,11 @@ class ManageDonorController extends Controller
     public function featuredInclude(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:donors,id'
+            'id' => 'required|exists:agents,id'
         ]);
-        $donor = Donor::findOrFail($request->id);
-        $donor->featured = 1;
-        $donor->save();
+        $agent = Agent::findOrFail($request->id);
+        $agent->featured = 1;
+        $agent->save();
         $notify[] = ['success', 'Include this Students featured list'];
         return back()->withNotify($notify);
     }
@@ -119,11 +119,11 @@ class ManageDonorController extends Controller
     public function featuredNotInclude(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:donors,id'
+            'id' => 'required|exists:agents,id'
         ]);
-        $donor = Donor::findOrFail($request->id);
-        $donor->featured = 0;
-        $donor->save();
+        $agent = Agent::findOrFail($request->id);
+        $agent->featured = 0;
+        $agent->save();
         $notify[] = ['success', 'Remove this Students featured list'];
         return back()->withNotify($notify);
     }
@@ -132,8 +132,8 @@ class ManageDonorController extends Controller
     {
         $request->validate([
             'name' => 'required|max:80',
-            'email' => 'required|email|max:60|unique:donors,email',
-            'phone' => 'required|max:40|unique:donors,phone',
+            'email' => 'required|email|max:60|unique:agents,email',
+            'phone' => 'required|max:40|unique:agents,phone',
             'city' => 'required|exists:cities,id',
             'location' => 'required|exists:locations,id',
             'blood' => 'required|exists:bloods,id',
@@ -151,30 +151,30 @@ class ManageDonorController extends Controller
             'instagram' => 'required',
             'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
-        $donor = new Donor();
-        $donor->name = $request->name;
-        $donor->email = $request->email;
-        $donor->phone = $request->phone;
-        $donor->city_id = $request->city;
-        $donor->blood_id = $request->blood;
-        $donor->location_id = $request->location;
-        $donor->gender = $request->gender;
-        $donor->religion = $request->religion;
-        $donor->profession = $request->profession;
-        $donor->address = $request->address;
-        $donor->details = $request->details;
-        $donor->total_donate = $request->donate;
-        $donor->birth_date =  $request->birth_date;
-        $donor->last_donate = $request->last_donate;
+        $agent = new Agent();
+        $agent->name = $request->name;
+        $agent->email = $request->email;
+        $agent->phone = $request->phone;
+        $agent->city_id = $request->city;
+        $agent->blood_id = $request->blood;
+        $agent->location_id = $request->location;
+        $agent->gender = $request->gender;
+        $agent->religion = $request->religion;
+        $agent->profession = $request->profession;
+        $agent->address = $request->address;
+        $agent->details = $request->details;
+        $agent->total_donate = $request->donate;
+        $agent->birth_date =  $request->birth_date;
+        $agent->last_donate = $request->last_donate;
         $socialMedia = [
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
             'linkedinIn' => $request->linkedinIn,
             'instagram' => $request->instagram
         ];
-        $donor->socialMedia = $socialMedia;
-        $path = imagePath()['donor']['path'];
-        $size = imagePath()['donor']['size'];
+        $agent->socialMedia = $socialMedia;
+        $path = imagePath()['agent']['path'];
+        $size = imagePath()['agent']['size'];
         if ($request->hasFile('image')) {
             try {
                 $filename = uploadImage($request->image, $path, $size);
@@ -182,10 +182,10 @@ class ManageDonorController extends Controller
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
             }
-            $donor->image = $filename;
+            $agent->image = $filename;
         }
-        $donor->status = $request->status ? 1 : 2;
-        $donor->save();
+        $agent->status = $request->status ? 1 : 2;
+        $agent->save();
         $notify[] = ['success', 'Student has been created'];
         return back()->withNotify($notify);
     }
@@ -193,19 +193,19 @@ class ManageDonorController extends Controller
     public function edit($id)
     {
         $pageTitle = "Students Update";
-        $donor = Donor::findOrFail($id);
+        $agent = Agent::findOrFail($id);
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        return view('admin.donor.edit', compact('pageTitle', 'cities', 'bloods', 'donor'));
+        return view('admin.agent.edit', compact('pageTitle', 'cities', 'bloods', 'agent'));
     }
 
     public function view($id)
     {
         $pageTitle = "Students Information";
-        $donor = Donor::findOrFail($id);
+        $agent = Agent::findOrFail($id);
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        return view('admin.donor.view', compact('pageTitle', 'cities', 'bloods', 'donor'));
+        return view('admin.agent.view', compact('pageTitle', 'cities', 'bloods', 'agent'));
     }
 
 
@@ -213,8 +213,8 @@ class ManageDonorController extends Controller
     {
         $request->validate([
             'name' => 'required|max:80',
-            'email' => 'required|email|max:60|unique:donors,email,'.$id,
-            'phone' => 'required|max:40|unique:donors,phone,'.$id,
+            'email' => 'required|email|max:60|unique:agents,email,' . $id,
+            'phone' => 'required|max:40|unique:agents,phone,' . $id,
             'city' => 'required|exists:cities,id',
             'location' => 'required|exists:locations,id',
             'blood' => 'required|exists:bloods,id',
@@ -232,43 +232,42 @@ class ManageDonorController extends Controller
             // 'instagram' => 'required',
             'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
-        $donor = Donor::findOrFail($id);
-        $donor->name = $request->name;
-        $donor->email = $request->email;
-        $donor->phone = $request->phone;
-        $donor->city_id = $request->city;
-        $donor->blood_id = $request->blood;
-        $donor->location_id = $request->location;
-        $donor->gender = $request->gender;
-        $donor->religion = $request->religion;
-        $donor->profession = $request->profession;
-        $donor->address = $request->address;
-        $donor->details = $request->details;
-        $donor->total_donate = $request->donate;
-        $donor->birth_date =  $request->birth_date;
-        $donor->last_donate = $request->last_donate;
+        $agent = Agent::findOrFail($id);
+        $agent->name = $request->name;
+        $agent->email = $request->email;
+        $agent->phone = $request->phone;
+        $agent->city_id = $request->city;
+        $agent->blood_id = $request->blood;
+        $agent->location_id = $request->location;
+        $agent->gender = $request->gender;
+        $agent->religion = $request->religion;
+        $agent->profession = $request->profession;
+        $agent->address = $request->address;
+        $agent->details = $request->details;
+        $agent->total_donate = $request->donate;
+        $agent->birth_date =  $request->birth_date;
+        $agent->last_donate = $request->last_donate;
         $socialMedia = [
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
             'linkedinIn' => $request->linkedinIn,
             'instagram' => $request->instagram
         ];
-        $donor->socialMedia = $socialMedia;
-        $path = imagePath()['donor']['path'];
-        $size = imagePath()['donor']['size'];
+        $agent->socialMedia = $socialMedia;
+        $path = imagePath()['agent']['path'];
+        $size = imagePath()['agent']['size'];
         if ($request->hasFile('image')) {
             try {
-                $filename = uploadImage($request->image, $path, $size, $donor->image);
+                $filename = uploadImage($request->image, $path, $size, $agent->image);
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
             }
-            $donor->image = $filename;
+            $agent->image = $filename;
         }
-        $donor->status = $request->status ? 1 : 2;
-        $donor->save();
+        $agent->status = $request->status ? 1 : 2;
+        $agent->save();
         $notify[] = ['success', 'Students has been updated'];
         return back()->withNotify($notify);
     }
-
 }

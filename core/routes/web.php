@@ -111,20 +111,31 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         // Donor
         Route::get('donor/list', 'ManageDonorController@index')->name('donor.index');
-        Route::get('donor/pending', 'ManageDonorController@pending')->name('donor.pending');
-        Route::get('donor/approved', 'ManageDonorController@approved')->name('donor.approved');
-        Route::get('donor/banned', 'ManageDonorController@banned')->name('donor.banned');
-        Route::get('donor/create', 'ManageDonorController@create')->name('donor.create');
-        Route::post('donor/store', 'ManageDonorController@store')->name('donor.store');
-        Route::get('donor/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
-        Route::get('donor/view/{id}', 'ManageDonorController@view')->name('donor.view');
-        Route::post('donor/update/{id}', 'ManageDonorController@update')->name('donor.update');
+        Route::get('student/pending', 'ManageDonorController@pending')->name('donor.pending');
+        Route::get('student/approved', 'ManageDonorController@approved')->name('donor.approved');
+        Route::get('student/banned', 'ManageDonorController@banned')->name('donor.banned');
+        Route::get('student/create', 'ManageDonorController@create')->name('donor.create');
+        Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
+        Route::get('student/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
+        Route::get('student/view/{id}', 'ManageDonorController@view')->name('donor.view');
+        Route::post('student/update/{id}', 'ManageDonorController@update')->name('donor.update');
         Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');
         Route::post('donor/banned/status', 'ManageDonorController@bannedStatus')->name('donor.banned.status');
         Route::get('donor/search', 'ManageDonorController@search')->name('donor.search');
-        Route::get('donor/blood/search', 'ManageDonorController@donorBloodSearch')->name('donor.blood.search');
-        Route::post('donor/featured/list/Include', 'ManageDonorController@featuredInclude')->name('donor.featured.include');
-        Route::post('donor/featured/list/remove', 'ManageDonorController@featuredNotInclude')->name('donor.featured.remove');
+
+        // Agent
+        Route::get('agent/list', 'ManageAgentController@index')->name('agent.index');
+        Route::get('agent/pending', 'ManageAgentController@pending')->name('agent.pending');
+        Route::get('agent/approved', 'ManageAgentController@approved')->name('agent.approved');
+        Route::get('agent/banned', 'ManageAgentController@banned')->name('agent.banned');
+        Route::get('agent/create', 'ManageAgentController@create')->name('agent.create');
+        Route::post('agent/store', 'ManageAgentController@store')->name('agent.store');
+        Route::get('agent/edit/{id}', 'ManageAgentController@edit')->name('agent.edit');
+        Route::get('agent/view/{id}', 'ManageAgentController@view')->name('agent.view');
+        Route::post('agent/update/{id}', 'ManageAgentController@update')->name('agent.update');
+        Route::post('agent/approved/status', 'ManageAgentController@approvedStatus')->name('agent.approved.status');
+        Route::post('agent/banned/status', 'ManageAgentController@bannedStatus')->name('agent.banned.status');
+        Route::get('agent/search', 'ManageAgentController@search')->name('agent.search');
 
         //Report Bugs
         Route::get('request-report','AdminController@requestReport')->name('request.report');

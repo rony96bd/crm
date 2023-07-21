@@ -10,7 +10,6 @@
             @endif
         @endforeach
     </div>
-
     <section class="pt-100 pb-100 position-relative z-index section--bg">
         <div class="container">
             <div class="row">

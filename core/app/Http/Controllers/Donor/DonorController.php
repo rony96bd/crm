@@ -44,7 +44,7 @@ class DonorController extends Controller
     }
 
     public function profileUpdate(Request $request)
-    {
+    {    
         $this->validate($request, [
             'firstname' => 'required|max:80',
             'lastname' => 'required|max:80',
@@ -67,139 +67,144 @@ class DonorController extends Controller
 
         $user = Auth::guard('donor')->user();
 
-        if ($request->hasFile('image')) {
 
-            try {
-                $old = $user->image ?: null;
-                $path = imagePath()['donor']['path'];
-                $size = imagePath()['donor']['size'];
-                $user->image = uploadImage($request->image, $path, $size, $old);
-            } catch (\Exception $exp) {
-                $notify[] = ['error', 'Image could not be uploaded.'];
-                return back()->withNotify($notify);
+        if ($user->status == 0) {
+            $notify1[] = ['success', 'You Already Submit Your Application'];
+            return redirect()->route('student.profile')->withNotify($notify1);
+        } else {
+            if ($request->hasFile('image')) {
+
+                try {
+                    $old = $user->image ?: null;
+                    $path = imagePath()['donor']['path'];
+                    $size = imagePath()['donor']['size'];
+                    $user->image = uploadImage($request->image, $path, $size, $old);
+                } catch (\Exception $exp) {
+                    $notify[] = ['error', 'Image could not be uploaded.'];
+                    return back()->withNotify($notify);
+                }
             }
+
+            if ($request->hasFile('file')) {
+                $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
+                $request->file->move('assets/files/student', $fileName);
+                unlink(imagePath()['file']['path'] . $user->file);
+            } else {
+                $fileName = $user->file;
+            }
+
+            if ($request->hasFile('file2')) {
+                $fileName2 = $user->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
+                $request->file2->move('assets/files/student', $fileName2);
+            } else {
+                $fileName2 = $user->file2;
+            }
+
+            if ($request->hasFile('file3')) {
+                $fileName3 = $user->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
+                $request->file3->move('assets/files/student', $fileName3);
+            } else {
+                $fileName3 = $user->file3;
+            }
+
+            if ($request->hasFile('file4')) {
+                $fileName4 = $user->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
+                $request->file4->move('assets/files/student', $fileName4);
+            } else {
+                $fileName4 = $user->file4;
+            }
+
+            if ($request->hasFile('file5')) {
+                $fileName5 = $user->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
+                $request->file5->move('assets/files/student', $fileName5);
+            } else {
+                $fileName5 = $user->file5;
+            }
+
+            if ($request->hasFile('file6')) {
+                $fileName6 = $user->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
+                $request->file6->move('assets/files/student', $fileName6);
+            } else {
+                $fileName6 = $user->file6;
+            }
+
+            if ($request->hasFile('file7')) {
+                $fileName7 = $user->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
+                $request->file7->move('assets/files/student', $fileName7);
+            } else {
+                $fileName7 = $user->file7;
+            }
+
+            if ($request->hasFile('file8')) {
+                $fileName8 = $user->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
+                $request->file8->move('assets/files/student', $fileName8);
+            } else {
+                $fileName8 = $user->file8;
+            }
+
+            if ($request->hasFile('file9')) {
+                $fileName9 = $user->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
+                $request->file9->move('assets/files/student', $fileName9);
+            } else {
+                $fileName9 = $user->file9;
+            }
+
+            if ($request->hasFile('file10')) {
+                $fileName10 = $user->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
+                $request->file10->move('assets/files/student', $fileName10);
+            } else {
+                $fileName10 = $user->file10;
+            }
+
+            if ($request->hasFile('file11')) {
+                $fileName11 = $user->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
+                $request->file11->move('assets/files/student', $fileName11);
+            } else {
+                $fileName11 = $user->file11;
+            }
+
+            if ($request->hasFile('file12')) {
+                $fileName12 = $user->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
+                $request->file12->move('assets/files/student', $fileName12);
+            } else {
+                $fileName12 = $user->file12;
+            }
+
+            if ($request->hasFile('file13')) {
+                $fileName13 = $user->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
+                $request->file13->move('assets/files/student', $fileName13);
+            } else {
+                $fileName13 = $user->file13;
+            }
+
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->phone = $request->phone;
+            $user->whatsapp = $request->whatsapp;
+            $user->engtest = json_encode($request->engtest);
+            $user->score_overall = $request->score_overall;
+            $user->low_score = $request->low_score;
+            $user->country = $request->country;
+            $user->qualification = $request->qualification;
+            $user->course = $request->course;
+            $user->file = $fileName;
+            $user->file2 = $fileName2;
+            $user->file3 = $fileName3;
+            $user->file4 = $fileName4;
+            $user->file5 = $fileName5;
+            $user->file6 = $fileName6;
+            $user->file7 = $fileName7;
+            $user->file8 = $fileName8;
+            $user->file9 = $fileName9;
+            $user->file10 = $fileName10;
+            $user->file11 = $fileName11;
+            $user->file12 = $fileName12;
+            $user->file13 = $fileName13;
+            $user->status = '0';
         }
-
-        if ($request->hasFile('file')) {
-            $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
-            $request->file->move('assets/files/student', $fileName);
-            unlink(imagePath()['file']['path'] . $user->file);
-        } else {
-            $fileName = $user->file;
-        }
-
-        if ($request->hasFile('file2')) {
-            $fileName2 = $user->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
-            $request->file2->move('assets/files/student', $fileName2);
-        } else {
-            $fileName2 = $user->file2;
-        }
-
-        if ($request->hasFile('file3')) {
-            $fileName3 = $user->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
-            $request->file3->move('assets/files/student', $fileName3);
-        } else {
-            $fileName3 = $user->file3;
-        }
-
-        if ($request->hasFile('file4')) {
-            $fileName4 = $user->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
-            $request->file4->move('assets/files/student', $fileName4);
-        } else {
-            $fileName4 = $user->file4;
-        }
-
-        if ($request->hasFile('file5')) {
-            $fileName5 = $user->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
-            $request->file5->move('assets/files/student', $fileName5);
-        } else {
-            $fileName5 = $user->file5;
-        }
-
-        if ($request->hasFile('file6')) {
-            $fileName6 = $user->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
-            $request->file6->move('assets/files/student', $fileName6);
-        } else {
-            $fileName6 = $user->file6;
-        }
-
-        if ($request->hasFile('file7')) {
-            $fileName7 = $user->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
-            $request->file7->move('assets/files/student', $fileName7);
-        } else {
-            $fileName7 = $user->file7;
-        }
-
-        if ($request->hasFile('file8')) {
-            $fileName8 = $user->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
-            $request->file8->move('assets/files/student', $fileName8);
-        } else {
-            $fileName8 = $user->file8;
-        }
-
-        if ($request->hasFile('file9')) {
-            $fileName9 = $user->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
-            $request->file9->move('assets/files/student', $fileName9);
-        } else {
-            $fileName9 = $user->file9;
-        }
-
-        if ($request->hasFile('file10')) {
-            $fileName10 = $user->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
-            $request->file10->move('assets/files/student', $fileName10);
-        } else {
-            $fileName10 = $user->file10;
-        }
-
-        if ($request->hasFile('file11')) {
-            $fileName11 = $user->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
-            $request->file11->move('assets/files/student', $fileName11);
-        } else {
-            $fileName11 = $user->file11;
-        }
-
-        if ($request->hasFile('file12')) {
-            $fileName12 = $user->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
-            $request->file12->move('assets/files/student', $fileName12);
-        } else {
-            $fileName12 = $user->file12;
-        }
-
-        if ($request->hasFile('file13')) {
-            $fileName13 = $user->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
-            $request->file13->move('assets/files/student', $fileName13);
-        } else {
-            $fileName13 = $user->file13;
-        }
-
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->phone = $request->phone;
-        $user->whatsapp = $request->whatsapp;
-        $user->engtest = json_encode($request->engtest);
-        $user->score_overall = $request->score_overall;
-        $user->low_score = $request->low_score;
-        $user->country = $request->country;
-        $user->qualification = $request->qualification;
-        $user->course = $request->course;
-        $user->file = $fileName;
-        $user->file2 = $fileName2;
-        $user->file3 = $fileName3;
-        $user->file4 = $fileName4;
-        $user->file5 = $fileName5;
-        $user->file6 = $fileName6;
-        $user->file7 = $fileName7;
-        $user->file8 = $fileName8;
-        $user->file9 = $fileName9;
-        $user->file10 = $fileName10;
-        $user->file11 = $fileName11;
-        $user->file12 = $fileName12;
-        $user->file13 = $fileName13;
-        $user->status = '0';
-
         $user->save();
         $notify[] = ['success', 'Your Application has been Submitted.'];
-        return redirect()->route('student.profile')->withNotify($notify);
+        return redirect()->route('student.dashboard')->withNotify($notify);
     }
 
 
