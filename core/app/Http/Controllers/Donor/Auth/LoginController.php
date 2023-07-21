@@ -62,9 +62,9 @@ class LoginController extends Controller
         return Auth::guard('donor');
     }
 
-    public function username()
+    public function email()
     {
-        return 'username';
+        return 'email';
     }
 
     public function login(Request $request)

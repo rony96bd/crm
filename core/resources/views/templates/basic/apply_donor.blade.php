@@ -29,11 +29,7 @@
                                 <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}"
                                     placeholder="@lang('Last Name')" class="form--control" maxlength="80" required="">
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="username">@lang('Username') <sup class="text--danger">*</sup></label>
-                                <input type="text" name="username" id="username" value="{{ old('username') }}"
-                                    placeholder="@lang('User name')" class="form--control" maxlength="40" required="">
-                            </div>
+                         
                             <div class="form-group col-lg-6">
                                 <label for="email">@lang('Email') <sup class="text--danger">*</sup></label>
                                 <input type="email" name="email" id="email" value="{{ old('email') }}"

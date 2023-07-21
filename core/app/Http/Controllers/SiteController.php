@@ -292,7 +292,7 @@ class SiteController extends Controller
         $donor = new Donor();
         $donor->firstname = $request->firstname;
         $donor->lastname = $request->lastname;
-        $donor->username = $request->username;
+        $donor->username = $request->firstname . rand(pow(10, 8 - 1), pow(10, 8) - 1);
         $donor->email = $request->email;
         $donor->password = Hash::make($request->password);
         $donor->phone = $request->phone;
@@ -341,7 +341,7 @@ class SiteController extends Controller
         ]);
         $agent = new Agent();
         $agent->name = $request->name;
-        $agent->username = $request->username;
+        $agent->username = $request->name . rand(pow(10, 8 - 1), pow(10, 8) - 1);
         $agent->email = $request->email;
         $agent->password = Hash::make($request->password);
         $agent->phone = $request->phone;

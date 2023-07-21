@@ -16,9 +16,9 @@
                 <form action="{{ route('student.login') }}" method="POST" class="cmn-form mt-30">
                     @csrf
                     <div class="form-group">
-                        <label for="email">@lang('Username')</label>
-                        <input type="text" name="username" class="form-control b-radius--capsule" id="username"
-                            value="{{ old('username') }}" placeholder="@lang('Enter your username')">
+                        <label for="email">@lang('Email')</label>
+                        <input type="text" name="email" class="form-control b-radius--capsule" id="username"
+                            value="{{ old('email') }}" placeholder="@lang('Enter your Email')">
                         <i class="las la-user input-icon"></i>
                     </div>
                     <div class="form-group">
