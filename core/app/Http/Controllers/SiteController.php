@@ -297,16 +297,6 @@ class SiteController extends Controller
         $donor->password = Hash::make($request->password);
         $donor->phone = $request->phone;
         $donor->whatsapp = $request->whatsapp;
-        // $donor->ielts = $request->ielts;
-        // $donor->pte = $request->pte;
-        // $donor->duolingo = $request->duolingo;
-        // $donor->oeitc = $request->oeitc;
-        // $donor->none = $request->none;
-        // $donor->score_overall = $request->score_overall;
-        // $donor->low_score = $request->low_score;
-        // $donor->country = $request->country;
-        // $donor->qualification = $request->qualification;
-        // $donor->course = $request->course;
         $donor->status = '4';
         // $donor->verification_code = sha1(time());
         $path = imagePath()['donor']['path'];
@@ -322,11 +312,11 @@ class SiteController extends Controller
         }
         $donor->save();
 
-        // if($donor != null){
-        //     MailController::sendSignupEmail($donor->name, $donor->email, $donor->verification_code);
-        //     return redirect()->back()->with(session()->flash('alert-success', 'Your Application is Submitted and Send Verification Link to your Email. Pls click email link to active your account.'));
-        // }
-        // return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
+        if ($donor != null) {
+            MailController::sendSignupEmail($donor->name, $donor->email, $donor->verification_code);
+            return redirect()->back()->with(session()->flash('alert-success', 'Your Application is Submitted and Send Verification Link to your Email. Pls click email link to active your account.'));
+        }
+        return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
 
         $notify[] = ['success', 'Your Registration is Succeced.'];
         return back()->withNotify($notify);

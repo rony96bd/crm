@@ -19,33 +19,19 @@
                     </a>
                 </li>
 
-
-                {{-- <li class="sidebar-menu-item  {{menuActive('admin.city.index')}}">
-                    <a href="{{route('admin.city.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.city.index') }}">
-                        <i class="menu-icon las la-city"></i>
-                        <span class="menu-title">@lang('Manage City') </span>
+                <li class="sidebar-menu-item {{ menuActive('admin.setting.index') }}">
+                    <a href="{{ route('admin.setting.index') }}" class="nav-link">
+                        <i class="menu-icon las la-life-ring"></i>
+                        <span class="menu-title">@lang('General Setting')</span>
                     </a>
-                </li> --}}
+                </li>
 
-
-                {{-- <li class="sidebar-menu-item  {{menuActive('admin.location.index')}}">
-                    <a href="{{route('admin.location.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.location.index') }}">
-                        <i class="menu-icon las la-location-arrow"></i>
-                        <span class="menu-title">@lang('Manage Location') </span>
+                <li class="sidebar-menu-item {{ menuActive('admin.setting.index') }}">
+                    <a href="{{ route('admin.setting.index') }}" class="nav-link">
+                        <i class="menu-icon las la-life-ring"></i>
+                        <span class="menu-title">@lang('General Setting')</span>
                     </a>
-                </li> --}}
-
-
-                {{-- <li class="sidebar-menu-item  {{menuActive('admin.blood.index')}}">
-                    <a href="{{route('admin.blood.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.blood.index') }}">
-                        <i class="menu-icon las la-syringe"></i>
-                        <span class="menu-title">@lang('Blood Group') </span>
-                    </a>
-                </li> --}}
-
+                </li>
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('admin.donor*', 3) }}">
@@ -142,68 +128,6 @@
                         </ul>
                     </div>
                 </li>
-
-                {{-- <li class="sidebar-menu-item  {{menuActive('admin.ads.*')}}">
-                    <a href="{{route('admin.ads.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.ads.index') }}">
-                        <i class="menu-icon lab la-adversal"></i>
-                        <span class="menu-title">@lang('Advertisement') </span>
-                    </a>
-                </li> --}}
-
-                {{-- <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.ticket*',3)}}">
-                        <i class="menu-icon la la-ticket"></i>
-                        <span class="menu-title">@lang('Support Ticket') </span>
-                        @if (0 < $pending_ticket_count)
-                            <span class="menu-badge pill bg--primary ml-auto">
-                                <i class="fa fa-exclamation"></i>
-                            </span>
-                        @endif
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.ticket*',2)}} ">
-                        <ul>
-                            <li class="sidebar-menu-item {{menuActive('admin.ticket')}} ">
-                                <a href="{{route('admin.ticket')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Ticket')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.ticket.pending')}} ">
-                                <a href="{{route('admin.ticket.pending')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Pending Ticket')</span>
-                                    @if ($pending_ticket_count)
-                                        <span
-                                            class="menu-badge pill bg--primary ml-auto">{{$pending_ticket_count}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.ticket.closed')}} ">
-                                <a href="{{route('admin.ticket.closed')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Closed Ticket')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.ticket.answered')}} ">
-                                <a href="{{route('admin.ticket.answered')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Answered Ticket')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
-
-
-                {{-- <li class="sidebar-menu-item  {{menuActive('admin.subscriber.index')}}">
-                    <a href="{{route('admin.subscriber.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.subscriber.index') }}">
-                        <i class="menu-icon las la-thumbs-up"></i>
-                        <span class="menu-title">@lang('Subscribers') </span>
-                    </a>
-                </li> --}}
-
 
                 <li class="sidebar__menu-header">@lang('Settings')</li>
 
