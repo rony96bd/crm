@@ -331,8 +331,8 @@ class SiteController extends Controller
 
     public function applyAgentstore(Request $request)
     {
-        $request->validate(['name' => 'required|max:80',
-            'username' => 'required|alpha_dash|unique:agents,username',
+        $request->validate([
+            'name' => 'required|max:80',
             'email' => 'required|email|max:60|unique:agents,email',
             'password' => 'required|confirmed|min:6',
             'phone' => 'required|max:40|unique:agents,phone',
