@@ -360,7 +360,6 @@ class SiteController extends Controller
         $agent->city = $request->city2;
         $agent->website = $request->website;
         $agent->status = '0';
-        $agent->engtest = '["None of the Above"]';
         // $donor->verification_code = sha1(time());
         $path = imagePath()['agent']['path'];
         $size = imagePath()['agent']['size'];
