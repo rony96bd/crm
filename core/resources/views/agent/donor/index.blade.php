@@ -62,14 +62,6 @@
                                 </td> --}}
 
                                 <td data-label="@lang('Action')">
-                                    @if($donor->status == 2)
-                                        <a href="javascript:void(0)" class="icon-btn btn--success ml-1 approved" data-toggle="tooltip" data-original-title="@lang('Approve')" data-id="{{$donor->id}}"><i class="las la-check"></i></a>
-                                    @elseif($donor->status == 1)
-                                        <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$donor->id}}"><i class="las la-times"></i></a>
-                                    @elseif($donor->status == 0)
-                                        <a href="javascript:void(0)" class="icon-btn btn--success ml-1 approved" data-toggle="tooltip" data-original-title="@lang('Approve')" data-id="{{$donor->id}}"><i class="las la-check"></i></a>
-                                        <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$donor->id}}"><i class="las la-times"></i></a>
-                                    @endif
                                     <a href="{{route('agent.donor.edit', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
                                 </td>
                             </tr>
