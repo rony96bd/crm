@@ -45,8 +45,7 @@
                             <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary"
-                                    onclick="window.location.href = '{{ route('student.profile') }}';">Edit your
-                                    profile</button>
+                                    onclick="window.location.href = '{{ route('student.profile') }}';">Apply Now</button>
                             </div>
                         </div>
                     </div>
