@@ -19,57 +19,63 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @forelse($donors as $donor)
-                            <tr>
-                                <td data-label="@lang('Name - Profession')">
-                                    <span>{{__($donor->firstname)}}</span><br>
-                                    <span>{{__($donor->lastname)}}</span>
-                                </td>
-                                <td data-label="@lang('Email - Phone - WhatsApp')">
-                                    <span>{{__($donor->email)}}</span><br>
-                                    <span>{{__($donor->phone)}}</span><br>
-                                    <span>{{__($donor->whatsapp)}}</span>
-                                </td>
-                                <td data-label="@lang('English Test')">
-                                    <span>{{__($donor->ielts)}} <br> {{__($donor->pte)}} <br> {{__($donor->duolingo)}} <br> {{__($donor->oeitc)}} <br> {{__($donor->none)}}</span>
-                                </td>
-                                <td data-label="@lang('Score Overall - Low Score')">
-                                    <span>{{__($donor->score_overall)}}</span><br>
-                                    <span>{{__($donor->low_score)}}</span>
-                                </td>
+                                @forelse($donors as $donor)
+                                    <tr>
+                                        <td data-label="@lang('Name - Profession')">
+                                            <span>{{ __($donor->firstname) }}</span><br>
+                                            <span>{{ __($donor->lastname) }}</span>
+                                        </td>
+                                        <td data-label="@lang('Email - Phone - WhatsApp')">
+                                            <span>{{ __($donor->email) }}</span><br>
+                                            <span>{{ __($donor->phone) }}</span><br>
+                                            <span>{{ __($donor->whatsapp) }}</span>
+                                        </td>
+                                        <td data-label="@lang('English Test')">
+                                            @php
+                                                $engtestview = '';
+                                                $engtests = json_decode($donor->engtest);
+                                                
+                                                foreach ($engtests as $engtest) {
+                                                    $engtestview .= $engtest . ', ';
+                                                }
+                                                $engtestview = rtrim($engtestview, ', ');
+                                                echo $engtestview;
+                                            @endphp 
+                                        </td>
+                                        <td data-label="@lang('Score Overall - Low Score')">
+                                            <span>{{ __($donor->score_overall) }}</span><br>
+                                            <span>{{ __($donor->low_score) }}</span>
+                                        </td>
 
-                                <td data-label="@lang('Country - Highest Qualification')">
-                                     <span>{{__($donor->country)}}</span><br>
-                                    <span>{{__($donor->qualification)}}</span>
-                                </td>
+                                        <td data-label="@lang('Country - Highest Qualification')">
+                                            <span>{{ __($donor->country) }}</span><br>
+                                            <span>{{ __($donor->qualification) }}</span>
+                                        </td>
 
-                                <td data-label="@lang('Course Name')">
-                                    <span>{{__($donor->course)}}</span>
-                               </td>
+                                        <td data-label="@lang('Course Name')">
+                                            <span>{{ __($donor->course) }}</span>
+                                        </td>
 
-                                <td data-label="@lang('Status')">
-                                    @if($donor->status == 1)
-                                        <span class="badge badge--success">@lang('Active')</span>
-                                    @elseif($donor->status == 2)
-                                        <span class="badge badge--danger">@lang('Banned')</span>
-                                    @else
-                                        <span class="badge badge--primary">@lang('Pending')</span>
-                                    @endif
-                                </td>
+                                        <td data-label="@lang('Status')">
+                                            @if ($donor->status == 1)
+                                                <span class="badge badge--success">@lang('Active')</span>
+                                            @elseif($donor->status == 2)
+                                                <span class="badge badge--danger">@lang('Banned')</span>
+                                            @else
+                                                <span class="badge badge--primary">@lang('Pending')</span>
+                                            @endif
+                                        </td>
 
-                                {{-- <td data-label="@lang('Last Update')">
-                                    {{ showDateTime($donor->updated_at) }}<br> {{ diffForHumans($donor->updated_at) }}
-                                </td> --}}
-
-                                <td data-label="@lang('Action')">
-                                    <a href="{{route('agent.donor.edit', $donor->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
-                                </td>
-                            </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{__($emptyMessage) }}</td>
-                                </tr>
-                            @endforelse
+                                        <td data-label="@lang('Action')">
+                                            <a href="{{ route('agent.donor.edit', $donor->id) }}"
+                                                class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
+                                    </tr>
+                                @endforelse
 
                             </tbody>
                         </table>
@@ -83,119 +89,125 @@
     </div>
 
 
-<div class="modal fade" id="approvedby" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Approval Confirmation')</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <form action="{{route('agent.donor.approved.status')}}" method="POST">
-                @csrf
-                @method('POST')
-                <input type="hidden" name="id">
-                <div class="modal-body">
-                    <p>@lang('Are you sure to approved this donor?')</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn--secondary" data-dismiss="modal">@lang('Close')</button>
-                    <button type="submit" class="btn btn--success">@lang('Confirm')</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="cancelBy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Banned Confirmation')</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <form action="{{ route('agent.donor.banned.status') }}" method="POST">
-                @csrf
-                @method('POST')
-                <input type="hidden" name="id">
-                <div class="modal-body">
-                    <p>@lang('Are you sure to banned this donor?')</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn--secondary" data-dismiss="modal">@lang('Close')</button>
-                    <button type="submit" class="btn btn--success">@lang('Confirm')</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" id="includeFeatured" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Featured Item Include')</h5>
+    <div class="modal fade" id="approvedby" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Approval Confirmation')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+
+                <form action="{{ route('agent.donor.approved.status') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="id">
+                    <div class="modal-body">
+                        <p>@lang('Are you sure to approved this donor?')</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn--secondary" data-dismiss="modal">@lang('Close')</button>
+                        <button type="submit" class="btn btn--success">@lang('Confirm')</button>
+                    </div>
+                </form>
             </div>
-            <form action="{{ route('agent.donor.featured.include') }}" method="POST">
-                @csrf
-                @method('POST')
-                <input type="hidden" name="id">
-                <div class="modal-body">
-                    <p>@lang('Are you sure include this donor featured list?')</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Close')</button>
-                    <button type="submit" class="btn btn--success">@lang('Confirm')</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
 
-<div class="modal fade" id="NotincludeFeatured" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Featured Item Remove')</h5>
+    <div class="modal fade" id="cancelBy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Banned Confirmation')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+
+                <form action="{{ route('agent.donor.banned.status') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="id">
+                    <div class="modal-body">
+                        <p>@lang('Are you sure to banned this donor?')</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn--secondary" data-dismiss="modal">@lang('Close')</button>
+                        <button type="submit" class="btn btn--success">@lang('Confirm')</button>
+                    </div>
+                </form>
             </div>
-            <form action="{{ route('agent.donor.featured.remove') }}" method="POST">
-                @csrf
-                @method('POST')
-                <input type="hidden" name="id">
-                <div class="modal-body">
-                    <p>@lang('Are you sure remove this donor featured list?')</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Close')</button>
-                    <button type="submit" class="btn btn--success">@lang('Confirm')</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+
+
+
+    <div class="modal fade" id="includeFeatured" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Featured Item Include')</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('agent.donor.featured.include') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="id">
+                    <div class="modal-body">
+                        <p>@lang('Are you sure include this donor featured list?')</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Close')</button>
+                        <button type="submit" class="btn btn--success">@lang('Confirm')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="NotincludeFeatured" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" lass="modal-title" id="exampleModalLabel">@lang('Featured Item Remove')</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('agent.donor.featured.remove') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="id">
+                    <div class="modal-body">
+                        <p>@lang('Are you sure remove this donor featured list?')</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Close')</button>
+                        <button type="submit" class="btn btn--success">@lang('Confirm')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
 
 @push('breadcrumb-plugins')
-    <a href="{{route('agent.donor.create')}}" class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0" ><i class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
+    <a href="{{ route('agent.donor.create') }}"
+        class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0"><i
+            class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
 
-     {{-- <form action="{{route('agent.donor.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
+    {{-- <form action="{{route('agent.donor.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
         <div class="input-group has_append">
             <input type="text" name="search" class="form-control" placeholder="@lang('Student Name.....')" value="{{ $search ?? '' }}">
             <div class="input-group-append">
@@ -208,8 +220,8 @@
         <div class="input-group has_append">
             <select class="form-control" name="blood_id">
                 <option>----@lang('Select Blood')----</option>
-                @foreach($bloods as $blood)
-                    <option value="{{$blood->id}}" @if(@$bloodId == $blood->id) selected @endif>{{__($blood->name)}}</option>
+                @foreach ($bloods as $blood)
+                    <option value="{{$blood->id}}" @if (@$bloodId == $blood->id) selected @endif>{{__($blood->name)}}</option>
                 @endforeach
            </select>
             <div class="input-group-append">
@@ -222,24 +234,24 @@
 @push('script')
     <script>
         'use strict';
-        $('.approved').on('click', function () {
+        $('.approved').on('click', function() {
             var modal = $('#approvedby');
             modal.find('input[name=id]').val($(this).data('id'))
             modal.modal('show');
         });
-        $('.cancel').on('click', function () {
+        $('.cancel').on('click', function() {
             var modal = $('#cancelBy');
             modal.find('input[name=id]').val($(this).data('id'))
             modal.modal('show');
         });
 
-        $('.include').on('click', function () {
+        $('.include').on('click', function() {
             var modal = $('#includeFeatured');
             modal.find('input[name=id]').val($(this).data('id'))
             modal.modal('show');
         });
 
-        $('.notInclude').on('click', function () {
+        $('.notInclude').on('click', function() {
             var modal = $('#NotincludeFeatured');
             modal.find('input[name=id]').val($(this).data('id'))
             modal.modal('show');
