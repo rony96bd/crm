@@ -9,7 +9,7 @@
                 <div class="card-body p-0">
                     <div class="d-flex p-3 bg--primary align-items-center">
                         <div class="avatar avatar--lg">
-                            <img src="{{ getImage(imagePath()['profile']['agent']['path'].'/'. $agent->image,imagePath()['profile']['agent']['size'])}}" alt="@lang('Image')">
+                            <img src="{{ getImage('assets/images/agent/' . $agent->image, imagePath()['agent']['size']) }}">
                         </div>
                         <div class="pl-3">
                             <h4 class="text--white">{{__($agent->name)}}</h4>
@@ -54,7 +54,7 @@
                                     <div class="image-upload">
                                         <div class="thumb">
                                             <div class="avatar-preview">
-                                                <div class="profilePicPreview" style="background-image: url({{ getImage(imagePath()['profile']['agent']['path'].'/'.auth()->guard('agent')->user()->image,imagePath()['profile']['agent']['size']) }})">
+                                                <div class="profilePicPreview" style="height: 250px; background-image: url({{ getImage('assets/images/agent/' . $agent->image, imagePath()['agent']['size']) }})">
                                                     <button type="button" class="remove-image"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
