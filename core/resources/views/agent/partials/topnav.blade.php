@@ -33,7 +33,7 @@
             <li class="dropdown">
                 <button type="button" class="" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
                   <span class="navbar-user">
-                    <span class="navbar-user__thumb"><img src="{{ getImage('assets/agent/images/profile/'. auth()->guard('agent')->user()->image) }}" alt="image"></span>
+                    <span class="navbar-user__thumb"><img src="{{ getImage('assets/images/agent/'. auth()->guard('agent')->user()->image) }}" alt="image"></span>
                     <span class="navbar-user__info">
                       <span class="navbar-user__name">{{auth()->guard('agent')->user()->username}}</span>
                     </span>
