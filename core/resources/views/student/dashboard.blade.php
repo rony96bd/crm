@@ -59,13 +59,13 @@
                                     <p class="mb-0 font-weight-bold">Profile Status</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    @if($donor->status == 1)
-                                            <span class="badge badge--success font-weight-bold">@lang('Your Profile is Actived')</span>
-                                        @elseif($donor->status == 2)
-                                            <span class="badge badge--danger font-weight-bold">@lang('Your Profile is Banned')</span>
-                                        @else
-                                            <span class="badge badge--primary font-weight-bold">@lang('Your Profile is Pending for Admin Approval.')</span>
-                                        @endif
+                                    @if ($donor->status == 1)
+                                        <span class="badge badge--success font-weight-bold">@lang('Your Profile is Actived')</span>
+                                    @elseif($donor->status == 2)
+                                        <span class="badge badge--danger font-weight-bold">@lang('Your Profile is Banned')</span>
+                                    @else
+                                        <span class="badge badge--primary font-weight-bold">@lang('Your Profile is Pending for Admin Approval.')</span>
+                                    @endif
                                 </div>
                             </div>
                             <hr>
@@ -112,13 +112,18 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">
+
                                         @php
-                                        $engtests = json_decode($donor->engtest)
+                                            $engtestview = '';
+                                            $engtests = json_decode($donor->engtest);
+
+                                            foreach ($engtests as $engtest) {
+                                                $engtestview .= $engtest. ', ';
+                                            }
+                                            $engtestview = rtrim($engtestview,', '); 
+                                            echo $engtestview;                                   
                                         @endphp
 
-                                        @foreach ($engtests as $engtest)
-                                            {{$engtest}},
-                                        @endforeach
                                     </p>
                                 </div>
                             </div>
@@ -173,19 +178,57 @@
                                     <p class="mb-0 font-weight-bold">Submited Document</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><span style="color:red;">Passport:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">CV:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file2) }}">{{ __($donor->file2) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">English Test Report:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file3) }}">{{ __($donor->file3) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">10th Certificate:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file4) }}">{{ __($donor->file4) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">12th Certificate:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file5) }}">{{ __($donor->file5) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Degree Certificate:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file6) }}">{{ __($donor->file6) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Masters Certificate:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file7) }}">{{ __($donor->file7) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">10th Transcript:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file8) }}">{{ __($donor->file8) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">12th Transcript:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file9) }}">{{ __($donor->file9) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Degree Transcript:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file10) }}">{{ __($donor->file10) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Masters Transcript:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file11) }}">{{ __($donor->file11) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Evidence of work:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file12) }}">{{ __($donor->file12) }}</a></p>
-                                    <p class="text-muted mb-0"><span style="color:red;">Other Documents:</span> <a target="_blank" href="../assets/files/student/{{ __($donor->file13) }}">{{ __($donor->file13) }}</a></p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Passport:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">CV:</span> <a target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file2) }}">{{ __($donor->file2) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">English Test Report:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file3) }}">{{ __($donor->file3) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">10th Certificate:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file4) }}">{{ __($donor->file4) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">12th Certificate:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file5) }}">{{ __($donor->file5) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Degree Certificate:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file6) }}">{{ __($donor->file6) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Masters Certificate:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file7) }}">{{ __($donor->file7) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">10th Transcript:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file8) }}">{{ __($donor->file8) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">12th Transcript:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file9) }}">{{ __($donor->file9) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Degree Transcript:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file10) }}">{{ __($donor->file10) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Masters Transcript:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file11) }}">{{ __($donor->file11) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Evidence of work:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file12) }}">{{ __($donor->file12) }}</a>
+                                    </p>
+                                    <p class="text-muted mb-0"><span style="color:red;">Other Documents:</span> <a
+                                            target="_blank"
+                                            href="../assets/files/student/{{ __($donor->file13) }}">{{ __($donor->file13) }}</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
