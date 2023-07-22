@@ -40,13 +40,13 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group ">
-                                    <label class="form-control-label font-weight-bold">@lang('Name')</label>
+                                    <label class="form-control-label font-weight-bold">@lang('First Name')</label>
                                     <input class="form-control" type="text" name="firstname"
                                         value="{{ auth()->guard('donor')->user()->firstname }}">
                                 </div>
 
                                 <div class="form-group ">
-                                    <label class="form-control-label font-weight-bold">@lang('Name')</label>
+                                    <label class="form-control-label font-weight-bold">@lang('Last Name')</label>
                                     <input class="form-control" type="text" name="lastname"
                                         value="{{ auth()->guard('donor')->user()->lastname }}">
                                 </div>

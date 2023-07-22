@@ -262,8 +262,8 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function () {
         Route::get('donor/pending', 'ManageDonorController@pending')->name('donor.pending');
         Route::get('donor/approved', 'ManageDonorController@approved')->name('donor.approved');
         Route::get('donor/banned', 'ManageDonorController@banned')->name('donor.banned');
-        Route::get('donor/create', 'ManageDonorController@create')->name('donor.create');
-        Route::post('donor/store', 'ManageDonorController@store')->name('donor.store');
+        Route::get('student/create', 'ManageDonorController@create')->name('donor.create');
+        Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
         Route::get('donor/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
         Route::post('donor/update/{id}', 'ManageDonorController@update')->name('donor.update');
         Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');

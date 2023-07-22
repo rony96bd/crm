@@ -18,6 +18,12 @@
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
+                <li class="sidebar-menu-item {{ menuActive('agent.donor.create') }}">
+                    <a href="{{ route('agent.donor.create') }}" class="nav-link ">
+                        <i class="menu-icon las la-plus-square"></i>
+                        <span class="menu-title">@lang('Add Student')</span>
+                    </a>
+                </li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('agent.donor*', 3) }}">
                         <i class="menu-icon las la-user"></i>

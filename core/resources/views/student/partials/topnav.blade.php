@@ -37,7 +37,7 @@
                         <img src="{{ getImage('assets/images/donor/'. auth()->guard('donor')->user()->image) }}" alt="image">
                     </span>
                     <span class="navbar-user__info">
-                      <span class="navbar-user__name">{{auth()->guard('donor')->user()->username}}</span>
+                      <span class="navbar-user__name">{{auth()->guard('donor')->user()->firstname}} {{auth()->guard('donor')->user()->lastname}}</span>
                     </span>
                     <span class="icon"><i class="las la-chevron-circle-down"></i></span>
                   </span>
