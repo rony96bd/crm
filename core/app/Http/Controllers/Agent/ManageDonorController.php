@@ -267,6 +267,7 @@ class ManageDonorController extends Controller
         $donor->low_score = $request->low_score;
         $donor->country = $request->country;
         $donor->qualification = $request->qualification;
+        $donor->email = $request->email;
         $donor->course = $request->course;
         $donor->file = $fileName;
         $donor->file2 = $fileName2;
