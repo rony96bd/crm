@@ -201,7 +201,7 @@ class ManageAgentController extends Controller
 
     public function view($id)
     {
-        $pageTitle = "Students Information";
+        $pageTitle = "Agent Information";
         $agent = Agent::findOrFail($id);
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();

@@ -58,7 +58,7 @@
                                         </td>
 
                                         <td data-label="Agent Name">
-                                            <span>{{ $donor->agent->name ?? "" }}</span>
+                                            <span><a target="_blank" href="{{ route('admin.agent.view', $donor->agent->id ?? "") }}">{{ $donor->agent->name ?? "" }}</a></span>
                                         </td>
 
                                         <td data-label="@lang('Status')">

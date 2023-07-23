@@ -210,14 +210,6 @@ class ManageDonorController extends Controller
         return view('admin.donor.view', compact('pageTitle', 'cities', 'bloods', 'donor'));
     }
 
-    public function agentview($id)
-    {
-        $pageTitle = "Agent Information";
-        $agent = Agent::findOrFail($id);
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        return view('admin.donor.viewagent', compact('pageTitle', 'agent'));
-    }
-
 
     public function update(Request $request, $id)
     {

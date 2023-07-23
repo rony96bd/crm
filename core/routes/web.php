@@ -118,7 +118,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
         Route::get('student/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
         Route::get('student/view/{id}', 'ManageDonorController@view')->name('donor.view');
-        Route::get('agent/view/{id}', 'ManageDonorController@agentview')->name('agent.view');
         Route::post('student/update/{id}', 'ManageDonorController@update')->name('donor.update');
         Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');
         Route::post('donor/banned/status', 'ManageDonorController@bannedStatus')->name('donor.banned.status');
