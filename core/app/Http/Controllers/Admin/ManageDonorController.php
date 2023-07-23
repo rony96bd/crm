@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agent;
 use App\Models\Blood;
 use App\Models\City;
 use App\Models\Donor;
@@ -17,8 +18,9 @@ class ManageDonorController extends Controller
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agents = Agent::where('status', 1)->select('id', 'name')->get();
+        $donors = Donor::latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
+        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods', 'agents'));
     }
 
     public function pending()
@@ -206,6 +208,14 @@ class ManageDonorController extends Controller
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
         return view('admin.donor.view', compact('pageTitle', 'cities', 'bloods', 'donor'));
+    }
+
+    public function agentview($id)
+    {
+        $pageTitle = "Agent Information";
+        $agent = Agent::findOrFail($id);
+        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
+        return view('admin.donor.viewagent', compact('pageTitle', 'agent'));
     }
 
 

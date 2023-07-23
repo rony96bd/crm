@@ -19,7 +19,7 @@ class Agent extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'name'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -40,6 +40,11 @@ class Agent extends Authenticatable implements MustVerifyEmail
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function donor()
+    {
+        return $this->hasMany(Donor::class);
     }
 
 }

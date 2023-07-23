@@ -45,4 +45,9 @@ class Donor extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(City::class, 'city_id');
     }
 
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class, 'agent_id');
+    }
+
 }
