@@ -154,7 +154,7 @@ class ManageDonorController extends Controller
             'file12' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
             'file13' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
         ]);
-        $user = Auth::guard('agent')->user();
+        $user = auth()->guard('agent')->user()->id;
 
         $donor = new Donor();
         if ($request->hasFile('file')) {
