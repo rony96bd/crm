@@ -154,6 +154,8 @@ class ManageDonorController extends Controller
             'file12' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
             'file13' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
         ]);
+        $user = Auth::guard('agent')->user();
+
         $donor = new Donor();
         if ($request->hasFile('file')) {
             $fileName = 'passport' . '_' . time() . '.' . $request->file->extension();
@@ -283,6 +285,7 @@ class ManageDonorController extends Controller
         $donor->file12 = $fileName12;
         $donor->file13 = $fileName13;
         $donor->status = '0';
+        $donor->agent = $user->id;
         $donor->save();
         $notify[] = ['success', 'Student has been created'];
         return back()->withNotify($notify);
