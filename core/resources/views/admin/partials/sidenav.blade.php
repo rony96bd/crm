@@ -107,7 +107,7 @@
                             <li class="sidebar-menu-item {{ menuActive('admin.agent.index') }} ">
                                 <a href="{{ route('admin.agent.index') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Registered Students')</span>
+                                    <span class="menu-title">@lang('Registered Agents')</span>
                                 </a>
                             </li>
 
