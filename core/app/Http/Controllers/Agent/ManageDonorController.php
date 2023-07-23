@@ -285,7 +285,7 @@ class ManageDonorController extends Controller
         $donor->file12 = $fileName12;
         $donor->file13 = $fileName13;
         $donor->status = '0';
-        $donor->agent = $user->id;
+        $donor->agent = $user;
         $donor->save();
         $notify[] = ['success', 'Student has been created'];
         return back()->withNotify($notify);
