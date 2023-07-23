@@ -10,6 +10,7 @@ use App\Models\Page;
 use App\Models\SupportTicket;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -49,9 +50,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('agent.partials.sidenav', function ($view) {
+            $aid = auth()->guard('agent')->user()->id;
             $view->with([
                 'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
-                'pending_donor_count' => Donor::where('status', 0)->count(),
+                'pending_stuent_count' => Donor::where('status', 0)->where('agent', $aid)->count(),
 
             ]);
         });

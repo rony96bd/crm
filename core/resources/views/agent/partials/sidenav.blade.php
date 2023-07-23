@@ -29,7 +29,7 @@
                     <a href="javascript:void(0)" class="{{ menuActive('agent.donor*', 3) }}">
                         <i class="menu-icon las la-user"></i>
                         <span class="menu-title">@lang('Manage Students') </span>
-                        @if (0 < $pending_donor_count)
+                        @if (0 < $pending_stuent_count)
                             <span class="menu-badge pill bg--primary ml-auto">
                                 <i class="fa fa-exclamation"></i>
                             </span>
@@ -47,9 +47,9 @@
                                 <a href="{{ route('agent.donor.pending') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Pending')</span>
-                                    @if ($pending_donor_count)
+                                    @if ($pending_stuent_count)
                                         <span
-                                            class="menu-badge pill bg--primary ml-auto">{{ $pending_donor_count }}</span>
+                                            class="menu-badge pill bg--primary ml-auto">{{ $pending_stuent_count }}</span>
                                     @endif
                                 </a>
                             </li>

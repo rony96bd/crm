@@ -15,22 +15,25 @@ class ManageDonorController extends Controller
 
     public function index()
     {
-        $username = auth()->guard('agent')->user()->username;
+        $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::latest()
-            ->where('agent', $username)
+            ->where('agent', $aid)
             ->paginate(getPaginate());
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 
     public function pending()
     {
+        $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Pending Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 0)->latest()->with('blood', 'location')->paginate(getPaginate());
+        $donors = Donor::where('status', 0)
+        ->where('agent', $aid)
+        ->latest()->with('blood', 'location')->paginate(getPaginate());
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 
