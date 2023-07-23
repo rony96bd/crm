@@ -19,20 +19,6 @@
                     </a>
                 </li>
 
-                <li class="sidebar-menu-item {{ menuActive('admin.setting.index') }}">
-                    <a href="{{ route('admin.setting.index') }}" class="nav-link">
-                        <i class="menu-icon las la-life-ring"></i>
-                        <span class="menu-title">@lang('General Setting')</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-menu-item {{ menuActive('admin.setting.index') }}">
-                    <a href="{{ route('admin.setting.index') }}" class="nav-link">
-                        <i class="menu-icon las la-life-ring"></i>
-                        <span class="menu-title">@lang('General Setting')</span>
-                    </a>
-                </li>
-
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('admin.donor*', 3) }}">
                         <i class="menu-icon las la-user"></i>
@@ -51,7 +37,7 @@
                                     <span class="menu-title">@lang('Approved')</span>
                                 </a>
                             </li>
-                            
+
                             <li class="sidebar-menu-item {{ menuActive('admin.donor.pending') }} ">
                                 <a href="{{ route('admin.donor.pending') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
@@ -99,7 +85,7 @@
                                     <span class="menu-title">@lang('Approved')</span>
                                 </a>
                             </li>
-                            
+
                             <li class="sidebar-menu-item {{ menuActive('admin.agent.pending') }} ">
                                 <a href="{{ route('admin.agent.pending') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
