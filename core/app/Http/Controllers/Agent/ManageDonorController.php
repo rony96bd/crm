@@ -156,91 +156,91 @@ class ManageDonorController extends Controller
         ]);
         $donor = new Donor();
         if ($request->hasFile('file')) {
-            $fileName = $donor->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
+            $fileName = 'passport' . '_' . time() . '.' . $request->file->extension();
             $request->file->move('assets/files/student', $fileName);
         } else {
             $fileName = $donor->file;
         }
 
         if ($request->hasFile('file2')) {
-            $fileName2 = $donor->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
+            $fileName2 = 'CV' . '_' . time() . '.' . $request->file2->extension();
             $request->file2->move('assets/files/student', $fileName2);
         } else {
             $fileName2 = $donor->file2;
         }
 
         if ($request->hasFile('file3')) {
-            $fileName3 = $donor->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
+            $fileName3 = 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
             $request->file3->move('assets/files/student', $fileName3);
         } else {
             $fileName3 = $donor->file3;
         }
 
         if ($request->hasFile('file4')) {
-            $fileName4 = $donor->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
+            $fileName4 = '10thCer' . '_' . time() . '.' . $request->file4->extension();
             $request->file4->move('assets/files/student', $fileName4);
         } else {
             $fileName4 = $donor->file4;
         }
 
         if ($request->hasFile('file5')) {
-            $fileName5 = $donor->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
+            $fileName5 = '12thCer' . '_' . time() . '.' . $request->file5->extension();
             $request->file5->move('assets/files/student', $fileName5);
         } else {
             $fileName5 = $donor->file5;
         }
 
         if ($request->hasFile('file6')) {
-            $fileName6 = $donor->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
+            $fileName6 = 'DegCer' . '_' . time() . '.' . $request->file6->extension();
             $request->file6->move('assets/files/student', $fileName6);
         } else {
             $fileName6 = $donor->file6;
         }
 
         if ($request->hasFile('file7')) {
-            $fileName7 = $donor->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
+            $fileName7 = 'MCer' . '_' . time() . '.' . $request->file7->extension();
             $request->file7->move('assets/files/student', $fileName7);
         } else {
             $fileName7 = $donor->file7;
         }
 
         if ($request->hasFile('file8')) {
-            $fileName8 = $donor->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
+            $fileName8 = '10thTrans' . '_' . time() . '.' . $request->file8->extension();
             $request->file8->move('assets/files/student', $fileName8);
         } else {
             $fileName8 = $donor->file8;
         }
 
         if ($request->hasFile('file9')) {
-            $fileName9 = $donor->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
+            $fileName9 = '12thTrans' . '_' . time() . '.' . $request->file9->extension();
             $request->file9->move('assets/files/student', $fileName9);
         } else {
             $fileName9 = $donor->file9;
         }
 
         if ($request->hasFile('file10')) {
-            $fileName10 = $donor->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
+            $fileName10 = 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
             $request->file10->move('assets/files/student', $fileName10);
         } else {
             $fileName10 = $donor->file10;
         }
 
         if ($request->hasFile('file11')) {
-            $fileName11 = $donor->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
+            $fileName11 = 'MTrans' . '_' . time() . '.' . $request->file11->extension();
             $request->file11->move('assets/files/student', $fileName11);
         } else {
             $fileName11 = $donor->file11;
         }
 
         if ($request->hasFile('file12')) {
-            $fileName12 = $donor->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
+            $fileName12 = 'EoW' . '_' . time() . '.' . $request->file12->extension();
             $request->file12->move('assets/files/student', $fileName12);
         } else {
             $fileName12 = $donor->file12;
         }
 
         if ($request->hasFile('file13')) {
-            $fileName13 = $donor->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
+            $fileName13 = 'Other' . '_' . time() . '.' . $request->file13->extension();
             $request->file13->move('assets/files/student', $fileName13);
         } else {
             $fileName13 = $donor->file13;
