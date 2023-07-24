@@ -365,7 +365,7 @@ class SiteController extends Controller
         $agent->save();
 
         if ($agent != null) {
-            MailController::sendSignupEmail($agent->name, $agent->email);
+            MailController::sendSignupEmailAgent($agent->name, $agent->email);
             return redirect()->back()->with(session()->flash('alert-success', 'Registration Success'));
         }
         return redirect()->back()->with(session()->flash('alert-danger', 'Something Wrong'));
