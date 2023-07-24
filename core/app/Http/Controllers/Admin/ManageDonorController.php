@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\DonorsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Agent;
 use App\Models\Blood;
@@ -10,6 +11,7 @@ use App\Models\Donor;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Excel;
 
 class ManageDonorController extends Controller
 {
@@ -22,6 +24,23 @@ class ManageDonorController extends Controller
         $agents = Agent::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
         return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods', 'agents'));
+    }
+
+    public function export()
+    {
+        //export Donors
+        return Excel::download(new DonorsExport, 'donors.xlsx');
+    }
+
+    public function exportv()
+    {
+        //export Donors
+        $pageTitle = "Manage Students List";
+        $emptyMessage = "No data found";
+        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
+        $agents = Agent::where('status', 1)->select('id', 'name')->get();
+        $donors = Donor::latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
+        return view('admin.donor.exportv', compact('pageTitle', 'emptyMessage', 'donors', 'bloods', 'agents'));
     }
 
     public function pending()
