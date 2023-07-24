@@ -42,7 +42,7 @@ class ManageDonorController extends Controller
     {
         $pageTitle = "Approved Students List";
         $emptyMessage = "No data found";
-        $donors = Donor::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
+        $donors = Donor::where('status', 1)->where('agent_id', $aid)->latest()->with('blood', 'location')->paginate(getPaginate());
         $agent = Auth::guard('agent')->user();
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
@@ -52,7 +52,7 @@ class ManageDonorController extends Controller
         $pageTitle = "Banned Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
+        $donors = Donor::where('status', 2)->where('agent_id', $aid)->latest()->with('blood', 'location')->paginate(getPaginate());
         $agent = Auth::guard('agent')->user();
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
