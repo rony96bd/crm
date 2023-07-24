@@ -29,7 +29,7 @@ class ManageDonorController extends Controller
         $pageTitle = "Pending Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 0)->latest()->with('blood', 'location')->paginate(getPaginate());
+        $donors = Donor::where('status', 0)->latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
         return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 
