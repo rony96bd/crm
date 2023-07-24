@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             $aid = auth()->guard('agent')->user()->id;
             $view->with([
                 'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
-                'pending_stuent_count' => Donor::where('status', 0)->where('agent', $aid)->count(),
+                'pending_stuent_count' => Donor::where('status', 0)->where('agent_id', $aid)->count(),
 
             ]);
         });

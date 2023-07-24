@@ -21,16 +21,12 @@ class AgentController extends Controller
     public function dashboard()
     {
         $pageTitle = 'Dashboard';
-        $blood = Blood::count();
-        $city = City::count();
-        $locations = Location::count();
-        $ads = Advertisement::count();
         $don['all'] = Donor::count();
         $don['pending'] = Donor::where('status', 0)->count();
         $don['approved'] = Donor::where('status', 1)->count();
-        $don['banned'] = Donor::where('status', 0)->count();
+        $don['banned'] = Donor::where('status', 2)->count();
         $donors = Donor::orderBy('id', 'DESC')->with('blood', 'location')->limit(8)->get();
-        return view('agent.dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors'));
+        return view('agent.dashboard', compact('pageTitle', 'don', 'donors'));
     }
 
 

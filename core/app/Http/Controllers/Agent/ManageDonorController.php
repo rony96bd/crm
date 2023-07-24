@@ -20,7 +20,7 @@ class ManageDonorController extends Controller
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::latest()
-            ->where('agent', $aid)
+            ->where('agent_id', $aid)
             ->paginate(getPaginate());
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
@@ -32,7 +32,7 @@ class ManageDonorController extends Controller
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::where('status', 0)
-        ->where('agent', $aid)
+            ->where('agent_id', $aid)
         ->latest()->with('blood', 'location')->paginate(getPaginate());
         return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
