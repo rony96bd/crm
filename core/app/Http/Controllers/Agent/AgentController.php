@@ -50,7 +50,7 @@ class AgentController extends Controller
         if ($request->hasFile('image')) {
             try {
                 $old = $user->image ?: null;
-                $user->image = uploadImage($request->image, imagePath()['profile']['agent']['path'], imagePath()['profile']['agent']['size'], $old);
+                $user->image = uploadImage($request->image, imagePath()['agent']['path'], imagePath()['agent']['size'], $old);
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
