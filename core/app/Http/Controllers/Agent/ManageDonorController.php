@@ -40,6 +40,7 @@ class ManageDonorController extends Controller
 
     public function approved()
     {
+        $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Approved Students List";
         $emptyMessage = "No data found";
         $donors = Donor::where('status', 1)->where('agent_id', $aid)->latest()->with('blood', 'location')->paginate(getPaginate());
@@ -49,6 +50,7 @@ class ManageDonorController extends Controller
 
     public function banned()
     {
+        $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Banned Students List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
