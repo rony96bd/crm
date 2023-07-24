@@ -3,20 +3,20 @@
     <thead>
 
         <tr>
-            <th style="background-color:blue; color: white; font-weight: bold">Serial</th>
-            <th style="background-color:blue; color: white; font-weight: bold">First Name</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Last Name</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Email</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Phone</th>
-            <th style="background-color:blue; color: white; font-weight: bold">WhatsApp</th>
-            <th style="background-color:blue; color: white; font-weight: bold">English Test</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Score Overall</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Low Score</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Country</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Highest Qualification</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Course Name</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Agent Name</th>
-            <th style="background-color:blue; color: white; font-weight: bold">Documents</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 40px;">Serial</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 120px;">First Name</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 100px;">Last Name</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 190px;">Email</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 110px;">Phone</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 110px;">WhatsApp</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 180px;">English Test</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 110px;">Score Overall</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 95px;">Low Score</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 90px;">Country</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 325px;">Highest Qualification</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 200px;">Course Name</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 180px;">Agent Name</th>
+            <th style="background-color:blue; color: white; font-weight: bold; width: 80px;">Documents</th>
         </tr>
     </thead>
     <tbody>

@@ -14,7 +14,7 @@ class DonorsExport implements FromView
     public function view(): View
     {
         return view('admin.donor.exportv', [
-            'donors' => Donor::all()
+            'donors' => Donor::where('status', 1)->get()
         ]);
     }
 }
