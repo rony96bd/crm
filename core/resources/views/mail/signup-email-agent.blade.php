@@ -1,4 +1,4 @@
-<h2>Hello {{$email_data['firstname']}}</h2>
+<h2>Hello {{$email_data['name']}}</h2>
 
 <h3>Welcome to Appliuk.com</h3>
 <br />
