@@ -44,7 +44,7 @@ class DonorController extends Controller
     }
 
     public function profileUpdate(Request $request)
-    {    
+    {
         $this->validate($request, [
             'firstname' => 'required|max:80',
             'lastname' => 'required|max:80',
@@ -88,7 +88,6 @@ class DonorController extends Controller
             if ($request->hasFile('file')) {
                 $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
                 $request->file->move('assets/files/student', $fileName);
-                unlink(imagePath()['file']['path'] . $user->file);
             } else {
                 $fileName = $user->file;
             }

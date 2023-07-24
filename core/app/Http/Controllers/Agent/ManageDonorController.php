@@ -9,6 +9,7 @@ use App\Models\Donor;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class ManageDonorController extends Controller
 {
@@ -18,11 +19,11 @@ class ManageDonorController extends Controller
         $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::latest()
             ->where('agent_id', $aid)
             ->paginate(getPaginate());
-        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
 
     public function pending()
@@ -30,20 +31,20 @@ class ManageDonorController extends Controller
         $aid = auth()->guard('agent')->user()->id;
         $pageTitle = "Pending Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::where('status', 0)
             ->where('agent_id', $aid)
         ->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
 
     public function approved()
     {
         $pageTitle = "Approved Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
 
     public function banned()
@@ -52,7 +53,8 @@ class ManageDonorController extends Controller
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agent'));
     }
 
     public function create()
@@ -60,7 +62,8 @@ class ManageDonorController extends Controller
         $pageTitle = "Student Create";
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('agent.donor.create', compact('pageTitle', 'cities', 'bloods'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.create', compact('pageTitle', 'cities', 'bloods', 'agent'));
     }
 
     public function donorBloodSearch(Request $request)
@@ -298,9 +301,8 @@ class ManageDonorController extends Controller
     {
         $pageTitle = "Students Update";
         $donor = Donor::findOrFail($id);
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        return view('agent.donor.edit', compact('pageTitle', 'cities', 'bloods', 'donor'));
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.edit', compact('pageTitle', 'cities', 'agent', 'donor'));
     }
 
     public function update(Request $request, $id)
