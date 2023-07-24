@@ -43,11 +43,6 @@
                   </span>
                 </button>
                 <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
-                    <a href="{{ route('student.profile') }}"
-                       class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-                        <i class="dropdown-menu__icon las la-user-circle"></i>
-                        <span class="dropdown-menu__caption">@lang('Profile')</span>
-                    </a>
 
                     <a href="{{route('student.password')}}"
                        class="dropdown-menu__item d-flex align-items-center px-3 py-2">
