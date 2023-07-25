@@ -34,13 +34,13 @@
                                             @php
                                                 $engtestview = '';
                                                 $engtests = json_decode($donor->engtest);
-                                                
+
                                                 foreach ($engtests as $engtest) {
                                                     $engtestview .= $engtest . ', ';
                                                 }
                                                 $engtestview = rtrim($engtestview, ', ');
                                                 echo $engtestview;
-                                            @endphp 
+                                            @endphp
                                         </td>
                                         <td data-label="@lang('Score Overall - Low Score')">
                                             <span>{{ __($donor->score_overall) }}</span><br>
@@ -203,10 +203,6 @@
 
 
 @push('breadcrumb-plugins')
-    <a href="{{ route('agent.donor.create') }}"
-        class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0"><i
-            class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
-
     {{-- <form action="{{route('agent.donor.search')}}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
         <div class="input-group has_append">
             <input type="text" name="search" class="form-control" placeholder="@lang('Student Name.....')" value="{{ $search ?? '' }}">
