@@ -29,7 +29,7 @@ class ManageDonorController extends Controller
     public function export()
     {
         //export Donors
-        return Excel::download(new DonorsExport, 'donors.xlsx');
+        return Excel::download(new DonorsExport, 'students.xlsx');
     }
 
     public function exportv()
