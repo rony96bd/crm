@@ -37,17 +37,26 @@
                                     <p class="mb-0 font-weight-bold">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->name) }}</p>
                                 </div>
                             </div>
                             <hr>
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">Email</p>
+                                    <p class="mb-0 font-weight-bold">Designation</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->designation) }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0 font-weight-bold">Company</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ __($agent->company) }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -56,45 +65,16 @@
                                     <p class="mb-0 font-weight-bold">Phone Number</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->phone) }}</p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">WhatsApp Number</p>
+                                    <p class="mb-0 font-weight-bold">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">English Test</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">
-
-                                    </p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">Overall Score</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">Low Score</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->email) }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -103,28 +83,18 @@
                                     <p class="mb-0 font-weight-bold">Country</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->country) }}</p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">Qualification</p>
+                                    <p class="mb-0 font-weight-bold">City</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
+                                    <p class="text-muted mb-0">{{ __($agent->city) }}</p>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0 font-weight-bold">Course Name</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
