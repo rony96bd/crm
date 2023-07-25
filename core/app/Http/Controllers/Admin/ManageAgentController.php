@@ -14,7 +14,7 @@ class ManageAgentController extends Controller
 
     public function index()
     {
-        $pageTitle = "Manage Students List";
+        $pageTitle = "Manage Agent List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $agents = Agent::latest()->with('blood', 'location')->paginate(getPaginate());
@@ -23,7 +23,7 @@ class ManageAgentController extends Controller
 
     public function pending()
     {
-        $pageTitle = "Pending Students List";
+        $pageTitle = "Pending Agent List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $agents = Agent::where('status', 0)->latest()->with('blood', 'location')->paginate(getPaginate());
@@ -32,7 +32,7 @@ class ManageAgentController extends Controller
 
     public function approved()
     {
-        $pageTitle = "Approved Students List";
+        $pageTitle = "Approved Agent List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $agents = Agent::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
@@ -41,7 +41,7 @@ class ManageAgentController extends Controller
 
     public function banned()
     {
-        $pageTitle = "Banned Students List";
+        $pageTitle = "Banned Agent List";
         $emptyMessage = "No data found";
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $agents = Agent::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
@@ -50,7 +50,7 @@ class ManageAgentController extends Controller
 
     public function create()
     {
-        $pageTitle = "Student Create";
+        $pageTitle = "Agent Create";
         $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         return view('admin.agent.create', compact('pageTitle', 'cities', 'bloods'));
