@@ -37,6 +37,8 @@ Route::namespace('Donor')->prefix('student')->name('student.')->group(function (
         Route::post('profile', 'DonorController@profileUpdate')->name('profile.update');
         Route::get('password', 'DonorController@password')->name('password');
         Route::post('password', 'DonorController@passwordUpdate')->name('password.update');
+        Route::get('exportpdf/{id}', 'DonorController@exportpdf')->name('exportpdf');
+        Route::get('exportpdf/{id}/generate', 'DonorController@getexportpdf')->name('getexportpdf');
 
         Route::get('donor/list', 'ManageDonorController@index')->name('donor.index');
         Route::get('donor/pending', 'ManageDonorController@pending')->name('donor.pending');
@@ -53,17 +55,6 @@ Route::namespace('Donor')->prefix('student')->name('student.')->group(function (
         Route::post('donor/featured/list/Include', 'ManageDonorController@featuredInclude')->name('donor.featured.include');
         Route::post('donor/featured/list/remove', 'ManageDonorController@featuredNotInclude')->name('donor.featured.remove');
 
-        Route::get('blood/list', 'BloodController@index')->name('blood.index');
-        Route::post('blood/store', 'BloodController@store')->name('blood.store');
-        Route::post('blood/update', 'BloodController@update')->name('blood.update');
-
-        Route::get('location/list', 'LocationController@index')->name('location.index');
-        Route::post('location/store', 'LocationController@store')->name('location.store');
-        Route::post('location/update', 'LocationController@update')->name('location.update');
-
-        Route::get('city/list', 'CityController@index')->name('city.index');
-        Route::post('city/store', 'CityController@store')->name('city.store');
-        Route::post('city/update', 'CityController@update')->name('city.update');
     });
 });
 

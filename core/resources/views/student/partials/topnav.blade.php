@@ -23,12 +23,6 @@
 
     <div class="navbar__right">
         <ul class="navbar__action-list">
-            <li>
-                <button type="button" class="navbar-search__btn-open">
-                    <i class="las la-search"></i>
-                </button>
-            </li>
-
 
             <li class="dropdown">
                 <button type="button" class="" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">

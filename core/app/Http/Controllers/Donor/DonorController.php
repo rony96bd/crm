@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class DonorController extends Controller
 {
@@ -32,6 +34,24 @@ class DonorController extends Controller
         $donors = Donor::orderBy('id', 'DESC')->with('blood', 'location')->limit(8)->get();
         $donor = Auth::guard('donor')->user();
         return view('student.dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors', 'donor'));
+    }
+
+    public function exportpdf($id)
+    {
+        //export Donors
+        $pageTitle = "Students Information";
+        $donor = Donor::findOrFail($id);
+        return view('student.exportpdf', compact('pageTitle', 'donor'));
+    }
+
+    public function getexportpdf($id)
+    {
+        //export Donors
+        $donor = Donor::findOrFail($id);
+
+        $data = ['donor' => $donor];
+        $pdf = Pdf::loadView('student.exportpdf', $data);
+        return $pdf->download('student' . '_' . $donor['firstname'] . '.pdf');
     }
 
     public function profile()
