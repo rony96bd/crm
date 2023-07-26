@@ -12,6 +12,7 @@ use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ManageDonorController extends Controller
 {
@@ -40,9 +41,26 @@ class ManageDonorController extends Controller
         $bloods = Blood::where('status', 1)->select('id', 'name')->get();
         $agents = Agent::where('status', 1)->select('id', 'name')->get();
         $donors = Donor::latest()
-        ->where('status', 1)
+            ->where('status', 1)
             ->with('blood', 'location', 'agent')->paginate(getPaginate());
         return view('admin.donor.exportv', compact('pageTitle', 'emptyMessage', 'donors', 'bloods', 'agents'));
+    }
+
+    public function exportpdf($id)
+    {
+        //export Donors
+        $pageTitle = "Students Information";
+        $donor = Donor::findOrFail($id);
+        return view('admin.donor.exportpdf', compact('pageTitle', 'donor'));
+    }
+
+    public function getexportpdf($id)
+    {
+        //export Donors
+        $donor = Donor::findOrFail($id);
+        $data = ['donor' => $donor];
+        $pdf = Pdf::loadView('admin.donor.exportpdf', $data);
+        return $pdf->download('student' . '2' . '.pdf');
     }
 
     public function pending()
@@ -154,7 +172,8 @@ class ManageDonorController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['firstname' => 'required|max:80',
+        $request->validate([
+            'firstname' => 'required|max:80',
             'lastname' => 'required|max:80',
             'whatsapp' => 'required|max:40',
             'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
@@ -330,8 +349,8 @@ class ManageDonorController extends Controller
     {
         $request->validate([
             'name' => 'required|max:80',
-            'email' => 'required|email|max:60|unique:donors,email,'.$id,
-            'phone' => 'required|max:40|unique:donors,phone,'.$id,
+            'email' => 'required|email|max:60|unique:donors,email,' . $id,
+            'phone' => 'required|max:40|unique:donors,phone,' . $id,
             'city' => 'required|exists:cities,id',
             'location' => 'required|exists:locations,id',
             'blood' => 'required|exists:bloods,id',
@@ -387,5 +406,4 @@ class ManageDonorController extends Controller
         $notify[] = ['success', 'Students has been updated'];
         return back()->withNotify($notify);
     }
-
 }

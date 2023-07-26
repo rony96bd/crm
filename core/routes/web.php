@@ -118,6 +118,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
         Route::get('student/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
         Route::get('student/view/{id}', 'ManageDonorController@view')->name('donor.view');
+        Route::get('student/exportpdf/{id}', 'ManageDonorController@exportpdf')->name('donor.exportpdf');
+        Route::get('student/exportpdf/{id}/generate', 'ManageDonorController@getexportpdf')->name('donor.getexportpdf');
+
         Route::get('export', 'ManageDonorController@export')->name('donor.export');
         Route::get('exportv', 'ManageDonorController@exportv')->name('donor.exportv');
         Route::post('student/update/{id}', 'ManageDonorController@update')->name('donor.update');
