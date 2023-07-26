@@ -270,6 +270,8 @@ Route::namespace('Agent')->prefix('agent')->name('agent.')->group(function () {
         Route::get('student/create', 'ManageDonorController@create')->name('donor.create');
         Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
         Route::get('donor/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
+        Route::get('donor/view/{id}', 'ManageDonorController@view')->name('donor.view');
+
         Route::post('donor/update/{id}', 'ManageDonorController@update')->name('donor.update');
         Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');
         Route::post('donor/banned/status', 'ManageDonorController@bannedStatus')->name('donor.banned.status');

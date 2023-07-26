@@ -304,7 +304,15 @@ class ManageDonorController extends Controller
         $pageTitle = "Students Update";
         $donor = Donor::findOrFail($id);
         $agent = Auth::guard('agent')->user();
-        return view('agent.donor.edit', compact('pageTitle', 'cities', 'agent', 'donor'));
+        return view('agent.donor.edit', compact('pageTitle', 'agent', 'donor'));
+    }
+
+    public function view($id)
+    {
+        $pageTitle = "Students Update";
+        $donor = Donor::findOrFail($id);
+        $agent = Auth::guard('agent')->user();
+        return view('agent.donor.view', compact('pageTitle', 'agent', 'donor'));
     }
 
     public function update(Request $request, $id)

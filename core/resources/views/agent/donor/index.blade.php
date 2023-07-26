@@ -67,8 +67,10 @@
                                         </td>
 
                                         <td data-label="@lang('Action')">
-                                            <a href="{{ route('agent.donor.edit', $donor->id) }}"
-                                                class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
+                                            {{-- <a href="{{ route('agent.donor.edit', $donor->id) }}"
+                                                class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a> --}}
+                                            <a href="{{ route('agent.donor.view', $donor->id) }}"
+                                                class="icon-btn btn-primary ml-1"><i class="las la-eye"></i></a>
                                         </td>
                                     </tr>
                                 @empty
@@ -76,7 +78,6 @@
                                         <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
                                     </tr>
                                 @endforelse
-
                             </tbody>
                         </table>
                     </div>
