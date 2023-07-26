@@ -199,8 +199,6 @@
 @endsection
 @push('breadcrumb-plugins')
 
-<a href="{{ route('admin.donor.exportpdf', $donor->id) }}" class="btn btn-sm btn-primary box--shadow1 text--small"></i>@lang('View For PDF')</a>
-
     <a href="{{ url('admin/student/exportpdf/'.$donor->id.'/generate') }}" class="btn btn-sm btn-primary box--shadow1 text--small"><i
             class="las la-file-pdf"></i>@lang('Export to PDF')</a>
 
