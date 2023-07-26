@@ -10,6 +10,8 @@ use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class ManageDonorController extends Controller
 {
@@ -313,6 +315,24 @@ class ManageDonorController extends Controller
         $donor = Donor::findOrFail($id);
         $agent = Auth::guard('agent')->user();
         return view('agent.donor.view', compact('pageTitle', 'agent', 'donor'));
+    }
+
+    public function exportpdf($id)
+    {
+        //export Donors
+        $pageTitle = "Students Information";
+        $donor = Donor::findOrFail($id);
+        return view('agent.donor.exportpdf', compact('pageTitle', 'donor'));
+    }
+
+    public function getexportpdf($id)
+    {
+        //export Donors
+        $donor = Donor::findOrFail($id);
+
+        $data = ['donor' => $donor];
+        $pdf = Pdf::loadView('agent.donor.exportpdf', $data);
+        return $pdf->download('student' . '_' . $donor['firstname'] . '.pdf');
     }
 
     public function update(Request $request, $id)

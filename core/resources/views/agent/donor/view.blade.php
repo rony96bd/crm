@@ -199,10 +199,10 @@
 @endsection
 @push('breadcrumb-plugins')
 
-    <a href="{{ url('admin/student/exportpdf/'.$donor->id.'/generate') }}" class="btn btn-sm btn-primary box--shadow1 text--small"><i
+    <a href="{{ url('agent/student/exportpdf/'.$donor->id.'/generate') }}" class="btn btn-sm btn-primary box--shadow1 text--small"><i
             class="las la-file-pdf"></i>@lang('Export to PDF')</a>
 
-    <a href="{{ route('admin.donor.index') }}" class="btn btn-sm btn--primary box--shadow1 text--small"><i
+    <a href="{{ route('agent.donor.index') }}" class="btn btn-sm btn--primary box--shadow1 text--small"><i
             class="las la-angle-double-left"></i>@lang('Go Back')</a>
 @endpush
 
