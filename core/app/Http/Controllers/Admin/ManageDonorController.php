@@ -58,9 +58,10 @@ class ManageDonorController extends Controller
     {
         //export Donors
         $donor = Donor::findOrFail($id);
+
         $data = ['donor' => $donor];
         $pdf = Pdf::loadView('admin.donor.exportpdf', $data);
-        return $pdf->download('student' . '2' . '.pdf');
+        return $pdf->download('student' . '_' . $donor['firstname'] . '.pdf');
     }
 
     public function pending()
