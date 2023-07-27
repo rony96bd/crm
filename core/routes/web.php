@@ -133,6 +133,19 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('agent/banned/status', 'ManageAgentController@bannedStatus')->name('agent.banned.status');
         Route::get('agent/search', 'ManageAgentController@search')->name('agent.search');
 
+        // User
+        Route::get('user/list', 'ManageUserController@index')->name('user.index');
+        Route::get('user/pending', 'ManageUserController@pending')->name('user.pending');
+        Route::get('user/approved', 'ManageUserController@approved')->name('user.approved');
+        Route::get('user/banned', 'ManageUserController@banned')->name('user.banned');
+        Route::get('user/create', 'ManageUserController@create')->name('user.create');
+        Route::post('user/store', 'ManageUserController@store')->name('user.store');
+        Route::get('user/edit/{id}', 'ManageUserController@edit')->name('user.edit');
+        Route::get('user/view/{id}', 'ManageUserController@view')->name('user.view');
+        Route::post('user/update/{id}', 'ManageUserController@update')->name('user.update');
+        Route::post('user/approved/status', 'ManageUserController@approvedStatus')->name('user.approved.status');
+        Route::post('user/banned/status', 'ManageUserController@bannedStatus')->name('user.banned.status');
+
         //Report Bugs
         Route::get('request-report','AdminController@requestReport')->name('request.report');
         Route::post('request-report','AdminController@reportSubmit');
@@ -229,6 +242,71 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::post('manage-pages/delete', 'PageBuilderController@managePagesDelete')->name('manage.pages.delete');
             Route::get('manage-section/{id}', 'PageBuilderController@manageSection')->name('manage.section');
             Route::post('manage-section/{id}', 'PageBuilderController@manageSectionUpdate')->name('manage.section.update');
+        });
+    });
+});
+
+Route::namespace('User')->prefix('user')->name('user.')->group(function () {
+    Route::namespace('Auth')->group(function () {
+        Route::get('/', 'LoginController@showLoginForm')->name('login');
+        Route::post('/', 'LoginController@login')->name('login');
+        Route::get('logout', 'LoginController@logout')->name('logout');
+        // User Password Reset
+        Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+        Route::post('password/reset', 'ForgotPasswordController@sendResetCodeEmail');
+        Route::post('password/verify-code', 'ForgotPasswordController@verifyCode')->name('password.verify.code');
+        Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset.form');
+        Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
+    });
+
+    Route::middleware('user')->group(function () {
+        Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+        Route::get('profile', 'UserController@profile')->name('profile');
+        Route::post('profile', 'UserController@profileUpdate')->name('profile.update');
+        Route::get('password', 'UserController@password')->name('password');
+        Route::post('password', 'UserController@passwordUpdate')->name('password.update');
+
+        // Donor
+        Route::get('donor/list', 'ManageDonorController@index')->name('donor.index');
+        Route::get('student/pending', 'ManageDonorController@pending')->name('donor.pending');
+        Route::get('student/approved', 'ManageDonorController@approved')->name('donor.approved');
+        Route::get('student/banned', 'ManageDonorController@banned')->name('donor.banned');
+        Route::get('student/create', 'ManageDonorController@create')->name('donor.create');
+        Route::post('student/store', 'ManageDonorController@store')->name('donor.store');
+        Route::get('student/edit/{id}', 'ManageDonorController@edit')->name('donor.edit');
+        Route::get('student/view/{id}', 'ManageDonorController@view')->name('donor.view');
+        Route::get('student/exportpdf/{id}', 'ManageDonorController@exportpdf')->name('donor.exportpdf');
+        Route::get('student/exportpdf/{id}/generate', 'ManageDonorController@getexportpdf')->name('donor.getexportpdf');
+        Route::get('export', 'ManageDonorController@export')->name('donor.export');
+        Route::get('exportv', 'ManageDonorController@exportv')->name('donor.exportv');
+        Route::post('student/update/{id}', 'ManageDonorController@update')->name('donor.update');
+        Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');
+        Route::post('donor/banned/status', 'ManageDonorController@bannedStatus')->name('donor.banned.status');
+        Route::get('donor/search', 'ManageDonorController@search')->name('donor.search');
+
+        // Agent
+        Route::get('agent/list', 'ManageAgentController@index')->name('agent.index');
+        Route::get('agent/pending', 'ManageAgentController@pending')->name('agent.pending');
+        Route::get('agent/approved', 'ManageAgentController@approved')->name('agent.approved');
+        Route::get('agent/banned', 'ManageAgentController@banned')->name('agent.banned');
+        Route::get('agent/create', 'ManageAgentController@create')->name('agent.create');
+        Route::post('agent/store', 'ManageAgentController@store')->name('agent.store');
+        Route::get('agent/edit/{id}', 'ManageAgentController@edit')->name('agent.edit');
+        Route::get('agent/view/{id}', 'ManageAgentController@view')->name('agent.view');
+        Route::post('agent/update/{id}', 'ManageAgentController@update')->name('agent.update');
+        Route::post('agent/approved/status', 'ManageAgentController@approvedStatus')->name('agent.approved.status');
+        Route::post('agent/banned/status', 'ManageAgentController@bannedStatus')->name('agent.banned.status');
+        Route::get('agent/search', 'ManageAgentController@search')->name('agent.search');
+
+        // Frontend
+        Route::name('frontend.')->prefix('frontend')->group(function () {
+            Route::get('templates', 'FrontendController@templates')->name('templates');
+            Route::post('templates', 'FrontendController@templatesActive')->name('templates.active');
+
+            Route::get('frontend-sections/{key}', 'FrontendController@frontendSections')->name('sections');
+            Route::post('frontend-content/{key}', 'FrontendController@frontendContent')->name('sections.content');
+            Route::get('frontend-element/{key}/{id?}', 'FrontendController@frontendElement')->name('sections.element');
+            Route::post('remove', 'FrontendController@remove')->name('remove');
         });
     });
 });

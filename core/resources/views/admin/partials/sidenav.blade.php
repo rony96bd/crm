@@ -21,7 +21,7 @@
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('admin.donor*', 3) }}">
-                        <i class="menu-icon las la-user"></i>
+                        <i class="menu-icon las la-user-graduate"></i>
                         <span class="menu-title">@lang('Manage Students') </span>
                         @if (0 < $pending_donor_count)
                             <span class="menu-badge pill bg--primary ml-auto">
@@ -69,7 +69,7 @@
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('admin.agent*', 3) }}">
-                        <i class="menu-icon las la-user"></i>
+                        <i class="menu-icon las la-user-tie"></i>
                         <span class="menu-title">@lang('Manage Agent') </span>
                         @if (0 < $pending_agent_count)
                             <span class="menu-badge pill bg--primary ml-auto">
@@ -108,6 +108,53 @@
                                 <a href="{{ route('admin.agent.index') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Registered Agents')</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{ menuActive('admin.user*', 3) }}">
+                        <i class="menu-icon las la-user"></i>
+                        <span class="menu-title">@lang('Manage User') </span>
+                        @if (0 < $pending_agent_count)
+                            <span class="menu-badge pill bg--primary ml-auto">
+                                <i class="fa fa-exclamation"></i>
+                            </span>
+                        @endif
+                    </a>
+                    <div class="sidebar-submenu {{ menuActive('admin.user*', 2) }} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{ menuActive('admin.user.approved') }} ">
+                                <a href="{{ route('admin.user.approved') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Approved')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{ menuActive('admin.user.pending') }} ">
+                                <a href="{{ route('admin.user.pending') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Pending')</span>
+                                    @if ($pending_agent_count)
+                                        <span
+                                            class="menu-badge pill bg--primary ml-auto">{{ $pending_agent_count }}</span>
+                                    @endif
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{ menuActive('admin.user.banned') }} ">
+                                <a href="{{ route('admin.user.banned') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Banned')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{ menuActive('admin.user.index') }} ">
+                                <a href="{{ route('admin.user.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Registered Users')</span>
                                 </a>
                             </li>
 

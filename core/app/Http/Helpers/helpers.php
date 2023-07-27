@@ -605,6 +605,11 @@ function imagePath()
         'size' => '400x400'
     ];
 
+    $data['user'] = [
+        'path' => 'assets/admin/images/profile',
+        'size' => '400x400'
+    ];
+
     $data['agent'] = [
         'path' => 'assets/images/agent',
         'size' => '400x400'
@@ -637,6 +642,12 @@ function imagePath()
     $data['profile'] = [
         'admin' => [
             'path' => 'assets/admin/images/profile',
+            'size' => '400x400'
+        ]
+    ];
+    $data['profile'] = [
+        'user' => [
+            'path' => 'assets/user/images/profile',
             'size' => '400x400'
         ]
     ];

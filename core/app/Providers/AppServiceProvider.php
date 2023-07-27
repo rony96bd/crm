@@ -49,6 +49,14 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        view()->composer('user.partials.sidenav', function ($view) {
+            $view->with([
+                'pending_ticket_count' => SupportTicket::whereIN('status', [0,2])->count(),
+                'pending_donor_count' => Donor::where('status', 0)->count(),
+                'pending_agent_count' => Agent::where('status', 0)->count(),
+            ]);
+        });
+
         view()->composer('agent.partials.sidenav', function ($view) {
             $aid = auth()->guard('agent')->user()->id;
             $view->with([
