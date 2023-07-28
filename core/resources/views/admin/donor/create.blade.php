@@ -314,7 +314,7 @@
                             <hr>
                         <div class="form-group">
                             <button type="submit" class="btn btn--primary btn-block btn-lg"><i
-                                    class="fa fa-fw fa-paper-plane"></i> @lang('Apply Now')</button>
+                                    class="fa fa-fw fa-paper-plane"></i> @lang('Create Student')</button>
                         </div>
                     </form>
                 </div>
