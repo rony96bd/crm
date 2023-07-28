@@ -146,8 +146,8 @@ class ManageUserController extends Controller
         $user->phone = $request->phone;
         $user->manage_agent_id = json_encode($request->agents);
 
-        $path = imagePath()['agent']['path'];
-        $size = imagePath()['agent']['size'];
+        $path = imagePath()['user']['path'];
+        $size = imagePath()['user']['size'];
         if ($request->hasFile('image')) {
             try {
                 $filename = uploadImage($request->image, $path, $size);
