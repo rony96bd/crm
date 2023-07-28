@@ -13,18 +13,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class ManageDonorController extends Controller
 {
 
     public function index()
     {
-        $ids = ["1", "5"];
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
         $pageTitle = "Manage Students List";
         $emptyMessage = "No data found";
         $agents = Agent::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::whereIn('agent_id', $ids)->latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
+        $donors = Donor::whereIn('agent_id', $ids)->latest()->with('agent')->paginate(getPaginate());
         return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agents'));
+    }
+
+
+    public function pending()
+    {
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
+        $pageTitle = "Pending Students List";
+        $emptyMessage = "No data found";
+        $donors = Donor::where('status', 0)
+        ->whereIn('agent_id', $ids)
+            ->latest()->with('agent')->paginate(getPaginate());
+        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
+    }
+
+    public function approved()
+    {
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
+        $pageTitle = "Approved Students List";
+        $emptyMessage = "No data found";
+        $donors = Donor::where('status', 1)
+        ->whereIn('agent_id', $ids)
+            ->latest()->with('agent')->paginate(getPaginate());
+        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
+    }
+
+    public function banned()
+    {
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
+        $pageTitle = "Banned Students List";
+        $emptyMessage = "No data found";
+        $donors = Donor::where('status', 2)
+        ->whereIn('agent_id', $ids)
+            ->latest()->paginate(getPaginate());
+        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 
     public function export()
@@ -62,33 +97,6 @@ class ManageDonorController extends Controller
         $data = ['donor' => $donor];
         $pdf = Pdf::loadView('user.donor.exportpdf', $data);
         return $pdf->download('student' . '_' . $donor['firstname'] . '.pdf');
-    }
-
-    public function pending()
-    {
-        $pageTitle = "Pending Students List";
-        $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 0)->latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
-        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
-    }
-
-    public function approved()
-    {
-        $pageTitle = "Approved Students List";
-        $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
-    }
-
-    public function banned()
-    {
-        $pageTitle = "Banned Students List";
-        $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
     }
 
     public function create()

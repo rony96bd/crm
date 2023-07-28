@@ -8,13 +8,14 @@ use App\Models\City;
 use App\Models\Agent;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManageAgentController extends Controller
 {
 
     public function index()
     {
-        $ids = ["1", "5"];
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
         $pageTitle = "Manage Agent List";
         $emptyMessage = "No data found";
         $agents = Agent::latest()->whereIn('id', $ids)->paginate(getPaginate());

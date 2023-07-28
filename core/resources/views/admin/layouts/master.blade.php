@@ -38,16 +38,18 @@
     <!-- dashdoard main css -->
     <link rel="stylesheet" href="{{asset('assets/admin/css/app.css')}}">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     @stack('style')
 </head>
 <body>
 @yield('content')
 
-
-
 <!-- jQuery library -->
-<script src="{{asset('assets/admin/js/vendor/jquery-3.5.1.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+{{-- <script src="{{asset('assets/admin/js/vendor/jquery-3.5.1.min.js')}}"></script> --}}
 <!-- bootstrap js -->
 <script src="{{asset('assets/admin/js/vendor/bootstrap.bundle.min.js')}}"></script>
 <!-- bootstrap-toggle js -->
@@ -67,8 +69,7 @@
 <!-- code preview js -->
 <script src="{{asset('assets/admin/js/vendor/prism.js')}}"></script>
 <!-- seldct 2 js -->
-<script src="{{asset('assets/admin/js/vendor/select2.min.js')}}"></script>
-<!-- main js -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script><!-- main js -->
 <script src="{{asset('assets/admin/js/app.js')}}"></script>
 
 {{-- LOAD NIC EDIT --}}

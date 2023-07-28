@@ -9,6 +9,8 @@ use App\Models\Agent;
 use App\Models\User;
 use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class ManageUserController extends Controller
 {
@@ -50,10 +52,9 @@ class ManageUserController extends Controller
 
     public function create()
     {
-        $pageTitle = "Agent Create";
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('admin.user.create', compact('pageTitle', 'cities', 'bloods'));
+        $pageTitle = "User Create";
+        $agents = Agent::all();
+        return view('admin.user.create', compact('pageTitle', 'agents'));
     }
 
     public function agentBloodSearch(Request $request)
@@ -133,60 +134,32 @@ class ManageUserController extends Controller
         $request->validate([
             'name' => 'required|max:80',
             'email' => 'required|email|max:60|unique:agents,email',
+            'password' => 'required|confirmed|min:6',
             'phone' => 'required|max:40|unique:agents,phone',
-            'city' => 'required|exists:cities,id',
-            'location' => 'required|exists:locations,id',
-            'blood' => 'required|exists:bloods,id',
-            'gender' => 'required|in:1,2',
-            'religion' => 'required|max:40',
-            'profession' => 'required|max:80',
-            'donate' => 'required|integer',
-            'address' => 'required|max:255',
-            'details' => 'required',
-            'birth_date' => 'required|date',
-            'last_donate' => 'required|date',
-            'facebook' => 'required',
-            'twitter' => 'required',
-            'linkedinIn' => 'required',
-            'instagram' => 'required',
-            'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
+            // 'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
-        $agent = new Agent();
-        $agent->name = $request->name;
-        $agent->email = $request->email;
-        $agent->phone = $request->phone;
-        $agent->city_id = $request->city;
-        $agent->blood_id = $request->blood;
-        $agent->location_id = $request->location;
-        $agent->gender = $request->gender;
-        $agent->religion = $request->religion;
-        $agent->profession = $request->profession;
-        $agent->address = $request->address;
-        $agent->details = $request->details;
-        $agent->total_donate = $request->donate;
-        $agent->birth_date =  $request->birth_date;
-        $agent->last_donate = $request->last_donate;
-        $socialMedia = [
-            'facebook' => $request->facebook,
-            'twitter' => $request->twitter,
-            'linkedinIn' => $request->linkedinIn,
-            'instagram' => $request->instagram
-        ];
-        $agent->socialMedia = $socialMedia;
-        $path = imagePath()['agent']['path'];
-        $size = imagePath()['agent']['size'];
-        if ($request->hasFile('image')) {
-            try {
-                $filename = uploadImage($request->image, $path, $size);
-            } catch (\Exception $exp) {
-                $notify[] = ['error', 'Image could not be uploaded.'];
-                return back()->withNotify($notify);
-            }
-            $agent->image = $filename;
-        }
-        $agent->status = $request->status ? 1 : 2;
-        $agent->save();
-        $notify[] = ['success', 'Student has been created'];
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->username = rand(pow(10, 8 - 1), pow(10, 8) - 1);
+        $user->password = Hash::make($request->password);
+        $user->phone = $request->phone;
+        $user->manage_agent_id = json_encode($request->agents);
+
+        // $path = imagePath()['agent']['path'];
+        // $size = imagePath()['agent']['size'];
+        // if ($request->hasFile('image')) {
+        //     try {
+        //         $filename = uploadImage($request->image, $path, $size);
+        //     } catch (\Exception $exp) {
+        //         $notify[] = ['error', 'Image could not be uploaded.'];
+        //         return back()->withNotify($notify);
+        //     }
+        //     $agent->image = $filename;
+        // }
+        $user->status = '1';
+        $user->save();
+        $notify[] = ['success', 'User has been created'];
         return back()->withNotify($notify);
     }
 

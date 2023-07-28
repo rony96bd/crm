@@ -71,46 +71,15 @@
                     <a href="javascript:void(0)" class="{{ menuActive('user.agent*', 3) }}">
                         <i class="menu-icon las la-user"></i>
                         <span class="menu-title">@lang('Manage Agent') </span>
-                        @if (0 < $pending_agent_count)
-                            <span class="menu-badge pill bg--primary ml-auto">
-                                <i class="fa fa-exclamation"></i>
-                            </span>
-                        @endif
                     </a>
                     <div class="sidebar-submenu {{ menuActive('user.agent*', 2) }} ">
                         <ul>
-                            <li class="sidebar-menu-item {{ menuActive('user.agent.approved') }} ">
-                                <a href="{{ route('user.agent.approved') }}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Approved')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{ menuActive('user.agent.pending') }} ">
-                                <a href="{{ route('user.agent.pending') }}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Pending')</span>
-                                    @if ($pending_agent_count)
-                                        <span
-                                            class="menu-badge pill bg--primary ml-auto">{{ $pending_agent_count }}</span>
-                                    @endif
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{ menuActive('user.agent.banned') }} ">
-                                <a href="{{ route('user.agent.banned') }}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Banned')</span>
-                                </a>
-                            </li>
-
                             <li class="sidebar-menu-item {{ menuActive('user.agent.index') }} ">
                                 <a href="{{ route('user.agent.index') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Registered Agents')</span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </li>

@@ -20,10 +20,18 @@
                             @forelse($agents as $agent)
                             <tr>
                                 <td data-label="@lang('Name - Profession')">
-                                    <span>{{__($agent->name)}}</span><br>
+                                    <span>
+                                        @php
+                                            if ($agent->name == 'No Agent') {
+                                                $agentname = 'Without Agent Applications';
+                                            } else {
+                                                $agentname = $agent->name;
+                                            }
+                                        @endphp
+                                        {{ $agentname }}</span><br>
                                 </td>
                                 <td data-label="@lang('Designation')">
-                                    <span>{{__($agent->designation)}} of</span><br>
+                                    <span>{{__($agent->designation)}}</span><br>
                                     <span>{{__($agent->company)}}</span><br>
                                 </td>
                                 <td data-label="@lang('Email - Phone - WhatsApp')">
@@ -45,16 +53,14 @@
                                 </td>
 
                                 <td data-label="@lang('Action')">
-                                    @if($agent->status == 2)
-                                        <a href="javascript:void(0)" class="icon-btn btn--success ml-1 approved" data-toggle="tooltip" data-original-title="@lang('Approve')" data-id="{{$agent->id}}"><i class="las la-check"></i></a>
-                                    @elseif($agent->status == 1)
-                                        <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$agent->id}}"><i class="las la-times"></i></a>
-                                    @elseif($agent->status == 0)
-                                        <a href="javascript:void(0)" class="icon-btn btn--success ml-1 approved" data-toggle="tooltip" data-original-title="@lang('Approve')" data-id="{{$agent->id}}"><i class="las la-check"></i></a>
-                                        <a href="javascript:void(0)" class="icon-btn btn--danger ml-1 cancel" data-toggle="tooltip" data-original-title="@lang('Banned')" data-id="{{$agent->id}}"><i class="las la-times"></i></a>
-                                    @endif
-                                    <a href="{{route('admin.agent.edit', $agent->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
-                                    <a href="{{route('admin.agent.view', $agent->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-eye"></i></a>
+                                    @php
+                                            if ($agent->name == 'No Agent') {
+                                                $hidden = 'hidden';
+                                            } else {
+                                                $hidden = '';
+                                            }
+                                        @endphp
+                                    <a {{ $hidden}} href="{{route('user.agent.view', $agent->id)}}" class="icon-btn btn--primary ml-1"><i class="las la-eye"></i></a>
                                 </td>
                             </tr>
                             @empty
