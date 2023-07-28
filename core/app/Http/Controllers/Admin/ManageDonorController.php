@@ -331,9 +331,7 @@ class ManageDonorController extends Controller
     {
         $pageTitle = "Students Update";
         $donor = Donor::findOrFail($id);
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        return view('admin.donor.edit', compact('pageTitle', 'cities', 'bloods', 'donor'));
+        return view('admin.donor.edit', compact('pageTitle', 'donor'));
     }
 
     public function view($id)
@@ -348,62 +346,157 @@ class ManageDonorController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:80',
-            'email' => 'required|email|max:60|unique:donors,email,' . $id,
-            'phone' => 'required|max:40|unique:donors,phone,' . $id,
-            'city' => 'required|exists:cities,id',
-            'location' => 'required|exists:locations,id',
-            'blood' => 'required|exists:bloods,id',
-            'gender' => 'required|in:1,2',
-            'religion' => 'required|max:40',
-            'profession' => 'required|max:80',
-            'donate' => 'required|integer',
-            'address' => 'required|max:255',
-            // 'details' => 'required',
-            'birth_date' => 'required|date',
-            // 'last_donate' =>'required|date',
-            // 'facebook' => 'required',
-            // 'twitter' => 'required',
-            // 'linkedinIn' => 'required',
-            // 'instagram' => 'required',
+        $request->validate(['firstname' => 'required|max:80',
+            'lastname' => 'required|max:80',
+            'whatsapp' => 'required|max:40',
+            'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
+            'file' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file2' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file3' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file4' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file5' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file6' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file7' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file8' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file9' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file10' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file11' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file12' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
+            'file13' => ['nullable', 'max:2048', 'file', new FileTypeValidate(['jpg', 'jpeg', 'png', 'pdf'])],
             'image' => ['nullable', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
-        $donor = Donor::findOrFail($id);
-        $donor->name = $request->name;
-        $donor->email = $request->email;
-        $donor->phone = $request->phone;
-        $donor->city_id = $request->city;
-        $donor->blood_id = $request->blood;
-        $donor->location_id = $request->location;
-        $donor->gender = $request->gender;
-        $donor->religion = $request->religion;
-        $donor->profession = $request->profession;
-        $donor->address = $request->address;
-        $donor->details = $request->details;
-        $donor->total_donate = $request->donate;
-        $donor->birth_date =  $request->birth_date;
-        $donor->last_donate = $request->last_donate;
-        $socialMedia = [
-            'facebook' => $request->facebook,
-            'twitter' => $request->twitter,
-            'linkedinIn' => $request->linkedinIn,
-            'instagram' => $request->instagram
-        ];
-        $donor->socialMedia = $socialMedia;
-        $path = imagePath()['donor']['path'];
-        $size = imagePath()['donor']['size'];
+        $user = Donor::findOrFail($id);
+
         if ($request->hasFile('image')) {
+
             try {
-                $filename = uploadImage($request->image, $path, $size, $donor->image);
+                $old = $user->image ?: null;
+                $path = imagePath()['donor']['path'];
+                $size = imagePath()['donor']['size'];
+                $user->image = uploadImage($request->image, $path, $size, $old);
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
             }
-            $donor->image = $filename;
         }
-        $donor->status = $request->status ? 1 : 2;
-        $donor->save();
+
+        if ($request->hasFile('file')) {
+            $fileName = $user->id . '_' . 'passport' . '_' . time() . '.' . $request->file->extension();
+            $request->file->move('assets/files/student', $fileName);
+        } else {
+            $fileName = $user->file;
+        }
+
+        if ($request->hasFile('file2')) {
+            $fileName2 = $user->id . '_' . 'CV' . '_' . time() . '.' . $request->file2->extension();
+            $request->file2->move('assets/files/student', $fileName2);
+        } else {
+            $fileName2 = $user->file2;
+        }
+
+        if ($request->hasFile('file3')) {
+            $fileName3 = $user->id . '_' . 'EngTestReport' . '_' . time() . '.' . $request->file3->extension();
+            $request->file3->move('assets/files/student', $fileName3);
+        } else {
+            $fileName3 = $user->file3;
+        }
+
+        if ($request->hasFile('file4')) {
+            $fileName4 = $user->id . '_' . '10thCer' . '_' . time() . '.' . $request->file4->extension();
+            $request->file4->move('assets/files/student', $fileName4);
+        } else {
+            $fileName4 = $user->file4;
+        }
+
+        if ($request->hasFile('file5')) {
+            $fileName5 = $user->id . '_' . '12thCer' . '_' . time() . '.' . $request->file5->extension();
+            $request->file5->move('assets/files/student', $fileName5);
+        } else {
+            $fileName5 = $user->file5;
+        }
+
+        if ($request->hasFile('file6')) {
+            $fileName6 = $user->id . '_' . 'DegCer' . '_' . time() . '.' . $request->file6->extension();
+            $request->file6->move('assets/files/student', $fileName6);
+        } else {
+            $fileName6 = $user->file6;
+        }
+
+        if ($request->hasFile('file7')) {
+            $fileName7 = $user->id . '_' . 'MCer' . '_' . time() . '.' . $request->file7->extension();
+            $request->file7->move('assets/files/student', $fileName7);
+        } else {
+            $fileName7 = $user->file7;
+        }
+
+        if ($request->hasFile('file8')) {
+            $fileName8 = $user->id . '_' . '10thTrans' . '_' . time() . '.' . $request->file8->extension();
+            $request->file8->move('assets/files/student', $fileName8);
+        } else {
+            $fileName8 = $user->file8;
+        }
+
+        if ($request->hasFile('file9')) {
+            $fileName9 = $user->id . '_' . '12thTrans' . '_' . time() . '.' . $request->file9->extension();
+            $request->file9->move('assets/files/student', $fileName9);
+        } else {
+            $fileName9 = $user->file9;
+        }
+
+        if ($request->hasFile('file10')) {
+            $fileName10 = $user->id . '_' . 'DegTrans' . '_' . time() . '.' . $request->file10->extension();
+            $request->file10->move('assets/files/student', $fileName10);
+        } else {
+            $fileName10 = $user->file10;
+        }
+
+        if ($request->hasFile('file11')) {
+            $fileName11 = $user->id . '_' . 'MTrans' . '_' . time() . '.' . $request->file11->extension();
+            $request->file11->move('assets/files/student', $fileName11);
+        } else {
+            $fileName11 = $user->file11;
+        }
+
+        if ($request->hasFile('file12')) {
+            $fileName12 = $user->id . '_' . 'EoW' . '_' . time() . '.' . $request->file12->extension();
+            $request->file12->move('assets/files/student', $fileName12);
+        } else {
+            $fileName12 = $user->file12;
+        }
+
+        if ($request->hasFile('file13')) {
+            $fileName13 = $user->id . '_' . 'Other' . '_' . time() . '.' . $request->file13->extension();
+            $request->file13->move('assets/files/student', $fileName13);
+        } else {
+            $fileName13 = $user->file13;
+        }
+
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->phone = $request->phone;
+        $user->whatsapp = $request->whatsapp;
+        $user->engtest = json_encode($request->engtest);
+        $user->score_overall = $request->score_overall;
+        $user->low_score = $request->low_score;
+        $user->country = $request->country;
+        $user->qualification = $request->qualification;
+        $user->course = $request->course;
+        $user->file = $fileName;
+        $user->file2 = $fileName2;
+        $user->file3 = $fileName3;
+        $user->file4 = $fileName4;
+        $user->file5 = $fileName5;
+        $user->file6 = $fileName6;
+        $user->file7 = $fileName7;
+        $user->file8 = $fileName8;
+        $user->file9 = $fileName9;
+        $user->file10 = $fileName10;
+        $user->file11 = $fileName11;
+        $user->file12 = $fileName12;
+        $user->file13 = $fileName13;
+        $user->status = '0';
+
+        $user->save();
         $notify[] = ['success', 'Students has been updated'];
         return back()->withNotify($notify);
     }

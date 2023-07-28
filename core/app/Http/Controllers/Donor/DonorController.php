@@ -58,9 +58,7 @@ class DonorController extends Controller
     {
         $pageTitle = 'Profile';
         $donor = Auth::guard('donor')->user();
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('student.profile', compact('pageTitle', 'donor', 'cities', 'bloods'));
+        return view('student.profile', compact('pageTitle', 'donor'));
     }
 
     public function profileUpdate(Request $request)

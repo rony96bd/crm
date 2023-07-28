@@ -36,8 +36,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                             <div class="col-md-8">
                                 <div class="form-group ">
                                     <label class="form-control-label font-weight-bold">@lang('First Name')</label>
@@ -72,19 +72,20 @@
                                             class="text--danger">*</sup></label>
                                     <div style="margin-left: 20px">
                                         <input class="form-check-input" type="checkbox" name="engtest[]" value="IELTS"
-                                            id="flexCheckDefault" {{ in_array('IELTS', $engtests)? 'checked':'' }}>
+                                            id="flexCheckDefault" {{ in_array('IELTS', $engtests) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="flexCheckDefault">IELTS</label><br />
                                         <input class="form-check-input" type="checkbox" name="engtest[]" value="PTE"
-                                            id="flexCheckDefault" {{ in_array('PTE', $engtests)? 'checked':'' }}>
+                                            id="flexCheckDefault" {{ in_array('PTE', $engtests) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="flexCheckDefault">PTE</label><br />
                                         <input class="form-check-input" type="checkbox" name="engtest[]" value="Duolingo"
-                                            id="flexCheckDefault" {{ in_array('Duolingo', $engtests)? 'checked':'' }}>
+                                            id="flexCheckDefault" {{ in_array('Duolingo', $engtests) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="flexCheckDefault">Duolingo</label><br />
                                         <input class="form-check-input" type="checkbox" name="engtest[]" value="OEITC"
-                                            id="flexCheckDefault" {{ in_array('OEITC', $engtests)? 'checked':'' }}>
+                                            id="flexCheckDefault" {{ in_array('OEITC', $engtests) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="flexCheckDefault">OEITC</label><br />
                                         <input class="form-check-input" type="checkbox" name="engtest[]"
-                                            value="None of the Above" id="flexCheckDefault" {{ in_array('None of the Above', $engtests)? 'checked':'' }}>
+                                            value="None of the Above" id="flexCheckDefault"
+                                            {{ in_array('None of the Above', $engtests) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="flexCheckDefault">None of the Above</label>
                                     </div>
                                 </div>
@@ -140,7 +141,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Passport: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a>
+                                                Passport: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file" name="file"
@@ -152,7 +154,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                CV: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file2) }}</a>
+                                                CV: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file2) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file2" name="file2"
@@ -164,7 +167,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                English Test Report: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file3) }}</a>
+                                                English Test Report: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file3) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file3" name="file3"
@@ -176,7 +180,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                10th Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file4) }}</a>
+                                                10th Certificate: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file4) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file4" name="file4"
@@ -188,7 +193,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                12th Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file5) }}</a>
+                                                12th Certificate: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file5) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file5" name="file5"
@@ -200,7 +206,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Degree Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file6) }}</a>
+                                                Degree Certificate: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file6) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file6" name="file6"
@@ -212,7 +219,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Masters Certificate: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file7) }}</a>
+                                                Masters Certificate: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file7) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file7" name="file7"
@@ -224,7 +232,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                10th Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file8) }}</a>
+                                                10th Transcript: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file8) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file8" name="file8"
@@ -236,7 +245,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                12th Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file9) }}</a>
+                                                12th Transcript: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file9) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file9" name="file9"
@@ -248,7 +258,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Degree Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file10) }}</a>
+                                                Degree Transcript: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file10) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file10" name="file10"
@@ -260,7 +271,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Masters Transcript: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file11) }}</a>
+                                                Masters Transcript: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file11) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file11" name="file11"
@@ -272,7 +284,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Evidence of work: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file12) }}</a>
+                                                Evidence of work: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file12) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file12" name="file12"
@@ -284,7 +297,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                Other Documents: <a target="_blank" href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file13) }}</a>
+                                                Other Documents: <a target="_blank"
+                                                    href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file13) }}</a>
                                             </div>
                                             <div class="col">
                                                 <input type="file" id="file13" name="file13"
@@ -294,9 +308,12 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
+                                        <button type="submit"
+                                            class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -7,205 +7,304 @@
             	<form action="{{route('admin.donor.update', $donor->id)}}" method="POST" enctype="multipart/form-data">
             		@csrf
             		<div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <div class="image-upload">
                                     <div class="thumb">
                                         <div class="avatar-preview">
-                                            <div class="profilePicPreview" style="background-image: url({{getImage('assets/images/donor/'. $donor->image, imagePath()['donor']['size'])}})">
-                                                <button type="button" class="remove-image"><i class="fa fa-times"></i></button>
+                                            <div class="profilePicPreview"
+                                                style="height: 250px; background-image: url({{ getImage('assets/images/donor/' . $donor->image, imagePath()['donor']['size']) }})">
+                                                <button type="button" class="remove-image"><i
+                                                        class="fa fa-times"></i></button>
                                             </div>
                                         </div>
                                         <div class="avatar-edit">
-                                            <input type="file" class="profilePicUpload" name="image" id="profilePicUpload1" accept=".png, .jpg, .jpeg">
+                                            <input type="file" class="profilePicUpload" name="image"
+                                                id="profilePicUpload1" accept=".png, .jpg, .jpeg">
                                             <label for="profilePicUpload1" class="bg--success">@lang('Upload Image')</label>
-                                            <small class="mt-2 text-facebook">@lang('Supported files'): <b>@lang('jpeg'), @lang('jpg')</b>. @lang('Image will be resized into') {{imagePath()['donor']['size']}}@lang('px'). </small>
+                                            <small class="mt-2 text-facebook">@lang('Supported files'): <b>@lang('jpeg'),
+                                                    @lang('jpg').</b> @lang('Image will be resized into 400x400px') </small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                		<div class="col-lg-8">
-	                		<div class="form-group">
-	                			<label for="name" class="font-weight-bold">@lang('Name')</label>
-	                			<input type="text" name="name" value="{{$donor->name}}" id="name" class="form-control form-control-lg" placeholder="@lang('Enter Full Name')" maxlength="80" required="">
-	                		</div>
-
-                             <div class="form-group">
-                                <label for="blood" class="font-weight-bold">@lang('Blood Group')</label>
-                                <select name="blood" id="blood" class="form-control form-control-lg" required="">
-                                    <option value="" selected="" disabled="">@lang('Select One')</option>
-                                    @foreach($bloods as $blood)
-                                        <option value="{{$blood->id}}" @if($blood->id == $donor->blood_id) selected @endif>{{__($blood->name)}}</option>
-                                    @endforeach
-                                </select>
+                        <div class="col-md-8">
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold">@lang('First Name')</label>
+                                <input class="form-control" type="text" name="firstname"
+                                    value="{{ $donor->firstname }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="city" class="font-weight-bold">@lang('City')</label>
-                                <select name="city" id="city" class="form-control form-control-lg" required="">
-                                    <option value="" selected="" disabled="">@lang('Select One')</option>
-                                    @foreach($cities as $city)
-                                        <option value="{{$city->id}}" data-locations="{{ json_encode($city->location) }}" @if($city->id == $donor->city_id) selected @endif>{{__($city->name)}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold">@lang('Last Name')</label>
+                                <input class="form-control" type="text" name="lastname"
+                                    value="{{ $donor->lastname }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="location" class="font-weight-bold">@lang('Location')</label>
-                                <select name="location" id="location" class="form-control form-control-lg" required="">
-                                    <option value="" selected="" disabled="">@lang('Select One')</option>
-                                </select>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold">@lang('Phone')</label>
+                                <input class="form-control" type="text" name="phone"
+                                    value="{{ $donor->phone }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="gender" class="font-weight-bold">@lang('Gender')</label>
-                                <select name="gender" id="gender" class="form-control form-control-lg" required="">
-                                    <option value="" selected="" disabled="">@lang('Select One')</option>
-                                    <option value="1" @if($donor->gender == 1) selected @endif>@lang('Male')</option>
-                                    <option value="2" @if($donor->gender == 2) selected @endif>@lang('Female')</option>
-                                </select>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold">@lang('WhatsApp')</label>
+                                <input class="form-control" type="text" name="whatsapp"
+                                    value="{{ $donor->whatsapp }}">
                             </div>
-	                	</div>
-	                </div>
 
+                            @php
+                                $engtests = json_decode($donor->engtest);
+                            @endphp
 
-                    <div class="row">
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="facebook" class="form-control-label font-weight-bold">@lang('Facebook Url')</label>
-                                    <div class="input-group mb-3">
-                                          <input type="text" id="facebook" class="form-control form-control-lg" value="{{@$donor->socialMedia->facebook}}" placeholder="@lang('Enter Facebook Url')" name="facebook" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><i class="lab la-facebook-f"></i></span>
-                                          </div>
-                                    </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold">@lang('English Test taken')<sup
+                                        class="text--danger">*</sup></label>
+                                <div style="margin-left: 20px">
+                                    <input class="form-check-input" type="checkbox" name="engtest[]" value="IELTS"
+                                        id="flexCheckDefault" {{ in_array('IELTS', $engtests) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">IELTS</label><br />
+                                    <input class="form-check-input" type="checkbox" name="engtest[]" value="PTE"
+                                        id="flexCheckDefault" {{ in_array('PTE', $engtests) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">PTE</label><br />
+                                    <input class="form-check-input" type="checkbox" name="engtest[]" value="Duolingo"
+                                        id="flexCheckDefault" {{ in_array('Duolingo', $engtests) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">Duolingo</label><br />
+                                    <input class="form-check-input" type="checkbox" name="engtest[]" value="OEITC"
+                                        id="flexCheckDefault" {{ in_array('OEITC', $engtests) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">OEITC</label><br />
+                                    <input class="form-check-input" type="checkbox" name="engtest[]"
+                                        value="None of the Above" id="flexCheckDefault"
+                                        {{ in_array('None of the Above', $engtests) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexCheckDefault">None of the Above</label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="twitter" class="form-control-label font-weight-bold">@lang('Twitter Url')</label>
-                                    <div class="input-group mb-3">
-                                          <input type="text" id="twitter" value="{{@$donor->socialMedia->twitter}}" class="form-control form-control-lg" placeholder="@lang('Enter Twitter Url')" name="twitter" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><i class="lab la-twitter"></i></span>
-                                          </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold"
+                                    for="score_overall">@lang('Score Overall') <sup class="text--danger">*</sup></label>
+                                <input class="form-control" type="text" name="score_overall"
+                                    value="{{ __($donor->score_overall) }}">
+                            </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold" for="low_score">@lang('Low Score')
+                                    <sup class="text--danger">*</sup></label>
+                                <input class="form-control" type="text" name="low_score"
+                                    value="{{ __($donor->low_score) }}">
+                            </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold" for="country">@lang('Country')
+                                    <sup class="text--danger">*</sup></label>
+                                <select name="country" id="country" class="select" required="">
+                                    <option value="{{ __($donor->country) }}" selected="">
+                                        {{ __($donor->country) }}</option>
+                                    <option value="Bangladesh">@lang('Bangladesh')</option>
+                                    <option value="India">@lang('India')</option>
+                                    <option value="Pakisthan">@lang('Pakisthan')</option>
+                                    <option value="Nigeria">@lang('Nigeria')</option>
+                                    <option value="Ghana">@lang('Ghana')</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold"
+                                    for="qualification">@lang('Highest Qualification') <sup class="text--danger">*</sup></label>
+                                <select name="qualification" id="qualification" class="select" required="">
+                                    <option value="{{ __($donor->qualification) }}" selected="">
+                                        {{ __($donor->qualification) }}</option>
+                                    <option value="10th Grade/SSC/Secondary/O Level/GCSE">@lang('10th Grade/SSC/Secondary/O Level/GCSE')</option>
+                                    <option value="12th Grade/HSC/Senior Secondary/A Level">@lang('12th Grade/HSC/Senior Secondary/A Level')</option>
+                                    <option value="Bachelors Degree">@lang('Bachelors Degree')</option>
+                                    <option value="Masters Degree">@lang('Masters Degree')</option>
+                                    <option value="Other">@lang('Other')</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold" for="course">@lang('What Course would you like to apply for?')
+                                    <sup class="text--danger">*</sup></label>
+                                <input class="form-control" type="text" name="course"
+                                    value="{{ __($donor->course) }}">
+                            </div>
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold" for="file">@lang('Upload Document')
+                                    <sup class="text--danger">*</sup></label><br>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Passport: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file" name="file"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="linkedinIn" class="form-control-label font-weight-bold">@lang('LinkedinIn Url')</label>
-                                    <div class="input-group mb-3">
-                                          <input type="text" id="linkedinIn" value="{{@$donor->socialMedia->linkedinIn}}" class="form-control form-control-lg" placeholder="@lang('Enter LinkedinIn Url')" name="linkedinIn" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><i class="lab la-linkedin-in"></i></span>
-                                          </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            CV: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file2) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file2" name="file2"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="instagram" class="form-control-label font-weight-bold">@lang('Instagram Url')</label>
-                                    <div class="input-group mb-3">
-                                          <input type="text" id="instagram"  value="{{@$donor->socialMedia->instagram}}" class="form-control form-control-lg" placeholder="@lang('Enter Instagram Url')" name="instagram" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                          <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><i class="lab la-instagram"></i></span>
-                                          </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            English Test Report: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file3) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file3" name="file3"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
                                     </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            10th Certificate: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file4) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file4" name="file4"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            12th Certificate: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file5) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file5" name="file5"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Degree Certificate: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file6) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file6" name="file6"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Masters Certificate: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file7) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file7" name="file7"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            10th Transcript: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file8) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file8" name="file8"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            12th Transcript: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file9) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file9" name="file9"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Degree Transcript: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file10) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file10" name="file10"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Masters Transcript: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file11) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file11" name="file11"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Evidence of work: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file12) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file12" name="file12"
+                                                class="form--control custom-file-upload"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            Other Documents: <a target="_blank"
+                                                href="../assets/files/student/{{ __($donor->file) }}">{{ __($donor->file13) }}</a>
+                                        </div>
+                                        <div class="col">
+                                            <input type="file" id="file13" name="file13"
+                                                class="form--control custom-file-upload">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="submit"
+                                        class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
                                 </div>
                             </div>
                         </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                           <div class="form-group">
-                                <label for="phone" class="font-weight-bold">@lang('Phone')</label>
-                                <input type="text" id="phone" name="phone" value="{{$donor->phone}}" class="form-control form-control-lg" placeholder="@lang('Enter Phone')" maxlength="40" required="">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="email" class="font-weight-bold">@lang('Email')</label>
-                                <input type="email" id="email" name="email" value="{{$donor->email}}" class="form-control form-control-lg" placeholder="@lang('Enter Email')" maxlength="60" required="">
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="row">
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="profession" class="font-weight-bold">@lang('Profession')</label>
-                                <input type="text" name="profession" id="profession" value="{{$donor->profession}}" class="form-control form-control-lg" placeholder="@lang('Enter Profession')" maxlength="80" required="">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="religion" class="font-weight-bold">@lang('Religion')</label>
-                                <input type="text" id="religion" name="religion" value="{{$donor->religion}}" class="form-control form-control-lg" placeholder="@lang('Enter Religion')" maxlength="40" required="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="address" class="font-weight-bold">@lang('Address')</label>
-                                <input type="text" name="address" id="address" value="{{$donor->address}}" class="form-control form-control-lg" placeholder="@lang('Enter Address')" maxlength="255" required="">
-                            </div>
-                        </div>
-
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="donate" class="font-weight-bold">@lang('Total Donate')</label>
-                                <input type="text" id="donate" name="donate" value="{{$donor->total_donate}}" class="form-control form-control-lg" placeholder="@lang('Enter Total Blood Donate')" required="">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="birth_date" class="font-weight-bold">@lang('Date Of Birth')</label>
-                                <input type="text" name="birth_date" id="birth_date" value="{{showDateTime($donor->birth_date, 'Y-m-d')}}" data-language="en" class="form-control form-control-lg datepicker-here" placeholder="@lang('Enter Date Of Birth')" required="">
-                            </div>
-                        </div>
-
-                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="last_donate" class="font-weight-bold">@lang('Last Donate')</label>
-                                <input type="text" name="last_donate" id="last_donate" value="{{showDateTime($donor->last_donate, 'Y-m-d')}}" data-language="en" class="form-control form-control-lg datepicker-here" placeholder="@lang('Enter Last Donate Date')">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="details" class="font-weight-bold">@lang('About Donor')</label>
-                                <textarea name="details" id="details" class="form-control form-control-lg" placeholder="@lang('Enter About Donor')">{{$donor->details}}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-control-label font-weight-bold">@lang('Status') </label>
-                                <input type="checkbox" data-width="100%" data-onstyle="-success" data-offstyle="-danger"
-                                    data-toggle="toggle" data-on="@lang('Active')" @if($donor->status == 1) checked @endif data-off="@lang('Banned')" name="status">
-                            </div>
-                        </div>
-                    </div>
-
-                   	<div class="form-group">
-                        <button type="submit" class="btn btn--primary btn-block btn-lg"><i class="fa fa-fw fa-paper-plane"></i> @lang('Update Donor')</button>
                     </div>
             	</form>
             </div>
