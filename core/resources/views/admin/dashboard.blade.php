@@ -44,7 +44,7 @@
                     <div class="desciption">
                         <span>@lang('Total Students')</span>
                     </div>
-                    <a href="{{ route('admin.donor.index') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
+                    <a href="{{ route('user.donor.index') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     <div class="desciption">
                         <span>@lang('Total Pending Students')</span>
                     </div>
-                    <a href="{{ route('admin.donor.pending') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
+                    <a href="{{ route('user.donor.pending') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                         <span>@lang('Total Approved Students')</span>
                     </div>
 
-                    <a href="{{route('admin.donor.approved')}}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
+                    <a href="{{route('user.donor.approved')}}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                         <span>@lang('Total Banned Students')</span>
                     </div>
 
-                    <a href="{{ route('admin.donor.banned') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
+                    <a href="{{ route('user.donor.banned') }}" class="btn btn-sm text--small bg--white text--black box--shadow3 mt-3">@lang('View All')</a>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@
         <div class="col-lg-12 mb-30">
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
-                    
+
                 </div>
             </div>
         </div>

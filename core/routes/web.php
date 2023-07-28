@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/clear', function(){
+Route::get('/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
 });
 
@@ -15,9 +15,9 @@ Route::prefix('ticket')->group(function () {
     Route::post('/reply/{ticket}', 'TicketController@replyTicket')->name('ticket.reply');
     Route::get('/download/{ticket}', 'TicketController@ticketDownload')->name('ticket.download');
 });
-    Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
-    Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
-    Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
 
 Route::namespace('Donor')->prefix('student')->name('student.')->group(function () {
     Route::namespace('Auth')->group(function () {
@@ -54,7 +54,6 @@ Route::namespace('Donor')->prefix('student')->name('student.')->group(function (
         Route::get('donor/blood/search', 'ManageDonorController@donorBloodSearch')->name('donor.blood.search');
         Route::post('donor/featured/list/Include', 'ManageDonorController@featuredInclude')->name('donor.featured.include');
         Route::post('donor/featured/list/remove', 'ManageDonorController@featuredNotInclude')->name('donor.featured.remove');
-
     });
 });
 
@@ -147,9 +146,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('user/banned/status', 'ManageUserController@bannedStatus')->name('user.banned.status');
 
         //Report Bugs
-        Route::get('request-report','AdminController@requestReport')->name('request.report');
-        Route::post('request-report','AdminController@reportSubmit');
-        Route::get('system-info','AdminController@systemInfo')->name('system.info');
+        Route::get('request-report', 'AdminController@requestReport')->name('request.report');
+        Route::post('request-report', 'AdminController@reportSubmit');
+        Route::get('system-info', 'AdminController@systemInfo')->name('system.info');
 
         // Subscriber
         Route::get('subscriber', 'SubscriberController@index')->name('subscriber.index');
@@ -189,12 +188,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('setting/logo-icon', 'GeneralSettingController@logoIconUpdate')->name('setting.logo.icon');
 
         //Custom CSS
-        Route::get('custom-css','GeneralSettingController@customCss')->name('setting.custom.css');
-        Route::post('custom-css','GeneralSettingController@customCssSubmit');
+        Route::get('custom-css', 'GeneralSettingController@customCss')->name('setting.custom.css');
+        Route::post('custom-css', 'GeneralSettingController@customCssSubmit');
 
         //Cookie
-        Route::get('cookie','GeneralSettingController@cookie')->name('setting.cookie');
-        Route::post('cookie','GeneralSettingController@cookieSubmit');
+        Route::get('cookie', 'GeneralSettingController@cookie')->name('setting.cookie');
+        Route::post('cookie', 'GeneralSettingController@cookieSubmit');
 
         // Plugin
         Route::get('extensions', 'ExtensionController@index')->name('extensions.index');
@@ -215,7 +214,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // SMS Setting
         Route::get('sms-template/global', 'SmsTemplateController@smsTemplate')->name('sms.template.global');
         Route::post('sms-template/global', 'SmsTemplateController@smsTemplateUpdate')->name('sms.template.global');
-        Route::get('sms-template/setting','SmsTemplateController@smsSetting')->name('sms.templates.setting');
+        Route::get('sms-template/setting', 'SmsTemplateController@smsSetting')->name('sms.templates.setting');
         Route::post('sms-template/setting', 'SmsTemplateController@smsSettingUpdate')->name('sms.template.setting');
         Route::get('sms-template/index', 'SmsTemplateController@index')->name('sms.template.index');
         Route::get('sms-template/edit/{id}', 'SmsTemplateController@edit')->name('sms.template.edit');

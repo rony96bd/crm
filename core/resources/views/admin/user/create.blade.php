@@ -69,7 +69,7 @@
                                         class="form-control form-control-lg" maxlength="60" required="">
                                 </div>
                                 <label for="phone" class="font-weight-bold">@lang('Select Agents to Manage')</label>
-                                <select class="js-example-basic-multiple" name="agents[]" multiple="multiple">
+                                <select class="js-example-basic-multiple" name="agents[]" multiple="multiple" required>
                                     @foreach ($agents as $agent)
                                         <option value="{{$agent->id}}">{{$agent->name}}</option>
                                     @endforeach

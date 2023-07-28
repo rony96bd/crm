@@ -20,15 +20,16 @@ class UserController extends Controller
 
     public function dashboard()
     {
+        $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);
         $pageTitle = 'Dashboard';
         $blood = Blood::count();
         $city = City::count();
         $locations = Location::count();
         $ads = Advertisement::count();
-        $don['all'] = Donor::count();
-        $don['pending'] = Donor::where('status', 0)->count();
-        $don['approved'] = Donor::where('status', 1)->count();
-        $don['banned'] = Donor::where('status', 2)->count();
+        $don['all'] = Donor::whereIn('agent_id', $ids)->count();
+        $don['pending'] = Donor::where('status', 0)->whereIn('agent_id', $ids)->count();
+        $don['approved'] = Donor::where('status', 1)->whereIn('agent_id', $ids)->count();
+        $don['banned'] = Donor::where('status', 2)->whereIn('agent_id', $ids)->count();
         $donors = Donor::orderBy('id', 'DESC')->with('blood', 'location')->limit(8)->get();
         return view('user.dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors'));
     }

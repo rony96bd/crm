@@ -59,7 +59,7 @@
 
                                         <td data-label="Agent Name">
                                             <span><a target="_blank"
-                                                    href="{{ route('admin.agent.view', $donor->agent->id ?? '') }}">{{ $donor->agent->name ?? '' }}</a></span>
+                                                    href="{{ route('user.agent.view', $donor->agent->id ?? '') }}">{{ $donor->agent->name ?? '' }}</a></span>
                                         </td>
 
                                         <td data-label="@lang('Status')">
@@ -124,7 +124,7 @@
                     </button>
                 </div>
 
-                <form action="{{ route('admin.donor.approved.status') }}" method="POST">
+                <form action="{{ route('user.donor.approved.status') }}" method="POST">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="id">
@@ -152,7 +152,7 @@
                     </button>
                 </div>
 
-                <form action="{{ route('admin.donor.banned.status') }}" method="POST">
+                <form action="{{ route('user.donor.banned.status') }}" method="POST">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="id">
@@ -173,9 +173,9 @@
 
 
 @push('breadcrumb-plugins')
-    <a href="{{ route('admin.donor.export') }}" class="btn btn-primary">Export To Excel</a>
+    <a href="{{ route('user.donor.export') }}" class="btn btn-primary">Export To Excel</a>
 
-    <a href="{{ route('admin.donor.create') }}"
+    <a href="{{ route('user.donor.create') }}"
         class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0"><i
             class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
 @endpush

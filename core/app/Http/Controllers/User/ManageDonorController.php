@@ -58,7 +58,7 @@ class ManageDonorController extends Controller
         $donors = Donor::where('status', 2)
         ->whereIn('agent_id', $ids)
             ->latest()->paginate(getPaginate());
-        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
     }
 
     public function export()
