@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Exports\DonorsExport;
+use App\Exports\DonorsExportUser;
 use App\Http\Controllers\Controller;
 use App\Models\Agent;
 use App\Models\Blood;
@@ -64,7 +64,7 @@ class ManageDonorController extends Controller
     public function export()
     {
         //export Donors
-        return Excel::download(new DonorsExport, 'students.xlsx');
+        return Excel::download(new DonorsExportUser, 'students.xlsx');
     }
 
     public function exportv()
