@@ -123,7 +123,7 @@
                             <li class="sidebar-menu-item {{ menuActive('admin.user.index') }} ">
                                 <a href="{{ route('admin.user.index') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Registered Users')</span>
+                                    <span class="menu-title">@lang('All Users')</span>
                                 </a>
                             </li>
                             <li class="sidebar-menu-item {{ menuActive('admin.user.banned') }} ">
