@@ -606,7 +606,7 @@ function imagePath()
     ];
 
     $data['user'] = [
-        'path' => 'assets/admin/images/profile',
+        'path' => 'assets/user/images/profile',
         'size' => '400x400'
     ];
 
