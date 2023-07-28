@@ -136,7 +136,7 @@ class ManageUserController extends Controller
             'email' => 'required|email|max:60|unique:agents,email',
             'password' => 'required|confirmed|min:6',
             'phone' => 'required|max:40|unique:agents,phone',
-            // 'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
+            'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -146,17 +146,17 @@ class ManageUserController extends Controller
         $user->phone = $request->phone;
         $user->manage_agent_id = json_encode($request->agents);
 
-        // $path = imagePath()['agent']['path'];
-        // $size = imagePath()['agent']['size'];
-        // if ($request->hasFile('image')) {
-        //     try {
-        //         $filename = uploadImage($request->image, $path, $size);
-        //     } catch (\Exception $exp) {
-        //         $notify[] = ['error', 'Image could not be uploaded.'];
-        //         return back()->withNotify($notify);
-        //     }
-        //     $agent->image = $filename;
-        // }
+        $path = imagePath()['agent']['path'];
+        $size = imagePath()['agent']['size'];
+        if ($request->hasFile('image')) {
+            try {
+                $filename = uploadImage($request->image, $path, $size);
+            } catch (\Exception $exp) {
+                $notify[] = ['error', 'Image could not be uploaded.'];
+                return back()->withNotify($notify);
+            }
+            $user->image = $filename;
+        }
         $user->status = '1';
         $user->save();
         $notify[] = ['success', 'User has been created'];

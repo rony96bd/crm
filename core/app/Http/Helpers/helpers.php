@@ -611,7 +611,7 @@ function imagePath()
     ];
 
     $data['agent'] = [
-        'path' => 'assets/images/agent',
+        'path' => 'assets/admin/images/profile',
         'size' => '400x400'
     ];
 
