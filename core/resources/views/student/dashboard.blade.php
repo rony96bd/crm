@@ -42,6 +42,7 @@
                             <img src="{{ getImage('assets/images/donor/' . $donor->image ?? '', imagePath()['donor']['size']) }}"
                                 alt="@lang('Image')" class="rounded-circle img-fluid" style="width: 120px;">
                             <h5 class="my-3">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
+                            <span class="text-muted mb-4">@lang('Student ID') : {{ __($donor->username) }}</span>
                             <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 @if ($donor->status == 4)
@@ -53,7 +54,6 @@
                                         onclick="window.location.href = '{{ route('student.profile') }}';">Correction
                                         Application</button>
                                 @endif
-
                             </div>
                         </div>
                     </div>
