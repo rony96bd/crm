@@ -28,7 +28,6 @@ class ManageDonorController extends Controller
         return view('user.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'agents'));
     }
 
-
     public function pending()
     {
         $ids = json_decode(Auth::guard('user')->user()->manage_agent_id);

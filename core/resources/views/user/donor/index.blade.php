@@ -89,9 +89,9 @@
                                                     data-toggle="tooltip" data-original-title="@lang('Banned')"
                                                     data-id="{{ $donor->id }}"><i class="las la-times"></i></a>
                                             @endif
-                                            <a href="{{ route('admin.donor.edit', $donor->id) }}"
+                                            <a href="{{ route('user.donor.edit', $donor->id) }}"
                                                 class="icon-btn btn--primary ml-1"><i class="las la-pen"></i></a>
-                                            <a href="{{ route('admin.donor.view', $donor->id) }}"
+                                            <a href="{{ route('user.donor.view', $donor->id) }}"
                                                 class="icon-btn btn--primary ml-1"><i class="las la-eye"></i></a>
                                         </td>
                                     </tr>

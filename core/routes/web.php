@@ -267,7 +267,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::post('password', 'UserController@passwordUpdate')->name('password.update');
 
         // Donor
-        Route::get('donor/list', 'ManageDonorController@index')->name('donor.index');
+        Route::get('student/list', 'ManageDonorController@index')->name('donor.index');
         Route::get('student/pending', 'ManageDonorController@pending')->name('donor.pending');
         Route::get('student/approved', 'ManageDonorController@approved')->name('donor.approved');
         Route::get('student/banned', 'ManageDonorController@banned')->name('donor.banned');
