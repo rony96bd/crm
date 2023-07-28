@@ -110,7 +110,6 @@
                                     <span class="menu-title">@lang('Registered Agents')</span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </li>
@@ -127,7 +126,12 @@
                                     <span class="menu-title">@lang('Registered Users')</span>
                                 </a>
                             </li>
-
+                            <li class="sidebar-menu-item {{ menuActive('admin.user.banned') }} ">
+                                <a href="{{ route('admin.user.banned') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Banned')</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
