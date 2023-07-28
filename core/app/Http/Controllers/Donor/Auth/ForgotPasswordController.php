@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm(): View
     {
         $pageTitle = 'Account Recovery';
-        return view('donor.auth.passwords.email', compact('pageTitle'));
+        return view('student.auth.passwords.email', compact('pageTitle'));
     }
 
     /**
@@ -83,13 +83,13 @@ class ForgotPasswordController extends Controller
             'browser' => $userBrowser['browser'],
             'ip' => $userIpInfo['ip'],
             'time' => $userIpInfo['time'],
-            'name' => $user->name,
+            'name' => $user->firstname,
             'username' => $user->username,
             'email' => $user->email,
         ]);
         $pageTitle = 'Account Recovery';
         $notify[] = ['success', 'Password reset email sent successfully'];
-        return view('donor.auth.passwords.code_verify', compact('pageTitle', 'notify'));
+        return view('student.auth.passwords.code_verify', compact('pageTitle', 'notify'));
     }
 
     public function verifyCode(Request $request)
@@ -97,6 +97,6 @@ class ForgotPasswordController extends Controller
         $request->validate(['code' => 'required']);
         $notify[] = ['success', 'You can change your password.'];
         $code = str_replace(' ', '', $request->code);
-        return redirect()->route('donor.password.reset.form', $code)->withNotify($notify);
+        return redirect()->route('student.password.reset.form', $code)->withNotify($notify);
     }
 }

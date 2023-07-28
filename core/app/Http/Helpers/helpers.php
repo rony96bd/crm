@@ -35,7 +35,7 @@ function sidebarVariation()
 
 function systemDetails()
 {
-    $system['name'] = 'nearblood';
+    $system['name'] = 'AppliUK';
     $system['version'] = '1.0';
     return $system;
 }

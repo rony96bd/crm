@@ -64,7 +64,7 @@ class ResetPasswordController extends Controller
             return redirect()->route('donor.password.reset')->withNotify($notify);
         }
         $email = $resetToken->email;
-        return view('donor.auth.passwords.reset', compact('pageTitle', 'email', 'token'));
+        return view('student.auth.passwords.reset', compact('pageTitle', 'email', 'token'));
     }
 
 
@@ -80,7 +80,7 @@ class ResetPasswordController extends Controller
         $user = Donor::where('email', $reset->email)->first();
         if ($reset->status == 1) {
             $notify[] = ['error', 'Invalid code'];
-            return redirect()->route('donor.login')->withNotify($notify);
+            return redirect()->route('student.login')->withNotify($notify);
         }
 
         $user->password = bcrypt($request->password);
@@ -98,7 +98,7 @@ class ResetPasswordController extends Controller
         ]);
 
         $notify[] = ['success', 'Password changed'];
-        return redirect()->route('donor.login')->withNotify($notify);
+        return redirect()->route('student.login')->withNotify($notify);
     }
 
     /**

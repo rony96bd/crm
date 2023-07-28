@@ -1,10 +1,10 @@
-@extends('admin.layouts.master')
+@extends('student.layouts.master')
 @section('content')
     <div class="page-wrapper default-version">
         <div class="form-area bg_img" data-background="{{asset('assets/admin/images/1.jpg')}}">
             <div class="form-wrapper">
                 <h4 class="logo-text mb-15"><strong>@lang('Recover Account')</strong></h4>
-                <form action="{{ route('donor.password.verify.code') }}" method="POST" class="cmn-form mt-30">
+                <form action="{{ route('student.password.verify.code') }}" method="POST" class="cmn-form mt-30">
                     @csrf
                     <div class="form-group">
                         <p class="text-success font-weight-bold">A Verification Code Send to Your Email.</p>
@@ -12,7 +12,7 @@
                         <input type="text" name="code" id="code" class="form-control">
                     </div>
                     <div class="form-group d-flex justify-content-between align-items-center">
-                        <a href="{{ route('donor.password.reset') }}" class="text-muted text--small">@lang('Try to send again')</a>
+                        <a href="{{ route('student.password.reset') }}" class="text-muted text--small">@lang('Try to send again')</a>
                     </div>
 
                     <div class="form-group">
