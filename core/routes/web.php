@@ -116,7 +116,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('student/update/{id}', 'ManageDonorController@update')->name('donor.update');
         Route::post('donor/approved/status', 'ManageDonorController@approvedStatus')->name('donor.approved.status');
         Route::post('donor/banned/status', 'ManageDonorController@bannedStatus')->name('donor.banned.status');
-        Route::get('donor/search', 'ManageDonorController@search')->name('donor.search');
+        Route::get('student/search', 'ManageDonorController@search')->name('donor.search');
 
         // Agent
         Route::get('agent/list', 'ManageAgentController@index')->name('agent.index');

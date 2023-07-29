@@ -8,7 +8,8 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('First Name - Last Name')</th>
+                                    <th>@lang('Serial')</th>
+                                    <th>@lang('First Name - Last Name - Student ID')</th>
                                     <th>@lang('Email - Phone - WhatsApp')</th>
                                     <th>@lang('English Test')</th>
                                     <th>@lang('Score Overall - Low Score')</th>
@@ -20,11 +21,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($donors as $donor)
+                                @forelse($donors as $index=>$donor)
                                     <tr>
                                         <td data-label="@lang('Name - Profession')">
-                                            <span>{{ __($donor->firstname) }}</span><br>
-                                            <span>{{ __($donor->lastname) }}</span>
+                                            <span>{{ $index+1 }}</span>
+                                        </td>
+                                        <td data-label="@lang('Name - Profession')">
+                                            <span>{{ __($donor->firstname) }} {{ __($donor->lastname) }}</span><br>
+                                            <span>StuID: {{ __($donor->username) }}</span>
                                         </td>
                                         <td data-label="@lang('Email - Phone - WhatsApp')">
                                             <span>{{ __($donor->email) }}</span><br>
@@ -173,11 +177,24 @@
 
 
 @push('breadcrumb-plugins')
-    <a href="{{ route('admin.donor.export') }}" class="btn btn-primary">Export To Excel</a>
+
+    <form action="{{ route('admin.donor.search') }}" method="GET"
+        class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
+        <div class="input-group has_append">
+            <input type="text" name="search" class="form-control" placeholder="@lang('Search Student.....')"
+                value="{{ $search ?? '' }}">
+            <div class="input-group-append">
+                <button class="btn btn--primary" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+
+    <a href="{{ route('admin.donor.export') }}" class="btn btn-lg btn-primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0">Export To Excel</a>
 
     <a href="{{ route('admin.donor.create') }}"
         class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0"><i
             class="fa fa-fw fa-paper-plane"></i>@lang('Add Student')</a>
+
 @endpush
 
 @push('script')

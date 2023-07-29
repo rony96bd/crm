@@ -115,7 +115,19 @@ class ManageDonorController extends Controller
         $pageTitle = "Students Search";
         $emptyMessage = "No data found";
         $search = $request->search;
-        $donors = Donor::where('firstname', 'like', "%$search%")->latest()->with('firstname', 'lastname')->paginate(getPaginate());
+        $donors = Donor::where('username', 'like', "%$search%")
+        ->orWhere('firstname', 'like', "%$search%")
+        ->orWhere('lastname', 'like', "%$search%")
+        ->orWhere('email', 'like', "%$search%")
+        ->orWhere('phone', 'like', "%$search%")
+        ->orWhere('whatsapp', 'like', "%$search%")
+        ->orWhere('country', 'like', "%$search%")
+        ->orWhere('score_overall', 'like', "%$search%")
+        ->orWhere('low_score', 'like', "%$search%")
+        ->orWhere('course', 'like', "%$search%")
+        ->orWhere('agent_id', 'like', "%$search%")
+        ->orWhere('status', 'like', "%$search%")
+        ->latest()->with('agent')->paginate(getPaginate());
         return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'search'));
     }
 
