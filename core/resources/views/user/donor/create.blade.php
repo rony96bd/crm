@@ -4,7 +4,7 @@
         <div class="col-lg-12 mb-30">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.donor.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('user.donor.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4">

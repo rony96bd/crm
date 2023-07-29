@@ -269,7 +269,7 @@ class ManageDonorController extends Controller
             $donor->image = $filename;
         }
         $donor->firstname = $request->firstname;
-        $donor->username = $request->firstname . rand(pow(10, 8 - 1), pow(10, 8) - 1);
+        $donor->username = date('Y') . rand(pow(10, 8 - 1), pow(10, 8) - 1);
         $donor->password = Hash::make('12345678');
         $donor->lastname = $request->lastname;
         $donor->phone = $request->phone;

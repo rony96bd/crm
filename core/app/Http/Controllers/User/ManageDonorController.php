@@ -101,9 +101,7 @@ class ManageDonorController extends Controller
     public function create()
     {
         $pageTitle = "Student Create";
-        $cities = City::where('status', 1)->select('id', 'name')->with('location')->get();
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        return view('user.donor.create', compact('pageTitle', 'cities', 'bloods'));
+        return view('user.donor.create', compact('pageTitle'));
     }
 
     public function donorBloodSearch(Request $request)
@@ -303,7 +301,7 @@ class ManageDonorController extends Controller
             $donor->image = $filename;
         }
         $donor->firstname = $request->firstname;
-        $donor->username = $request->firstname . rand(pow(10, 8 - 1), pow(10, 8) - 1);
+        $donor->username = date('Y') . rand(pow(10, 8 - 1), pow(10, 8) - 1);
         $donor->password = Hash::make('12345678');
         $donor->lastname = $request->lastname;
         $donor->phone = $request->phone;
