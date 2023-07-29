@@ -152,14 +152,6 @@
                     </a>
                 </li>
 
-
-                <li class="sidebar-menu-item {{ menuActive('admin.setting.custom.css') }}">
-                    <a href="{{ route('admin.setting.custom.css') }}" class="nav-link">
-                        <i class="menu-icon lab la-css3-alt"></i>
-                        <span class="menu-title">@lang('Custom CSS')</span>
-                    </a>
-                </li>
-
                 <li class="sidebar-menu-item {{ menuActive('admin.setting.optimize') }}">
                     <a href="{{ route('admin.setting.optimize') }}" class="nav-link">
                         <i class="menu-icon las la-broom"></i>
