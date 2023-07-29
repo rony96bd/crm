@@ -8,24 +8,24 @@
                 <div class="card-body p-0">
                     <div class="d-flex p-3 bg--primary">
                         <div class="avatar avatar--lg">
-                            <img src="{{ getImage(imagePath()['profile']['admin']['path'].'/'. $admin->image,imagePath()['profile']['admin']['size'])}}" alt="@lang('Image')">
+                            <img src="{{ getImage('assets/user/images/profile/'. auth()->guard('user')->user()->image) }}" alt="@lang('Image')">
                         </div>
                         <div class="pl-3">
-                            <h4 class="text--white">{{__($admin->name)}}</h4>
+                            <h4 class="text--white">{{__($user->name)}}</h4>
                         </div>
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Name')
-                            <span class="font-weight-bold">{{ __($admin->name) }}</span>
+                            <span class="font-weight-bold">{{ __($user->name) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Username')
-                            <span  class="font-weight-bold">{{ __($admin->username) }}</span>
+                            <span  class="font-weight-bold">{{ __($user->username) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Email')
-                            <span  class="font-weight-bold">{{ $admin->email }}</span>
+                            <span  class="font-weight-bold">{{ $user->email }}</span>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('Change Password')</h5>
 
-                    <form action="{{ route('admin.password.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('user.password.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -76,5 +76,5 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <a href="{{route('admin.profile')}}" class="btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-user"></i>@lang('Profile Setting')</a>
+    {{-- <a href="{{route('user.profile')}}" class="btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-user"></i>@lang('Profile Setting')</a> --}}
 @endpush

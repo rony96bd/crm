@@ -8,7 +8,7 @@
                 <div class="card-body p-0">
                     <div class="d-flex p-3 bg--primary">
                         <div class="avatar avatar--lg">
-                            <img src="{{ getImage(imagePath()['profile']['admin']['path'].'/'. $admin->image,imagePath()['profile']['admin']['size'])}}" alt="@lang('Image')">
+                            <img src="{{ getImage('assets/admin/images/profile/'. auth()->guard('admin')->user()->image) }}" alt="@lang('Image')">
                         </div>
                         <div class="pl-3">
                             <h4 class="text--white">{{__($admin->name)}}</h4>

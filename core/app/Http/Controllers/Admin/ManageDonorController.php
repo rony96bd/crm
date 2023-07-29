@@ -68,27 +68,24 @@ class ManageDonorController extends Controller
     {
         $pageTitle = "Pending Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 0)->latest()->with('blood', 'location', 'agent')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $donors = Donor::where('status', 0)->latest()->with('agent')->paginate(getPaginate());
+        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
     }
 
     public function approved()
     {
         $pageTitle = "Approved Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 1)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $donors = Donor::where('status', 1)->latest()->with('agent')->paginate(getPaginate());
+        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
     }
 
     public function banned()
     {
         $pageTitle = "Banned Students List";
         $emptyMessage = "No data found";
-        $bloods = Blood::where('status', 1)->select('id', 'name')->get();
-        $donors = Donor::where('status', 2)->latest()->with('blood', 'location')->paginate(getPaginate());
-        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors', 'bloods'));
+        $donors = Donor::where('status', 2)->latest()->with('agent')->paginate(getPaginate());
+        return view('admin.donor.index', compact('pageTitle', 'emptyMessage', 'donors'));
     }
 
     public function create()
