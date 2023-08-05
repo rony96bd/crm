@@ -41,9 +41,12 @@
                         <div class="card-body text-center">
                             <img src="{{ getImage('assets/images/donor/' . $donor->image ?? '', imagePath()['donor']['size']) }}"
                                 alt="@lang('Image')" class="rounded-circle img-fluid" style="width: 120px;">
-                            <h5 class="my-3">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
-                            <span class="text-muted mb-4">@lang('Student ID') : {{ __($donor->username) }}</span>
-                            <p class="text-muted mb-4">@lang('Location') : {{ __($donor->country) }}</p>
+                            <h5 class="my-3 text-primary">{{ __($donor->firstname) }} {{ __($donor->lastname) }}</h5>
+                        </div>
+                        <div style="padding-left: 15px;">
+                            <span class="text-muted mb-4"><span class="font-weight-bold">@lang('Student ID') :</span> {{ __($donor->username) }}</span>
+                            <p class="text-muted mb-4"><span class="font-weight-bold">@lang('Location') :</span> {{ __($donor->country) }}</p>
+                            <p class="text-danger mb-4"><span class="font-weight-bold">@lang('Note') :</span> {{ __($donor->admin_note) }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 @if ($donor->status == 4)
                                     <button type="button" class="btn btn-primary"
@@ -67,7 +70,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @if ($donor->status == 1)
-                                        <span class="badge badge--success font-weight-bold">@lang('Your Application is Granted')</span>
+                                        <span class="badge badge--success font-weight-bold">@lang('Your Application is Submitted to University')</span>
                                     @elseif($donor->status == 2)
                                         <span class="badge badge--danger font-weight-bold">@lang('Your Profile is Banned')</span>
                                     @elseif($donor->status == 3)

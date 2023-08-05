@@ -490,6 +490,7 @@ class ManageDonorController extends Controller
         $user->country = $request->country;
         $user->qualification = $request->qualification;
         $user->course = $request->course;
+        $user->admin_note = $request->admin_note;
         $user->file = $fileName;
         $user->file2 = $fileName2;
         $user->file3 = $fileName3;

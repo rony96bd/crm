@@ -214,7 +214,7 @@
 </div>
 @endsection
 @push('breadcrumb-plugins')
-    <a href="{{route('admin.donor.index')}}" class="btn btn-sm btn--primary box--shadow1 text--small"><i class="las la-angle-double-left"></i>@lang('Go Back')</a>
+    <a href="{{route('agent.donor.index')}}" class="btn btn-sm btn--primary box--shadow1 text--small"><i class="las la-angle-double-left"></i>@lang('Go Back')</a>
 @endpush
 
 @push('script-lib')

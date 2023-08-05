@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 @section('panel')
     <div class="row">
+        <a href="{{ route('admin.donor.export') }}"
+        class="btn btn-lg btn-primary box--shadow1 text--small mb-2 ml-0 ml-xl-3 ml-lg-0">Export To
+        Excel</a>
         <div class="col-lg-12">
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
@@ -16,6 +19,7 @@
                                     <th>@lang('Country - Highest Qualification')</th>
                                     <th>@lang('Course Name')</th>
                                     <th>Agent Name</th>
+                                    <th>Admin Note</th>
                                     <th>@lang('Status')</th>
                                     <th>@lang('Action')</th>
                                 </tr>
@@ -24,7 +28,7 @@
                                 @forelse($donors as $index=>$donor)
                                     <tr>
                                         <td data-label="@lang('Name - Profession')">
-                                            <span>{{ $index+1 }}</span>
+                                            <span>{{ $index + 1 }}</span>
                                         </td>
                                         <td data-label="@lang('Name - Profession')">
                                             <span>{{ __($donor->firstname) }} {{ __($donor->lastname) }}</span><br>
@@ -64,6 +68,10 @@
                                         <td data-label="Agent Name">
                                             <span><a target="_blank"
                                                     href="{{ route('admin.agent.view', $donor->agent->id ?? '') }}">{{ $donor->agent->name ?? '' }}</a></span>
+                                        </td>
+
+                                        <td data-label="Admin Note">
+                                            <span>{{__($donor->admin_note)}}</span>
                                         </td>
 
                                         <td data-label="@lang('Status')">
@@ -177,19 +185,16 @@
 
 
 @push('breadcrumb-plugins')
-
     <form action="{{ route('admin.donor.search') }}" method="GET"
         class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
         <div class="input-group has_append">
-            <input type="text" name="search" class="form-control" placeholder="@lang('Search Student.....')"
+            <input type="text" name="search" class="form-control" placeholder="@lang('Search Student...')"
                 value="{{ $search ?? '' }}">
             <div class="input-group-append">
                 <button class="btn btn--primary" type="submit"><i class="fa fa-search"></i></button>
             </div>
         </div>
     </form>
-
-    <a href="{{ route('admin.donor.export') }}" class="btn btn-lg btn-primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0">Export To Excel</a>
 
     <a href="{{ route('admin.donor.create') }}"
         class="btn btn-lg btn--primary float-sm-right box--shadow1 text--small mb-2 ml-0 ml-xl-2 ml-lg-0"><i

@@ -126,6 +126,14 @@
                                 <input class="form-control" type="text" name="course"
                                     value="{{ __($donor->course) }}">
                             </div>
+
+                            <div class="form-group ">
+                                <label class="form-control-label font-weight-bold" for="note">@lang('Note')
+                                    </label>
+                                <input class="form-control" type="text" name="admin_note"
+                                    value="{{ __($donor->admin_note) }}">
+                            </div>
+
                             <div class="form-group ">
                                 <label class="form-control-label font-weight-bold" for="file">@lang('Upload Document')
                                     <sup class="text--danger">*</sup></label><br>
