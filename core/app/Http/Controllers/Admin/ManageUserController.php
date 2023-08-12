@@ -135,7 +135,7 @@ class ManageUserController extends Controller
             'name' => 'required|max:80',
             'email' => 'required|email|max:60|unique:agents,email',
             'password' => 'required|confirmed|min:6',
-            'phone' => 'required|max:40|unique:phone',
+            'phone' => 'required|max:40|unique:users',
             'agents' => 'required',
             'image' => ['required', 'image', new FileTypeValidate(['jpg', 'jpeg', 'png'])],
         ]);
